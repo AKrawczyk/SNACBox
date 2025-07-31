@@ -1,0 +1,43 @@
+chmod +x /usr/bin/docker-checker.sh
+chmod +x /etc/init.d/docker-checker
+
+/etc/init.d/docker-checker enable
+/etc/init.d/docker-checker start
+
+/var/log/docker-checker.log {
+    rotate 7
+    daily
+    compress
+    missingok
+    notifempty
+    create 0644 root root
+}
+
+
+# Start the service
+/etc/init.d/docker-checker start
+
+# Stop the service
+/etc/init.d/docker-checker stop
+
+# Restart the service
+/etc/init.d/docker-checker restart
+
+# Check status
+/etc/init.d/docker-checker status
+
+# Enable on boot
+/etc/init.d/docker-checker enable
+
+# Disable on boot
+/etc/init.d/docker-checker disable
+
+
+# Check if the service is running
+ps | grep docker-checker
+
+# View the logs
+logread | grep docker-checker
+
+# Monitor the service in real-time
+logread -f | grep docker-checker
