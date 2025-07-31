@@ -1,1 +1,49 @@
+<%+header%>
+<h2>Device Access</h2>
+<% 
+    -- Construct the command to execute the PHP script
+    local command = string.format("php8-cli /www/html/deviceaccess.php \"%s\"", "CLI")
 
+    -- Use io.popen to execute the command and capture the output
+    local handle = io.popen(command)
+
+    -- Read all output from the command
+    local result = handle:read("*a")  
+    handle:close()
+
+    local http = require "luci.http"
+    local description = ""
+    local access = ""
+    local mac = ""
+    local form_id = tonumber(http.formvalue("form_id"))
+    if form_id then
+        if (form_id > 0) then
+            description = http.formvalue("Description" .. form_id) or ""
+            access = http.formvalue("Access" .. form_id) or ""
+            mac = http.formvalue("mac" .. form_id) or ""
+            -- Construct the command to execute the PHP script
+            local commandout = string.format("php8-cli /www/html/deviceaccess.php \"%s\" \"%s\" \"%s\"", description, access, mac)
+            local handleout = io.popen(commandout)
+
+            -- Read all output from the command
+            result = handleout:read("*a")  
+            handleout:close()
+        end
+    end
+
+    if form_id then
+        if (form_id == 0) then
+            local device_id = tonumber(http.formvalue("device_id"))
+            local device_mac = http.formvalue("device_mac")
+            -- Construct the command to execute the PHP script
+            local commanddel = string.format("php8-cli /www/html/deviceaccess.php \"%d\" \"%s\"", device_id, device_mac)
+            local handledel = io.popen(commanddel)
+
+            -- Read all output from the command
+            result = handledel:read("*a")  
+            handledel:close()
+        end
+    end
+%>
+    <%= result %>
+<%+footer%>

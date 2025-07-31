@@ -1,0 +1,52 @@
+<%+header%> 
+<h2>Schedule Access</h2>
+<% 
+    -- Construct the command to execute the PHP script
+    local command = string.format("php8-cli /www/html/scheduleaccess.php \"%s\"", "CLI")
+
+    -- Use io.popen to execute the command and capture the output
+    local handle = io.popen(command)
+
+    -- Read all output from the command
+    local result = handle:read("*a")  
+    handle:close()
+
+    local http = require "luci.http"
+    local commandout = ""
+    local name = ""
+    local type = http.formvalue("schedule_type")
+    if type then
+        local access = http.formvalue("schedule_access")
+        local rateing = tonumber(http.formvalue("schedule_rating"))
+        name = http.formvalue("schedule_name") or ""
+        if (type == "run_once") then
+            local run_once_date = http.formvalue("run_once_date")
+            commandout = string.format("php8-cli /www/html/scheduleaccess.php \"%s\" \"%d\" \"%s\" \"%s\" \"%s\"", access, rateing, name, type, run_once_date)
+        elseif (type == "daily") then
+            local daily_hour = tonumber(http.formvalue("daily_hour"))
+            local daily_minute = tonumber(http.formvalue("daily_minute"))
+            commandout = string.format("php8-cli /www/html/scheduleaccess.php \"%s\" \"%d\" \"%s\" \"%s\" \"%d\" \"%d\"", access, rateing, name, type, daily_hour, daily_minute)
+        elseif (type == "weekly") then
+            local weekly_hour = tonumber(http.formvalue("weekly_hour"))
+            local weekly_minute = tonumber(http.formvalue("weekly_minute"))
+            local weekly_day = tonumber(http.formvalue("weekly_day"))
+            commandout = string.format("php8-cli /www/html/scheduleaccess.php \"%s\" \"%d\" \"%s\" \"%s\" \"%d\" \"%d\" \"%d\"", access, rateing, name, type, weekly_hour, weekly_minute, weekly_day)
+        elseif (type == "monthly") then
+            local monthly_hour = tonumber(http.formvalue("monthly_hour"))
+            local monthly_minute = tonumber(http.formvalue("monthly_minute"))
+            local monthly_day = tonumber(http.formvalue("monthly_day"))
+            commandout = string.format("php8-cli /www/html/scheduleaccess.php \"%s\" \"%d\" \"%s\" \"%s\" \"%d\" \"%d\" \"%d\"", access, rateing, name, type, monthly_hour, monthly_minute, monthly_day)
+        elseif (type == "delete") then
+            local id = tonumber(http.formvalue("id"))
+            commandout = string.format("php8-cli /www/html/scheduleaccess.php \"%d\" \"%s\"", id, type)
+        end
+        -- Construct the command to execute the PHP script
+        local handleout = io.popen(commandout)
+
+        -- Read all output from the command
+        result = handleout:read("*a")  
+        handleout:close()
+    end
+%>
+    <%= result %>
+<%+footer%>
