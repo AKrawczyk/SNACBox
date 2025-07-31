@@ -1,4 +1,5 @@
 # SNACBox
+Note: Repository had to be rebuilt on 31-07-25<br><br>
 Simple Network Access Control Box (SNACBox) is a home router designed to provide access to child safe websites, protect devices and restrict access to the internet based on the users devices. The hope is that SNACBox can  help parents and guardians creating as child safe internet experiance.
 
 ![Device Access](screenshots/SNACBox-DeviceAccess-ScreenShot.png)
