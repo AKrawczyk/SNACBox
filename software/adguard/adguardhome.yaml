@@ -1,1 +1,583 @@
-
+http:
+  pprof:
+    port: 6060
+    enabled: false
+  address: 0.0.0.0:3080
+  session_ttl: 720h
+users:
+  - name: root
+    password: $2a$10$0q2AH/QkSXGLm3fSY47MD.T0IxhOsrkEObKls1pvnzYQvvjOOwNoa
+auth_attempts: 5
+block_auth_min: 15
+http_proxy: ""
+language: ""
+theme: auto
+dns:
+  bind_hosts:
+    - 0.0.0.0
+  port: 53
+  anonymize_client_ip: false
+  ratelimit: 20
+  ratelimit_subnet_len_ipv4: 24
+  ratelimit_subnet_len_ipv6: 56
+  ratelimit_whitelist: []
+  refuse_any: true
+  upstream_dns:
+    - https://doh.cleanbrowsing.org/doh/family-filter/
+    - https://family.adguard-dns.com/dns-query
+  upstream_dns_file: ""
+  bootstrap_dns:
+    - 185.228.168.168
+    - 185.228.169.168
+    - 9.9.9.10
+    - 149.112.112.10
+    - 2620:fe::10
+    - 2620:fe::fe:10
+  fallback_dns: []
+  upstream_mode: load_balance
+  fastest_timeout: 1s
+  allowed_clients: []
+  disallowed_clients: []
+  blocked_hosts:
+    - version.bind
+    - id.server
+    - hostname.bind
+  trusted_proxies:
+    - 127.0.0.0/8
+    - ::1/128
+  cache_size: 4194304
+  cache_ttl_min: 0
+  cache_ttl_max: 0
+  cache_optimistic: false
+  bogus_nxdomain: []
+  aaaa_disabled: false
+  enable_dnssec: false
+  edns_client_subnet:
+    custom_ip: ""
+    enabled: false
+    use_custom: false
+  max_goroutines: 300
+  handle_ddr: true
+  ipset: []
+  ipset_file: ""
+  bootstrap_prefer_ipv6: false
+  upstream_timeout: 10s
+  private_networks: []
+  use_private_ptr_resolvers: false
+  local_ptr_upstreams: []
+  use_dns64: false
+  dns64_prefixes: []
+  serve_http3: false
+  use_http3_upstreams: false
+  serve_plain_dns: true
+  hostsfile_enabled: true
+tls:
+  enabled: false
+  server_name: ""
+  force_https: false
+  port_https: 443
+  port_dns_over_tls: 853
+  port_dns_over_quic: 853
+  port_dnscrypt: 0
+  dnscrypt_config_file: ""
+  allow_unencrypted_doh: false
+  certificate_chain: ""
+  private_key: ""
+  certificate_path: ""
+  private_key_path: ""
+  strict_sni_check: false
+querylog:
+  dir_path: ""
+  ignored: []
+  interval: 2160h
+  size_memory: 1000
+  enabled: true
+  file_enabled: true
+statistics:
+  dir_path: ""
+  ignored: []
+  interval: 24h
+  enabled: true
+filters:
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
+    name: AdGuard DNS filter
+    id: 1
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
+    name: AdAway Default Blocklist
+    id: 2
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt
+    name: Dan Pollock's List
+    id: 1706716746
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt
+    name: Steven Black's List
+    id: 1706716748
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_14.txt
+    name: 'POL: Polish filters for Pi-hole'
+    id: 1706716749
+  - enabled: true
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_6.txt
+    name: Dandelion Sprout's Game Console Adblock List
+    id: 1706716750
+whitelist_filters: []
+user_rules:
+  - '@@||trendmicro.com^'
+  - '@@||amazonvideo.com^'
+  - '@@||amazonaws.com^'
+  - '@@||amazon.com^'
+  - '@@||amazon.co.uk^'
+  - '@@||media-amazon.com^'
+  - '@@||cloudfront.net^'
+  - '@@||amazonaws.com^'
+dhcp:
+  enabled: false
+  interface_name: br-lan
+  local_domain_name: lan
+  dhcpv4:
+    gateway_ip: 192.168.12.1
+    subnet_mask: 255.255.255.0
+    range_start: 192.168.12.100
+    range_end: 192.168.12.200
+    lease_duration: 86400
+    icmp_timeout_msec: 1000
+    options: []
+  dhcpv6:
+    range_start: ""
+    lease_duration: 86400
+    ra_slaac_only: false
+    ra_allow_slaac: false
+filtering:
+  blocking_ipv4: ""
+  blocking_ipv6: ""
+  blocked_services:
+    schedule:
+      time_zone: UTC
+    ids:
+      - tinder
+      - viber
+      - wechat
+      - imgur
+      - reddit
+      - snapchat
+      - telegram
+      - twitch
+      - vimeo
+      - instagram
+      - pinterest
+      - tiktok
+      - twitter
+      - ebay
+      - ok
+      - mail_ru
+      - facebook
+      - 9gag
+      - discord
+      - vk
+      - qq
+      - dailymotion
+      - douban
+      - origin
+      - weibo
+      - zhihu
+      - mastodon
+      - onlyfans
+      - 4chan
+      - aliexpress
+      - amino
+      - betano
+      - betfair
+      - betway
+      - bigo_live
+      - blaze
+      - clubhouse
+      - kakaotalk
+      - kik
+      - lazada
+      - linkedin
+      - mercado_libre
+      - plenty_of_fish
+      - shein
+      - shopee
+      - signal
+      - temu
+      - tumblr
+      - wizz
+      - amazon
+      - bluesky
+      - canais_globo
+      - cloudflare
+  protection_disabled_until: null
+  safe_search:
+    enabled: true
+    bing: true
+    duckduckgo: true
+    google: true
+    pixabay: true
+    yandex: true
+    youtube: true
+  blocking_mode: default
+  parental_block_host: family-block.dns.adguard.com
+  safebrowsing_block_host: standard-block.dns.adguard.com
+  rewrites: []
+  safebrowsing_cache_size: 1048576
+  safesearch_cache_size: 1048576
+  parental_cache_size: 1048576
+  cache_time: 30
+  filters_update_interval: 24
+  blocked_response_ttl: 10
+  filtering_enabled: true
+  parental_enabled: true
+  safebrowsing_enabled: true
+  protection_enabled: true
+clients:
+  runtime_sources:
+    whois: true
+    arp: true
+    rdns: true
+    dhcp: true
+    hosts: true
+  persistent:
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids:
+          - 9gag
+          - bilibili
+          - cloudflare
+          - douban
+          - imgur
+          - mail_ru
+          - ok
+          - origin
+          - qq
+          - telegram
+          - tinder
+          - twitter
+          - vimeo
+          - vk
+          - weibo
+          - zhihu
+          - onlyfans
+      name: 12-Rated
+      ids:
+        - 172.20.0.13
+      tags: []
+      upstreams: []
+      uid: 01926bdf-951e-7cad-9526-d6b1a6c3bdef
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: true
+      filtering_enabled: false
+      parental_enabled: false
+      safebrowsing_enabled: false
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids:
+          - tinder
+          - onlyfans
+          - ok
+          - mail_ru
+      name: 15-Rated
+      ids:
+        - 172.20.0.14
+      tags: []
+      upstreams: []
+      uid: 01926bdf-951e-7edd-92c1-14fcba137375
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: true
+      filtering_enabled: true
+      parental_enabled: true
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids:
+          - tinder
+          - onlyfans
+      name: 16-Rated
+      ids:
+        - 172.20.0.15
+      tags: []
+      upstreams: []
+      uid: 01926bdf-951f-701a-b184-738df1e5a07d
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: true
+      filtering_enabled: true
+      parental_enabled: true
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids: []
+      name: 18-Rated
+      ids:
+        - 172.20.0.16
+      tags: []
+      upstreams:
+        - https://doh.cleanbrowsing.org/doh/security-filter/
+        - https://dns.adguard.com/dns-query
+        - https://unfiltered.adguard-dns.com/dns-query
+      uid: 01926bdf-951f-707a-bb9a-488711d4c6a9
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: false
+      filtering_enabled: false
+      parental_enabled: false
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: true
+        bing: true
+        duckduckgo: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids: []
+      name: 18-tor-rated
+      ids:
+        - 172.20.0.20
+      tags: []
+      upstreams:
+        - https://doh.cleanbrowsing.org/doh/security-filter/
+        - https://dns.adguard.com/dns-query
+        - https://unfiltered.adguard-dns.com/dns-query
+      uid: 01926bdf-951f-70d5-8e73-e36326366d43
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: false
+      filtering_enabled: false
+      parental_enabled: false
+      safebrowsing_enabled: false
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: true
+        bing: true
+        duckduckgo: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids: []
+      name: 18-vpn-rated
+      ids:
+        - 172.20.0.25
+      tags: []
+      upstreams:
+        - https://doh.cleanbrowsing.org/doh/security-filter/
+        - https://dns.adguard.com/dns-query
+        - https://unfiltered.adguard-dns.com/dns-query
+      uid: 01926bdf-952a-74f3-a168-a16d8328020e
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: false
+      filtering_enabled: false
+      parental_enabled: false
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids: []
+      name: G-Rated
+      ids:
+        - 172.20.0.11
+      tags: []
+      upstreams: []
+      uid: 01926bdf-952f-7274-ad26-5bd8784bc960
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: true
+      filtering_enabled: false
+      parental_enabled: false
+      safebrowsing_enabled: false
+      use_global_blocked_services: true
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids: []
+      name: Open-Rated
+      ids:
+        - 0.0.0.1
+      tags: []
+      upstreams:
+        - 9.9.9.9
+        - 8.8.8.8
+        - 1.1.1.1
+      uid: 01926bdf-952f-72fc-868f-c729bbb77c8b
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: false
+      filtering_enabled: false
+      parental_enabled: false
+      safebrowsing_enabled: false
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+    - safe_search:
+        enabled: false
+        bing: false
+        duckduckgo: false
+        google: false
+        pixabay: false
+        yandex: false
+        youtube: false
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids:
+          - 9gag
+          - bilibili
+          - douban
+          - ebay
+          - facebook
+          - imgur
+          - instagram
+          - mail_ru
+          - ok
+          - origin
+          - pinterest
+          - qq
+          - reddit
+          - snapchat
+          - telegram
+          - tiktok
+          - tinder
+          - twitter
+          - vimeo
+          - vk
+          - weibo
+          - zhihu
+          - 4chan
+          - aliexpress
+          - betano
+          - betfair
+          - amino
+          - betway
+          - bigo_live
+          - bluesky
+          - canais_globo
+          - clubhouse
+          - discord
+          - kik
+          - linkedin
+          - mastodon
+          - onlyfans
+          - plenty_of_fish
+          - shein
+          - shopee
+          - signal
+          - skype
+          - temu
+          - tumblr
+          - twitch
+          - viber
+          - wechat
+          - amazon
+          - cloudflare
+      name: PG-Rated
+      ids:
+        - 172.20.0.12
+      tags: []
+      upstreams: []
+      uid: 01926bdf-952f-739f-892d-aaa2fc6cc2b5
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: true
+      filtering_enabled: true
+      parental_enabled: true
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
+log:
+  file: ""
+  max_backups: 0
+  max_size: 100
+  max_age: 3
+  compress: false
+  local_time: false
+  verbose: false
+os:
+  group: ""
+  user: ""
+  rlimit_nofile: 0
+schema_version: 28
