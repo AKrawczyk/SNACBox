@@ -1,1 +1,506 @@
 
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option synflood_protect '1'
+
+config zone
+	option name 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	list network 'lan'
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
+config rule
+	option name 'Allow-DHCP-Renew'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '68'
+	option target 'ACCEPT'
+	option family 'ipv4'
+
+config rule
+	option name 'Allow-Ping'
+	option src 'wan'
+	option proto 'icmp'
+	option icmp_type 'echo-request'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-IGMP'
+	option src 'wan'
+	option proto 'igmp'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-DHCPv6'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '546'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-MLD'
+	option src 'wan'
+	option proto 'icmp'
+	option src_ip 'fe80::/10'
+	list icmp_type '130/0'
+	list icmp_type '131/0'
+	list icmp_type '132/0'
+	list icmp_type '143/0'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Input'
+	option src 'wan'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	list icmp_type 'router-solicitation'
+	list icmp_type 'neighbour-solicitation'
+	list icmp_type 'router-advertisement'
+	list icmp_type 'neighbour-advertisement'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Forward'
+	option src 'wan'
+	option dest '*'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-IPSec-ESP'
+	option src 'wan'
+	option dest 'lan'
+	option proto 'esp'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ISAKMP'
+	option src 'wan'
+	option dest 'lan'
+	option dest_port '500'
+	option proto 'udp'
+	option target 'ACCEPT'
+
+config rule
+	option name 'HTTP open'
+	list proto 'tcp'
+	option dest_port '80 443 3080'
+	option target 'ACCEPT'
+	option src 'wan'
+
+config rule
+	option name 'Ssh open'
+	list proto 'tcp'
+	option src 'wan'
+	option dest_port '22'
+	option target 'ACCEPT'
+
+config rule
+	option name 'g-rated-doc'
+	option src 'lan'
+	option dest 'dco'
+	option dest_port '53 8080 8443'
+	option target 'ACCEPT'
+	list dest_ip '172.20.0.11'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name 'pg-rated-lan'
+	option src 'lan'
+	option dest 'wan'
+	option dest_port '25 2535 587 465 110 995 143 993'
+	option target 'ACCEPT'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name 'pg-rated-doc'
+	option src 'lan'
+	option dest 'dco'
+	option target 'ACCEPT'
+	option dest_port '53 8080 8443'
+	list dest_ip '172.20.0.12'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '12-rated-lan'
+	option src 'lan'
+	option dest 'wan'
+	option target 'ACCEPT'
+	option dest_port '25 2535 587 465 110 995 143 993 5222 5223 3478'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '12-rated-doc'
+	option src 'lan'
+	option dest 'dco'
+	option target 'ACCEPT'
+	option dest_port '53 8080 8443'
+	list dest_ip '172.20.0.13'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '15-rated-lan'
+	option src 'lan'
+	option dest 'wan'
+	option target 'ACCEPT'
+	option dest_port '25 2535 587 465 110 995 143 993'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '15-rated-doc'
+	option src 'lan'
+	option dest 'dco'
+	option target 'ACCEPT'
+	option dest_port '53 8080 8443'
+	list dest_ip '172.20.0.14'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '16-rated-lan'
+	option src 'lan'
+	option dest 'wan'
+	option target 'ACCEPT'
+	option dest_port '25 2535 587 465 110 995 143 993'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '16-rated-doc'
+	option src 'lan'
+	option dest 'dco'
+	list dest_ip '172.20.0.15'
+	option target 'ACCEPT'
+	list proto 'tcp'
+	list proto 'udp'
+	option dest_port '53 8080 8443'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '18-rated-lan'
+	option src 'lan'
+	option dest 'wan'
+	option target 'ACCEPT'
+	list proto 'all'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name '18-rated-doc'
+	option src 'lan'
+	list dest_ip '172.20.0.16'
+	option target 'ACCEPT'
+	option dest 'dco'
+	list proto 'tcp'
+	list proto 'udp'
+	option dest_port '53'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name 'Dyn UDP'
+	list proto 'udp'
+	option src 'lan'
+	option dest_port '49152-65535'
+	option target 'ACCEPT'
+	option dest 'wan'
+
+config rule
+	option name 'new-rated-doc'
+	option src 'lan'
+	option dest 'dco'
+	option target 'ACCEPT'
+	option dest_port '53 80 443'
+	list dest_ip '172.20.0.101'
+	option enabled '0'
+
+config rule
+	option name 'blacklist-ip-rated'
+	option src '*'
+	option dest 'wan'
+	option target 'DROP'
+
+config rule
+	option name 'Drop-ping'
+	list proto 'icmp'
+	option target 'DROP'
+	option src '*'
+
+config rule
+	option name 'lan'
+	option src 'lan'
+	option target 'DROP'
+	option dest '*'
+	list proto 'all'
+	option enabled '0'
+
+config forwarding
+	option src 'docker'
+	option dest 'wan'
+
+config zone
+	option name 'dco'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	list network 'dco'
+
+config zone 'docker'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option name 'docker'
+	list network 'docker'
+
+config forwarding
+	option src 'dco'
+	option dest 'wan'
+
+config redirect
+	option target 'DNAT'
+	option name 'g-rated-80'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '80'
+	option dest_ip '172.20.0.11'
+	option dest_port '8080'
+	option dest 'dco'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'g-rated-433'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '443'
+	option dest_ip '172.20.0.11'
+	option dest_port '8443'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'g-rated-dns'
+	option src 'lan'
+	option ipset 'user-grated'
+	option src_dport '53'
+	option dest_ip '172.20.0.11'
+	option dest_port '53'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'pg-rated-80'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '80'
+	option dest_ip '172.20.0.12'
+	option dest_port '8080'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'pg-rated-443'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '443'
+	option dest_ip '172.20.0.12'
+	option dest_port '8443'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'pg-rated-dns'
+	option src 'lan'
+	option src_dport '53'
+	option dest_ip '172.20.0.12'
+	option dest_port '53'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '12-rated-80'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '80'
+	option dest_ip '172.20.0.13'
+	option dest_port '8080'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '12-rated-443'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '443'
+	option dest_ip '172.20.0.13'
+	option dest_port '8443'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '12-rated-dns'
+	option src 'lan'
+	option src_dport '53'
+	option dest_ip '172.20.0.13'
+	option dest_port '53'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '15-rated-80'
+	list proto 'tcp'
+	option src 'lan'
+	option ipset 'user-15rated'
+	option src_dport '80'
+	option dest_ip '172.20.0.14'
+	option dest_port '80'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '15-rated-443'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '443'
+	option dest_ip '172.20.0.14'
+	option dest_port '8443'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '15-rated-dns'
+	option src 'lan'
+	option src_dport '53'
+	option dest_ip '172.20.0.14'
+	option dest_port '53'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '16-rated-80'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '80'
+	option dest_ip '172.20.0.15'
+	option dest_port '8080'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '16-rated-443'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '443'
+	option dest_ip '172.20.0.15'
+	option dest_port '8443'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '16-rated-dns'
+	option src 'lan'
+	option src_dport '53'
+	option dest_ip '172.20.0.15'
+	option dest_port '53'
+	list proto 'tcp'
+	list proto 'udp'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name '18-rated-dns'
+	option src 'lan'
+	option src_dport '53'
+	option dest_ip '172.20.0.16'
+	option dest_port '53'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'vpn-rated-80'
+	list proto 'tcp'
+	option src 'lan'
+	option src_dport '80'
+	option dest_ip '172.20.0.25'
+	option dest_port '8080'
+	list src_mac 'FF:FF:FF:FF:FF:FF'
+
+config zone
+	option name 'landoc'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	list network 'lan'
+
+config zone
+	option name 'wan'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option mtu_fix '1'
+	option masq '1'
+	list network 'wan'
+	list device 'tun+'
+
+config forwarding
+	option src 'landoc'
+	option dest 'dco'
+
+config redirect
+	option dest 'dco'
+	option target 'DNAT'
+	option name 'none-rated-any'
+	option src 'lan'
+	option src_dport '1-65535'
+	option dest_ip '172.20.0.101'
+	option enabled '0'
+	list src_mac 'ff:ff:ff:ff:ff:ff'
+
+config rule
+	option name 'drop-webbound'
+	option src 'dco'
+	list src_ip '172.20.0.101'
+	option dest '*'
+	option target 'DROP'
+	list proto 'all'
+
