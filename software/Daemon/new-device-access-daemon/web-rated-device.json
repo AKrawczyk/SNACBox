@@ -1,0 +1,47 @@
+[
+    {
+        "ID": 1,
+        "Device_hostname": "iPad",
+        "Device_Description": "Aaron's iPad",
+        "Device_ip": "192.168.12.103",
+        "Device_MAC": "5e:4e:46:c3:e8:8e",
+        "Device_Rating": "18-Rated",
+        "Device_Active": 1
+    },
+    {
+        "ID": 2,
+        "Device_hostname": "iPhone",
+        "Device_Description": "Aaron's iPhone",
+        "Device_ip": "192.168.12.104",
+        "Device_MAC": "de:61:01:40:04:16",
+        "Device_Rating": "18-Rated",
+        "Device_Active": 1
+    },
+    {
+        "ID": 3,
+        "Device_hostname": "admins-Mac-mini",
+        "Device_Description": "Mac Mini",
+        "Device_ip": "192.168.12.102",
+        "Device_MAC": "08:6d:41:e9:07:38",
+        "Device_Rating": "18-Rated",
+        "Device_Active": 1
+    },
+    {
+        "ID": 5,
+        "Device_hostname": "No10AOKvingRoom",
+        "Device_Description": "Apple TV",
+        "Device_ip": "192.168.12.105",
+        "Device_MAC": "cc:d2:81:6e:f3:05",
+        "Device_Rating": "18-Rated",
+        "Device_Active": 1
+    },
+    {
+        "ID": 6,
+        "Device_hostname": "192-168-12-107",
+        "Device_Description": "Work Mac",
+        "Device_ip": "",
+        "Device_MAC": "56:ce:5d:98:d9:c2",
+        "Device_Rating": "18-Rated",
+        "Device_Active": "0"
+    }
+]
