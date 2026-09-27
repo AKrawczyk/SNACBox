@@ -242,7 +242,8 @@ ADGuardHome
 <br>This will install and configure ADGuardHome on OpenWRT.
 
 ```bash
-./adguardhome-setup.sh
+wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-app-adguardhome-plugin-1.0.0-r1.apk
+apk add --allow-untrusted luci-app-adguardhome-plugin-1.0.0-r1.apk
 ```
 
 <br>Test ADGuardHome setup
