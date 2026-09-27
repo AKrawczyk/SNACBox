@@ -327,50 +327,23 @@ Click on Web Guard
 
 <h2>Step 4</h2>
 SNACBox theme<br>
-Install OpenWRT 2000 Theme
+Install SNACBox Theme
 
 ```bash
-opkg update
-opkg install luci-theme-openwrt-2020
-```
-
-<br>To create custom theme copy theme folders
-
-```bash
-cp -r /root/SNACBox/software/OpenWRT-Theme/luci-static/snacbox-theme/ /www/luci-static/
-ls /www/luci-static/snacbox-theme/
-cp -r /root/SNACBox/software/OpenWRT-Theme/view/themes/snacbox-theme /usr/share/ucode/luci/template/themes/
-```
-
-<br>To enable custom theme
-
-```bash
-uci set luci.main.mediaurlbase='/luci-static/snacbox-theme'
-uci set luci.themes.Snacbox='/luci-static/snacbox-theme'
-uci commit luci
-service uhttpd restart
+wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-theme-openwrt-snacbox-1.0.0-r1.apk
+apk add --allow-untrusted luci-theme-openwrt-snacbox-1.0.0-r1.apk
 ```
 
 <h2>Step 5</h2>
-<br>Install and configure luci-app-adguardhome app for SNACBox
-
-```bash
-git clone https://github.com/AKrawczyk/luci-app-adguardhome.git
-cd luci-app-adguardhome/SNACBox
-chmod +x install-SNACBox-adguardianhome.sh
-./install-SNACBox-adguardianhome.sh
-cd /root
-git clone https://github.com/AKrawczyk/twin-bcrypt.git
-cd twin-bcrypt
-cp twin-bcrypt.min.js /www/luci-static/resources/view/
-```
+<br>Configure AdGuardHome plugin for SNACBox
 
 Login to OpwnWRT and see SNACBox theme<br>
-Goto AdGuard Home -> Configuration<br>
+Goto Webguard -> AdGuardHome<br>
+Select Configuration tab<br>
 Enter username and password to ADGuardHome<br>
 Click 'Change Password' button<br>
 Click 'Save and Apply'<br>
-Goto AdGuard Home -> Status<br>
+Select Status tab<br>
 Click on ADGuardHome button<br>
 Login to ADGuardHome Web UI
 
