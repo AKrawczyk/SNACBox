@@ -345,6 +345,7 @@ cp -r /root/SNACBox/software/OpenWRT-Theme/view/themes/snacbox-theme /usr/share/
 
 ```bash
 uci set luci.main.mediaurlbase='/luci-static/snacbox-theme'
+uci set luci.themes.Snacbox='/luci-static/snacbox-theme'
 uci commit luci
 service uhttpd restart
 ```
