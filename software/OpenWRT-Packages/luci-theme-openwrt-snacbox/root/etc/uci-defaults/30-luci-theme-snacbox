@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Clear LuCI cache
+rm -f /tmp/luci-indexcache
+
+uci set luci.main.mediaurlbase='/luci-static/snacbox-theme'
+uci set luci.themes.SNACBox='/luci-static/snacbox-theme'
+uci commit luci
+service uhttpd restart
+
+# Remove this uci-defaults script so it only runs once upon installation
+rm -f /etc/uci-defaults/30-luci-theme-snacbox
+exit 0

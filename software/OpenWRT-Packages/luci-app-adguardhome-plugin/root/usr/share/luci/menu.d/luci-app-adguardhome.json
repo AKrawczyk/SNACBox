@@ -1,0 +1,54 @@
+{
+	"admin/snac": {
+		"title": "Web Guard",
+		"order": 1,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-adguardhome"]
+		}
+	},
+	"admin/snac/adguardhome": {
+		"title": "ADGuardHome",
+		"order": 1,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-adguardhome" ]
+		}
+	},
+	"admin/snac/adguardhome/dashboard": {
+		"title": "Dashboard",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "adguardhome/dashboard"
+		}
+	},
+	"admin/snac/adguardhome/status": {
+		"title": "Status",
+		"order": 11,
+		"action": {
+			"type": "view",
+			"path": "adguardhome/status"
+		}
+	},
+	"admin/snac/adguardhome/logs": {
+		"title": "Logs",
+		"order": 21,
+		"action": {
+			"type": "view",
+			"path": "adguardhome/logs"
+		}
+	},
+	"admin/snac/adguardhome/config": {
+		"title": "Configuration",
+		"order": 31,
+		"action": {
+			"type": "view",
+			"path": "adguardhome/config"
+		}
+	}
+}
