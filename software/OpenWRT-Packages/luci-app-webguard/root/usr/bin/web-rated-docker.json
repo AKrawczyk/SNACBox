@@ -1,0 +1,156 @@
+[
+    {
+        "ID": 1,
+        "Name": "G-Rated",
+        "Docker Name": "web-rated-g-e2gns",
+        "Docker IP": "172.20.0.11",
+        "Docker Config": "docker run -d --name web-rated-g-e2gns -v etc-unb-g:/etc/unbound -v log-e2g-g:/var/log --net doc1 --ip 172.20.0.11 --restart unless-stopped unboundns:v1.0",
+        "Docker State": "start",
+        "Schedule": "1",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 2,
+        "Name": "G-Rated",
+        "Docker Name": "web-rated-g-e2g",
+        "Docker IP": "",
+        "Docker Config": "docker run -d --name web-rated-g-e2g -v etc-e2g-g:/etc/e2guardian -v log-e2g-g:/var/log --net container:web-rated-g-e2gns --restart unless-stopped fredbcode/e2guardian:v5.5-arm",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    },
+    {
+        "ID": 3,
+        "Name": "PG-Rated",
+        "Docker Name": "web-rated-pg-e2gns",
+        "Docker IP": "172.20.0.12",
+        "Docker Config": "docker run -d --name web-rated-pg-e2gns -v etc-unb-pg:/etc/unbound -v log-e2g-pg:/var/log --net doc1 --ip 172.20.0.12 --restart unless-stopped unboundns:v1.0",
+        "Docker State": "start",
+        "Schedule": "1",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 4,
+        "Name": "PG-Rated",
+        "Docker Name": "web-rated-pg-e2g",
+        "Docker IP": "",
+        "Docker Config": "docker run -d --name web-rated-pg-e2g -v etc-e2g-pg:/etc/e2guardian -v log-e2g-pg:/var/log --net container:web-rated-pg-e2gns --restart unless-stopped fredbcode/e2guardian:v5.5-arm",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    },
+    {
+        "ID": 5,
+        "Name": "12-Rated",
+        "Docker Name": "web-rated-12-e2gns",
+        "Docker IP": "172.20.0.13",
+        "Docker Config": "docker run -d --name web-rated-12-e2gns -v etc-unb-12:/etc/unbound -v log-e2g-12:/var/log --net doc1 --ip 172.20.0.13 --restart unless-stopped unboundns:v1.0",
+        "Docker State": "start",
+        "Schedule": "1",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 6,
+        "Name": "12-Rated",
+        "Docker Name": "web-rated-12-e2g",
+        "Docker IP": "",
+        "Docker Config": "docker run -d --name web-rated-12-e2g -v etc-e2g-12:/etc/e2guardian -v log-e2g-12:/var/log --net container:web-rated-12-e2gns --restart unless-stopped fredbcode/e2guardian:v5.5-arm",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    },
+    {
+        "ID": 7,
+        "Name": "15-Rated",
+        "Docker Name": "web-rated-15-e2gns",
+        "Docker IP": "172.20.0.14",
+        "Docker Config": "docker run -d --name web-rated-15-e2gns -v etc-unb-15:/etc/unbound -v log-e2g-15:/var/log --net doc1 --ip 172.20.0.14 --restart unless-stopped unboundns:v1.0",
+        "Docker State": "start",
+        "Schedule": "1",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 8,
+        "Name": "15-Rated",
+        "Docker Name": "web-rated-15-e2g",
+        "Docker IP": "",
+        "Docker Config": "docker run -d --name web-rated-15-e2g -v etc-e2g-15:/etc/e2guardian -v log-e2g-15:/var/log --net container:web-rated-15-e2gns --restart unless-stopped fredbcode/e2guardian:v5.5-arm",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    },
+    {
+        "ID": 9,
+        "Name": "16-Rated",
+        "Docker Name": "web-rated-16-e2gns",
+        "Docker IP": "172.20.0.15",
+        "Docker Config": "docker run -d --name web-rated-16-e2gns -v etc-unb-16:/etc/unbound -v log-e2g-16:/var/log --net doc1 --ip 172.20.0.15 --restart unless-stopped unboundns:v1.0",
+        "Docker State": "start",
+        "Schedule": "1",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 10,
+        "Name": "16-Rated",
+        "Docker Name": "web-rated-16-e2g",
+        "Docker IP": "",
+        "Docker Config": "docker run -d --name web-rated-16-e2g -v etc-e2g-16:/etc/e2guardian -v log-e2g-16:/var/log --net container:web-rated-16-e2gns --restart unless-stopped fredbcode/e2guardian:v5.5-arm",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    },
+    {
+        "ID": 11,
+        "Name": "18-Rated",
+        "Docker Name": "web-rated-18-unb",
+        "Docker IP": "172.20.0.16",
+        "Docker Config": "docker run -d --name web-rated-18-unb -v etc-unb-18:/etc/unbound -v log-e2g-18:/var/log --net doc1 --ip 172.20.0.16 --restart unless-stopped unboundns:v1.0",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 12,
+        "Name": "VPN",
+        "Docker Name": "openvpn",
+        "Docker IP": "172.20.0.25",
+        "Docker Config": "docker run -d --net doc1 --ip  172.20.0.25 --cap-add NET_ADMIN --device /dev/net/tun:/dev/net/tun -e DNS=192.168.12.1 -e LOCAL_LAN=192.168.12.0/24 --volume openvpn-config:/vpn --name openvpn dperson/openvpn-client:latest",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "1",
+        "Status Counter": ""
+    },
+    {
+        "ID": 13,
+        "Name": "VPN",
+        "Docker Name": "web-rated-18-vpn-e2g",
+        "Docker IP": "",
+        "Docker Config": "docker run -d --name web-rated-18-vpn-e2g -v etc-e2g-18-vpn:/etc/e2guardian -v log-e2g-18-vpn:/var/log --net container:openvpn --restart unless-stopped fredbcode/e2guardian:v5.5-arm",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    },
+    {
+        "ID": 14,
+        "Name": "None",
+        "Docker Name": "web-rated-none",
+        "Docker IP": "172.20.0.101",
+        "Docker Config": "docker run -d --name web-rated-none --net doc1  --ip 172.20.0.101 --restart unless-stopped webbound:v1.0",
+        "Docker State": "start",
+        "Schedule": "",
+        "Rateing": "",
+        "Status Counter": ""
+    }
+]
