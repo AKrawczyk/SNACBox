@@ -10,6 +10,9 @@ docker pull webrated/webbound:latest
 
 docker network create --driver=bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 doc1
 
+/etc/init.d/docker-checker start
+/etc/init.d/docker-checker enable
+
 #-------- Firewall Configuration Activation --------
 /etc/init.d/firewall restart
 
@@ -25,5 +28,11 @@ else
     echo "Cron job already exists: $CRON_JOB"
 fi
 
+#-------- Webguard New Device Access Daemon Activation --------
+/etc/init.d/new-device-access start
+/etc/init.d/new-device-access enable
+
 #-------- Webguard Application Configuration --------
+/etc/init.d/rpcd restart
+/etc/init.d/uhttpd restart
 
