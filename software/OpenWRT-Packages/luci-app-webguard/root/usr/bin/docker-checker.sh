@@ -7,7 +7,7 @@ sleep 20
 # Function to run the checker
 run_docker_checker() {
     # Check if 'overlay' is present in the output of df -h
-    if df -h | grep -q '/opt/docker/overlay2'; then
+    if df -h | grep -q 'overlay'; then
         # If 'overlay' is found, run the PHP script every 30 seconds
         while true; do
             /usr/bin/php8-cli "$SCRIPT_PATH" > /var/log/docker_checker.log
