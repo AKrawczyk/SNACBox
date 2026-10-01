@@ -10,7 +10,7 @@ docker pull webrated/webbound:latest
 
 docker network create --driver=bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 doc1
 
-/usr/bin/php8-cli "$SCRIPT_PATH" > /var/log/docker_checker.log
+/usr/bin/php8-cli "/usr/bin/docker-checker.php" > /var/log/docker_checker.log
 
 /etc/init.d/docker-checker start
 /etc/init.d/docker-checker enable
