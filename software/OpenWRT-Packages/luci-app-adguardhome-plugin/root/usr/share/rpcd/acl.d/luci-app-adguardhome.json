@@ -23,7 +23,6 @@
 				]
 			},
 			"menu": [
-				"admin/snac",
 				"admin/snac/adguardhome",
 				"admin/snac/adguardhome/*"
 			]
