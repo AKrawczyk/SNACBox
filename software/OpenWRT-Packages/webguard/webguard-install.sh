@@ -58,6 +58,8 @@ wget -P /www/luci-static/resources/view/status https://github.com/AKrawczyk/SNAC
 wget -P /www/luci-static/resources/view/status https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/www/luci-static/resources/view/status/scheduleaccess.js
 wget -P /www/luci-static/resources/view/status https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/www/luci-static/resources/view/status/web-rated-devices.js
 
+wget -P /www/luci-static/resources/view/status https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/etc/config/wguard
+
 wget -P /usr/share/luci/menu.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/luci/menu.d/luci-app-device-status.json
 wget -P /usr/share/luci/menu.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/luci/menu.d/luci-app-webguard.json
 
