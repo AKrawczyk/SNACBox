@@ -37,6 +37,7 @@ fi
 /etc/init.d/new-device-access enable
 
 #-------- Webguard Application Configuration --------
+mkdir /www/html
 /etc/init.d/rpcd restart
 /etc/init.d/uhttpd restart
 
