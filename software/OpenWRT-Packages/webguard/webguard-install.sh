@@ -59,6 +59,8 @@ wget -P /www/luci-static/resources/view/status https://github.com/AKrawczyk/SNAC
 wget -P /www/luci-static/resources/view/status https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/www/luci-static/resources/view/status/web-rated-devices.js
 
 wget -P /usr/share/luci/menu.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/luci/menu.d/luci-app-device-status.json
+wget -P /usr/share/luci/menu.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/luci/menu.d/luci-app-webguard.json
 
 wget -P /usr/share/rpcd/acl.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/luci/menu.d/luci-app-device-status.json
 wget -P /usr/share/rpcd/acl.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/rpcd/acl.d/luci-app-scheduleaccess.json
+wget -P /usr/share/rpcd/acl.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/rpcd/acl.d/luci-app-webguard.json
