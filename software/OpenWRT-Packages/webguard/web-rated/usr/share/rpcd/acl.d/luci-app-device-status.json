@@ -1,15 +1,14 @@
 {
 	"luci-app-device-status": {
-		"description": "Grant access to web-rated-device layouts, Docker configurations, and firewall mappings",
+		"description": "Grant access to web-rated-device layouts and configurations",
 		"read": {
 			"file": {
 				"/tmp/dhcp.leases": [ "read" ],
 				"/www/html/web-rated-device.json": [ "read" ],
 				"/usr/bin/web-rated-docker.json": [ "read" ]
 			},
-			"uci": [ "firewall" ],
+			"uci": [ "firewall", "webguard" ],
 			"menu": [
-				"admin/snac",
 				"admin/snac/webguard",
 				"admin/snac/webguard/*"
 			]
@@ -18,7 +17,7 @@
 			"file": {
 				"/www/html/web-rated-device.json": [ "write" ]
 			},
-			"uci": [ "firewall" ]
+			"uci": [ "firewall", "webguard" ]
 		}
 	}
 }
