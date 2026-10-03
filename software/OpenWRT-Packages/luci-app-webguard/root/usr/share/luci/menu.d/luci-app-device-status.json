@@ -1,23 +1,13 @@
 {
-	"admin/snac": {
-		"title": "Web Guard",
-		"order": 1,
-		"action": {
-			"type": "firstchild"
-		},
-		"depends": {
-			"acl": [ "luci-app-device-status" ]
-		}
-	},
 	"admin/snac/webguard": {
 		"title": "Web Access",
-		"order": 2,
+		"order": 20,
 		"action": {
 			"type": "alias",
 			"path": "admin/snac/webguard/list"
 		},
 		"depends": {
-			"acl": [ "luci-app-device-status" ]
+			"acl": [ "luci-app-device-status", "luci-app-scheduleaccess" ]
 		}
 	},
 	"admin/snac/webguard/list": {
