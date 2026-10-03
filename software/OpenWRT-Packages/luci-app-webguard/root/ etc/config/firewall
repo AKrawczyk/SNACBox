@@ -121,7 +121,7 @@ config rule
 config rule
 	option name 'g-rated-doc'
 	option src 'lan'
-	option dest 'dco'
+	option dest 'doc'
 	option dest_port '53 8080 8443'
 	option target 'ACCEPT'
 	list dest_ip '172.20.0.11'
@@ -140,7 +140,7 @@ config rule
 config rule
 	option name 'pg-rated-doc'
 	option src 'lan'
-	option dest 'dco'
+	option dest 'doc'
 	option target 'ACCEPT'
 	option dest_port '53 8080 8443'
 	list dest_ip '172.20.0.12'
@@ -159,7 +159,7 @@ config rule
 config rule
 	option name '12-rated-doc'
 	option src 'lan'
-	option dest 'dco'
+	option dest 'doc'
 	option target 'ACCEPT'
 	option dest_port '53 8080 8443'
 	list dest_ip '172.20.0.13'
@@ -178,7 +178,7 @@ config rule
 config rule
 	option name '15-rated-doc'
 	option src 'lan'
-	option dest 'dco'
+	option dest 'doc'
 	option target 'ACCEPT'
 	option dest_port '53 8080 8443'
 	list dest_ip '172.20.0.14'
@@ -197,7 +197,7 @@ config rule
 config rule
 	option name '16-rated-doc'
 	option src 'lan'
-	option dest 'dco'
+	option dest 'doc'
 	list dest_ip '172.20.0.15'
 	option target 'ACCEPT'
 	list proto 'tcp'
@@ -220,7 +220,7 @@ config rule
 	option src 'lan'
 	list dest_ip '172.20.0.16'
 	option target 'ACCEPT'
-	option dest 'dco'
+	option dest 'doc'
 	list proto 'tcp'
 	list proto 'udp'
 	option dest_port '53'
@@ -239,7 +239,7 @@ config rule
 config rule
 	option name 'new-rated-doc'
 	option src 'lan'
-	option dest 'dco'
+	option dest 'doc'
 	option target 'ACCEPT'
 	option dest_port '53 80 443'
 	list dest_ip '172.20.0.101'
@@ -268,15 +268,14 @@ config rule
 	option enabled '0'
 
 config zone
-	option name 'dco'
+	option name 'doc'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	list network 'dco'
 	list network 'doc1'
 
 config forwarding
-	option src 'dco'
+	option src 'doc'
 	option dest 'wan'
 
 config redirect
@@ -287,11 +286,11 @@ config redirect
 	option src_dport '80'
 	option dest_ip '172.20.0.11'
 	option dest_port '8080'
-	option dest 'dco'
+	option dest 'doc'
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'g-rated-433'
 	list proto 'tcp'
@@ -302,7 +301,7 @@ config redirect
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'g-rated-dns'
 	option src 'lan'
@@ -313,7 +312,7 @@ config redirect
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'pg-rated-80'
 	list proto 'tcp'
@@ -324,7 +323,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'pg-rated-443'
 	list proto 'tcp'
@@ -335,7 +334,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'pg-rated-dns'
 	option src 'lan'
@@ -345,7 +344,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '12-rated-80'
 	list proto 'tcp'
@@ -356,7 +355,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '12-rated-443'
 	list proto 'tcp'
@@ -367,7 +366,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '12-rated-dns'
 	option src 'lan'
@@ -377,7 +376,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '15-rated-80'
 	list proto 'tcp'
@@ -389,7 +388,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '15-rated-443'
 	list proto 'tcp'
@@ -400,7 +399,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '15-rated-dns'
 	option src 'lan'
@@ -410,7 +409,7 @@ config redirect
 	list src_mac 'FF:FF:FF:FF:FF:FF'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '16-rated-80'
 	list proto 'tcp'
@@ -421,7 +420,7 @@ config redirect
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '16-rated-443'
 	list proto 'tcp'
@@ -432,7 +431,7 @@ config redirect
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '16-rated-dns'
 	option src 'lan'
@@ -444,7 +443,7 @@ config redirect
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name '18-rated-dns'
 	option src 'lan'
@@ -454,7 +453,7 @@ config redirect
 	list src_mac 'ff:ff:ff:ff:ff:ff'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'vpn-rated-80'
 	list proto 'tcp'
@@ -478,16 +477,15 @@ config zone
 	option forward 'REJECT'
 	option mtu_fix '1'
 	option masq '1'
-	list device 'tun+'
 	list network 'wan'
 	list network 'iphone'
 
 config forwarding
 	option src 'landoc'
-	option dest 'dco'
+	option dest 'doc'
 
 config redirect
-	option dest 'dco'
+	option dest 'doc'
 	option target 'DNAT'
 	option name 'none-rated-any'
 	option src 'lan'
@@ -499,9 +497,16 @@ config redirect
 
 config rule
 	option name 'drop-webbound'
-	option src 'dco'
+	option src 'doc'
 	list src_ip '172.20.0.101'
 	option dest '*'
 	option target 'DROP'
 	list proto 'all'
 	option enabled '0'
+
+config zone 'docker'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option name 'docker'
+	list network 'docker'
