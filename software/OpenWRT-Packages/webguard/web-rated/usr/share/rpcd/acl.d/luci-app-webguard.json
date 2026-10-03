@@ -1,0 +1,10 @@
+{
+	"luci-app-webguard": {
+		"description": "Grant permissions for the WebGuard root menu hub",
+		"read": {
+			"menu": [
+				"admin/snac"
+			]
+		}
+	}
+}
