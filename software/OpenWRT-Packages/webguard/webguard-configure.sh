@@ -17,6 +17,8 @@ docker network create --driver=bridge --subnet=172.20.0.0/16 --gateway=172.20.0.
 /etc/init.d/docker-checker start
 /etc/init.d/docker-checker enable
 
+#./webguard-doc-firewall-config.sh
+
 #-------- Firewall Configuration Activation --------
 /etc/init.d/firewall restart
 
@@ -41,3 +43,4 @@ mkdir /www/html
 /etc/init.d/rpcd restart
 /etc/init.d/uhttpd restart
 
+#cp /etc/webguard/99-WAN-DHCP-Static.sh /etc/uci-default/
