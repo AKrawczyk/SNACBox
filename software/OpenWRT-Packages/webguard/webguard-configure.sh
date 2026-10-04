@@ -44,3 +44,4 @@ mkdir /www/html
 /etc/init.d/uhttpd restart
 
 #cp /etc/webguard/99-WAN-DHCP-Static.sh /etc/uci-default/
+#chmod +x /etc/uci-default/99-WAN-DHCP-Static.sh
