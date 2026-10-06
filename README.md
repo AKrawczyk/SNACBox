@@ -24,7 +24,8 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 
 ![Compatible Hardware](hardware.md)
 
-
+# Fuctionality
+![SNACBox Design](screenshots/SNACBox-Traffic.png)
 
 # Configurating SNACBox
 Please follow the steps below to setup SNACBox.<br>
