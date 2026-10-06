@@ -29,21 +29,29 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 
 # Configurating SNACBox
 Please follow the steps below to setup SNACBox.<br>
-Or<br>
-download the <a href="https://drive.google.com/file/d/1quPlqnDdQsepP0njJgEDzNFuD2EQDK10/view?usp=sharing">SNACBox-OpenWRT-0.9.42.69.img</a> 
-<br>Raspberry Pi CM4 SNACBox or Raspberry Pi 4B SNACBox (Devolpment) compatible.<br>
-Complete steps 1 and 2 (SD card onwards) then proceed to 'Setup SNACBox on Home Network Router'
 <h2>Step 1</h2>
-Chooses from the Pi CM4 or the Pi CM5 hardware.<br>
+Chooses from the compatible hardware.<br>
 It is also possible to complete the next steps using the Pi 4 or Pi 5 hardware<br>
-If you choose the Banana Pi OpenWRT One follow their Firmware Flashing guidlines, once OpenWRT is installed proceed to step 5<br>
+Make sure the hardware is OpenWRT compatible and follow the OpenWRT Firmware Flashing guidlines.<br>
 <h2>Step 2</h2>
 Download and flash the SD card.<br>
 Goto https://firmware-selector.openwrt.org<br>
-Enter "Raspberry Pi"<br>
+Enter chosen hardware eg. "Raspberry Pi"<br>
 Select based on the Hardware choice made e.g "Raspberry Pi 4B/400/CM4 (64bit)"<br>
 Choose "Customize installed packages"<br>
-Add "kmod-usb-net-rtl8152 parted losetup resize2fs blkid" to the end of the list<br>
+Add to the end of the list<br>
+Raspberry Pi CM4/5
+
+```bash
+kmod-usb-net-rtl8152
+```
+
+Other hardware
+
+```bash
+ parted losetup resize2fs blkid
+```
+
 Click "Request Build"<br>
 Click and download "Factory (Ext4)"<br>
 Get SD Card min 16GB<br>
