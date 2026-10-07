@@ -49,7 +49,7 @@ kmod-usb-net-rtl8152
 Other hardware
 
 ```bash
- parted losetup resize2fs blkid
+ parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020
 ```
 
 Click "Request Build"<br>
