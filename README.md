@@ -110,8 +110,8 @@ EOF
 cat << "EOF" >> /etc/sysupgrade.conf
 /etc/uci-defaults/70-rootpt-resize
 /etc/uci-defaults/80-rootfs-resize
-sh /etc/uci-defaults/70-rootpt-resize
 EOF
+sh /etc/uci-defaults/70-rootpt-resize
 ```
 
 Click "Request Build"<br>
