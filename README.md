@@ -56,7 +56,7 @@ Other hardware
 iPhone Teathering
 
 ```bash
-libusbmuxd libplist usbmuxd-utils
+kmod-usb-net-ipheth usbmuxd libimobiledevice usbutils libusbmuxd libplist
 ```
 
 Goto "Script to run on first boot (uci-defaults)"
