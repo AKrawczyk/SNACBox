@@ -1,4 +1,8 @@
 #!/bin/sh
+apk update
+apk add docker dockerd
+service dockerd enable
+service dockerd start
 
 NETWORK_NAME="doc1"
 IFACE="doc"
