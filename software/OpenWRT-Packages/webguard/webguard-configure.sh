@@ -89,7 +89,9 @@ echo "Done! Interface '$IFACE' is bound to $BRIDGE_NAME and in firewall zone '$Z
 
 #-------- Docker Checker Daemon Activation --------
 
+sleep 30
 docker run -d --name web-rated-none --net doc1  --ip 172.20.0.101 --restart unless-stopped webrated/webbound:latest
+sleep 10
 
 /usr/bin/php8-cli "/usr/bin/docker-checker.php" > /var/log/docker_checker.log
 /usr/bin/php8-cli "/usr/bin/docker-checker.php" > /var/log/docker_checker.log
