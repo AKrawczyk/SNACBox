@@ -67,8 +67,11 @@ wget -P /usr/share/rpcd/acl.d https://github.com/AKrawczyk/SNACBox/raw/refs/head
 wget -P /usr/share/rpcd/acl.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/rpcd/acl.d/luci-app-scheduleaccess.json
 wget -P /usr/share/rpcd/acl.d https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/usr/share/rpcd/acl.d/luci-app-webguard.json
 
+wget -P /etc/config https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/etc/config/webguard
+
 mkdir /etc/webguard
 wget -P /etc/webguard https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/docker-checker-daemon/web-rated-docker.json
 wget -P /etc/webguard https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/firewall/firewall
 wget -P /etc/webguard https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/WAN/99-WAN-DHCP-Static.sh
+wget -P /etc/webguard https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/web-rated/etc/config/webguard
 touch /etc/webguard/web-rated-device.json
