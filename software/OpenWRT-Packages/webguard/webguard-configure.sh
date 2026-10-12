@@ -1,6 +1,8 @@
 #!/bin/sh
 
 #-------- Docker configuration --------
+uci set dockerd.globals.iptables='0'
+uci commit dockerd
 /etc/init.d/dockerd start
 /etc/init.d/dockerd enable
 
