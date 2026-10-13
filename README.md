@@ -28,7 +28,7 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 ![SNACBox Design](screenshots/SNACBox-Traffic.png)
 
 # Configurating SNACBox
-Please follow the steps below to setup SNACBox.<br>
+Please follow the steps below to setup SNACBox or goto the Dev Build https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/readme.md.<br>
 <h2>Step 1</h2>
 Chooses from the compatible hardware.<br>
 It is also possible to complete the next steps using the Pi 4 or Pi 5 hardware<br>
