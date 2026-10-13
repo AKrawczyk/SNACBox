@@ -7,11 +7,17 @@ If you wish to install the WebGuard app mannualy the download the three shell sc
 Run the scripts:
 
 ```bash
+wget
+wget
+apk add --allow-untrusted 
+wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/AdGuard-configure.sh
+wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-install.sh
+wegt https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-configure.sh
 chmod +x webguard*.sh
 chord +x AdGuard*.sh
-AdGuard-configure.sh
-webguard-install.sh
-webguard-configure.sh
+./AdGuard-configure.sh
+./webguard-install.sh
+./webguard-configure.sh
 ```
 
 This will install all the comopnents and configureations needed on a clean install of OpenWRT<br>
