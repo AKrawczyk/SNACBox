@@ -127,21 +127,21 @@ Download and install Raspberry Pi imager https://www.raspberrypi.com/software/<b
 Insert SD card into computer or adapter<br>
 Run Raspberry Pi Imager<br>
 <img src="screenshots/RPI-Imager-01.png" alt="Raspberry Pi Imager Step 1" width="400" height="200"/><br>
-Click "Select Hardware"
+Click "Select Hardware"<br>
 <img src="screenshots/RPI-Imager-02.png" alt="Raspberry Pi Imager Step 2" width="400" height="200"/><br>
-Choose Hardware
+Choose Hardware<br>
 <img src="screenshots/RPI-Imager-03.png" alt="Raspberry Pi Imager Step 3" width="400" height="200"/><br>
-Click "Select OS"
+Click "Select OS"<br>
 <img src="screenshots/RPI-Imager-04.png" alt="Raspberry Pi Imager Step 4" width="400" height="200"/><br>
-Choose "Custom Image"
+Choose "Custom Image"<br>
 <img src="screenshots/RPI-Imager-05.png" alt="Raspberry Pi Imager Step 5" width="400" height="200"/><br>
-Click "Select Storage"
+Click "Select Storage"<br>
 <img src="screenshots/RPI-Imager-06.png" alt="Raspberry Pi Imager Step 6" width="400" height="200"/><br>
-Choose SD Card
+Choose SD Card<br>
 <img src="screenshots/RPI-Imager-07.png" alt="Raspberry Pi Imager Step 7" width="400" height="200"/><br>
-Click "No" to customise OS
+Click "No" to customise OS<br>
 <img src="screenshots/RPI-Imager-08.png" alt="Raspberry Pi Imager Step 8" width="400" height="200"/><br>
-Click "Complete"
+Click "Complete"<br>
 <img src="screenshots/RPI-Imager-09.png" alt="Raspberry Pi Imager Step 9" width="400" height="200"/><br>
 Now the SD card is almost ready for use in the device<br>
 Make sure you device is not connected to network or power
