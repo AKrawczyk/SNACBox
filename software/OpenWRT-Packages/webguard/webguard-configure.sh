@@ -157,42 +157,6 @@ echo "Applying changes..."
 
 echo "Done! '$IFACE' = $IPADDR, DHCP pool .$START - .$((START + LIMIT - 1)), lease $LEASETIME, option $DHCP_OPTION, force enabled."
 
-# 4. Find firewall zone and add the interface
-echo "Configuring firewall zone '$ZONE'..."
-ZONE_SECTION=""
-for s in $(uci -q show firewall | sed -n 's/^firewall\.\([^.=]*\)=zone$/\1/p'); do
-    if [ "$(uci -q get firewall.$s.name)" = "$ZONE" ]; then
-        ZONE_SECTION="$s"
-        break
-    fi
-done
-
-if [ -z "$ZONE_SECTION" ]; then
-    ZONE_SECTION=$(uci add firewall zone)   # returns the new section id
-    uci set firewall.$ZONE_SECTION.name="$ZONE"
-    uci set firewall.$ZONE_SECTION.input='ACCEPT'
-    uci set firewall.$ZONE_SECTION.output='ACCEPT'
-    uci set firewall.$ZONE_SECTION.forward='ACCEPT'
-    echo "Created new firewall zone '$ZONE' ($ZONE_SECTION)."
-fi
-
-# Add the interface if it isn't already in the zone's network list
-FOUND=0
-for net in $(uci -q get firewall.$ZONE_SECTION.network); do
-    if [ "$net" = "$IFACE" ]; then
-        FOUND=1
-        break
-    fi
-done
-
-if [ "$FOUND" -eq 0 ]; then
-    uci add_list firewall.$ZONE_SECTION.network="$IFACE"
-    echo "Added interface '$IFACE' to firewall zone '$ZONE'."
-else
-    echo "Interface '$IFACE' is already part of firewall zone '$ZONE'."
-fi
-uci commit firewall
-
 #-------- Webguard New Device Access Daemon Activation --------
 /etc/init.d/new-device-access start
 /etc/init.d/new-device-access enable
