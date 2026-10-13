@@ -12,7 +12,7 @@ Add to the end of the list<br>
 All hardware
 
 ```bash
- parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020 curl kmod-overlay kmod-fuse
+ parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020 curl kmod-veth kmod-loop kmod-fuse
 ```
 
 iPhone Teathering
