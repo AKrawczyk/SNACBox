@@ -134,7 +134,7 @@ apk add --allow-untrusted luci-app-adguardhome-plugin-1.0.0-r1.apk luci-theme-op
 service adguardhome restart
 wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/AdGuard-configure.sh
 wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-install.sh
-wegt https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-configure.sh
+wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-configure.sh
 chmod +x webguard*.sh
 chord +x AdGuard*.sh
 ./AdGuard-configure.sh
