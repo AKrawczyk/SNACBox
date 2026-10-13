@@ -12,6 +12,11 @@ docker pull webrated/webbound:latest
 
 docker network create --driver=bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 doc1
 
+#-------- Firewall Configuration Activation --------
+mv /etc/config/firewall /etc/config/firewall.org
+cp /etc/webguard/firewall /etc/config/
+/etc/init.d/firewall restart
+
 #-------- Docker network firewall configuration --------
 
 NETWORK_NAME="doc1"
@@ -89,24 +94,6 @@ ifup $IFACE 2>/dev/null
 
 echo "Done! Interface '$IFACE' is bound to $BRIDGE_NAME and in firewall zone '$ZONE'."
 
-#-------- Docker Checker Daemon Activation --------
-
-sleep 30
-docker run -d --name web-rated-none --net doc1  --ip 172.20.0.101 --restart unless-stopped webrated/webbound:latest
-sleep 10
-
-/usr/bin/php8-cli "/usr/bin/docker-checker.php" > /var/log/docker_checker.log
-/usr/bin/php8-cli "/usr/bin/docker-checker.php" > /var/log/docker_checker.log
-/usr/bin/php8-cli "/usr/bin/docker-checker.php" > /var/log/docker_checker.log
-
-/etc/init.d/docker-checker start
-/etc/init.d/docker-checker enable
-
-#-------- Firewall Configuration Activation --------
-mv /etc/config/firewall /etc/config/firewall.org
-cp /etc/webguard/firewall /etc/config/
-/etc/init.d/firewall restart
-
 #-------- Blacklist IP Activation --------
 # Create a cron job to run the PHP script daily at 6 AM
 CRON_JOB="0 6 * * * php8-cli $DEST_DIR/blacklist-ip.php"
@@ -122,6 +109,7 @@ fi
 #-------- LAN IP and DHCP Activation --------
 
 IFACE="lan"
+ZONE="lan"
 IPADDR="192.168.12.1/24"      # CIDR format (OpenWrt 25.12 style)
 START="50"
 LIMIT="200"
@@ -169,6 +157,42 @@ echo "Applying changes..."
 
 echo "Done! '$IFACE' = $IPADDR, DHCP pool .$START - .$((START + LIMIT - 1)), lease $LEASETIME, option $DHCP_OPTION, force enabled."
 
+# 4. Find firewall zone and add the interface
+echo "Configuring firewall zone '$ZONE'..."
+ZONE_SECTION=""
+for s in $(uci -q show firewall | sed -n 's/^firewall\.\([^.=]*\)=zone$/\1/p'); do
+    if [ "$(uci -q get firewall.$s.name)" = "$ZONE" ]; then
+        ZONE_SECTION="$s"
+        break
+    fi
+done
+
+if [ -z "$ZONE_SECTION" ]; then
+    ZONE_SECTION=$(uci add firewall zone)   # returns the new section id
+    uci set firewall.$ZONE_SECTION.name="$ZONE"
+    uci set firewall.$ZONE_SECTION.input='ACCEPT'
+    uci set firewall.$ZONE_SECTION.output='ACCEPT'
+    uci set firewall.$ZONE_SECTION.forward='ACCEPT'
+    echo "Created new firewall zone '$ZONE' ($ZONE_SECTION)."
+fi
+
+# Add the interface if it isn't already in the zone's network list
+FOUND=0
+for net in $(uci -q get firewall.$ZONE_SECTION.network); do
+    if [ "$net" = "$IFACE" ]; then
+        FOUND=1
+        break
+    fi
+done
+
+if [ "$FOUND" -eq 0 ]; then
+    uci add_list firewall.$ZONE_SECTION.network="$IFACE"
+    echo "Added interface '$IFACE' to firewall zone '$ZONE'."
+else
+    echo "Interface '$IFACE' is already part of firewall zone '$ZONE'."
+fi
+uci commit firewall
+
 #-------- Webguard New Device Access Daemon Activation --------
 /etc/init.d/new-device-access start
 /etc/init.d/new-device-access enable
@@ -180,3 +204,13 @@ mkdir /www/html
 
 #cp /etc/webguard/99-WAN-DHCP-Static.sh /etc/uci-default/
 #chmod +x /etc/uci-default/99-WAN-DHCP-Static.sh
+
+#-------- Docker Checker Daemon Activation --------
+
+/etc/init.d/dockerd  restart
+sleep 30
+docker run -d --name web-rated-none --net doc1  --ip 172.20.0.101 --restart unless-stopped webrated/webbound:latest
+sleep 10
+
+/etc/init.d/docker-checker start
+/etc/init.d/docker-checker enable
