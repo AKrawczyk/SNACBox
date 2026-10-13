@@ -136,7 +136,7 @@ wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-P
 wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-install.sh
 wget https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/webguard-configure.sh
 chmod +x webguard*.sh
-chord +x AdGuard*.sh
+chmod +x AdGuard*.sh
 ./AdGuard-configure.sh
 ./webguard-install.sh
 ./webguard-configure.sh
