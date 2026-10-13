@@ -157,6 +157,39 @@ echo "Applying changes..."
 
 echo "Done! '$IFACE' = $IPADDR, DHCP pool .$START - .$((START + LIMIT - 1)), lease $LEASETIME, option $DHCP_OPTION, force enabled."
 
+#-------- Disable IPv6 on OpenWRT --------
+
+# 1. Disable IPv6 on LAN and WAN network interfaces
+uci set network.lan.ipv6='0'
+uci set network.wan.ipv6='0'
+
+# 2. Disable DHCPv6, Router Advertisements (RA), and NDP proxy on LAN
+uci set dhcp.lan.dhcpv6='disabled'
+uci set dhcp.lan.ra='disabled'
+uci set dhcp.lan.ndp='disabled'
+
+# 3. Stop and disable the odhcpd server entirely
+/etc/init.d/odhcpd stop
+/etc/init.d/odhcpd disable
+
+# 4. Remove the global IPv6 ULA prefix
+uci -q delete network.globals.ula_prefix
+
+# 5. Restrict firewall zones (LAN and WAN) to IPv4 only
+uci set firewall.lan.family='ipv4'
+uci set firewall.wan.family='ipv4'
+
+# Commit changes
+uci commit network
+uci commit dhcp
+uci commit firewall
+
+# Restart services to apply changes immediately
+/etc/init.d/network restart
+/etc/init.d/firewall restart
+
+echo "IPv6 disabled and firewall restricted to IPv4-only successfully."
+
 #-------- Webguard New Device Access Daemon Activation --------
 /etc/init.d/new-device-access start
 /etc/init.d/new-device-access enable
@@ -178,3 +211,6 @@ sleep 10
 
 /etc/init.d/docker-checker start
 /etc/init.d/docker-checker enable
+
+sleep 300
+reboot
