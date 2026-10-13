@@ -195,6 +195,8 @@ echo "IPv6 disabled and firewall restricted to IPv4-only successfully."
 /etc/init.d/new-device-access enable
 
 #-------- Webguard Application Configuration --------
+uci set uhttpd.main.redirect_https='1'
+uci commit uhttpd
 mkdir /www/html
 /etc/init.d/rpcd restart
 /etc/init.d/uhttpd restart
