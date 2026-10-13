@@ -128,7 +128,7 @@
         "Docker Config": "docker run -d --name web-rated-none --net doc1  --ip 172.20.0.101 --restart unless-stopped webrated/webbound:latest",
         "Docker State": "start",
         "Schedule": "",
-        "Rateing": "",
+        "Rateing": "1",
         "Status Counter": ""
     }
 ]
