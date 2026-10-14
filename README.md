@@ -29,6 +29,67 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 # Configurating SNACBox
 Goto the Dev Build https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/readme.md.<br>
 
+# Setup SNACBox on Home Network Router
+Note: This is setup currently requires simple IT skills.<br>
+<h2>Step 1</h2>
+Connect SNACBox WAN port to Home Router<br>
+<img src="screenshots/SNACBox-Conectivity.png" alt="SNACBox Connectivity" width="250" height="375"/>
+1. Power on SNACBox
+<br>2. Conncet Home Router Network port to SNACBox WAN port
+<br>3. Connect SNACBox LAN port to USB Network Dongle
+<br>4. Connect USB Network Dongle to Laptop/Tablet/Smart Phone
+<br>5. Browse to https://192.168.12.1
+<br>6. Login to SNACBox, User = root, Password = xxxxxx
+<br>
+<h3>Configure Static WAN IP</h3>
+Goto Webguard -> Web Access
+<br>Select 'Configure'
+<br>Click button 'Reset WAN'
+<br>
+<h3>Setup Admin USB Network Dongle</h3>
+Goto Webguard -> Web Access
+<br>Select 'Device Access'
+<br>Now set the Rating to '18-Rated' for the admin usb network dongle<br>
+
+![Screenshot](screenshots/SNACBox-DeviceAccess-ScreenShot.png)
+
+<h3>Enable SNACBox on Home Router</h3>
+1. Disconnect USB Network Dongle from Laptop/Tablet/Smart Phone
+<br>2. Disconnect SNACBox LAN port into USB Network Dongle
+<br>
+<br><strong>3. Login to Home Router and disable DHCP</strong>
+<br>Note: Consult Home Router suppliers web page for information on how to do this.
+<br>Note: DNS configuration my be necessary if Home Router is set to secure DNS
+<br>
+<br>4. Connect SNACBox LAN port to Home Router Network port
+<h2>Step 2</h2>
+Setup Admin devices<br>
+Connect at least two wireless devices (Computer, Tablet, Smart Phone) to Home WiFi<br>
+If your using a mobile device IOS, MacOS or Android make sure to configure the WiFi connection's Private Wi-Fi Address to 'Fixed'<br>
+
+<img src="screenshots/Apple-MAC-Rand.jpeg" alt="Apple MAC Random" width="200" height="500"/><br>
+<img src="screenshots/Apple-MAC-Fixed.jpeg" alt="Apple MAC Fixed" width="200" height="200"/>
+
+Note: These devices will automaticly be enroled into the 'No Access' rating<br>
+      This is done by the New Device Access daemon installed earlier<br>
+      This will have no effect as the firewall rule 'lan' and recirect 'none-rated-any' are disabled<br>
+1. Open Web browser and goto http://192.168.12.1<br>
+2. Login to SNACBox, User = root, Password = xxxxxx
+3. Now set the Rating to '18-Rated' for both admin devices<br>
+
+![Screenshot](screenshots/SNACBox-DeviceAccess-ScreenShot.png)
+
+4. Once the admin devices have been enabled proceed to step 3 to enable security and set time.
+<h2>Step 3</h2>
+<h3>Enable SNACBox security</h3>
+Goto Webguard -> Web Access<br>
+select 'Configure'<br>
+Thick 'Enable Enhanced Security'<br>
+<h3>Set Time</h3>
+Click on 'System -> System'<br>
+Find 'Timezone' dropdown list<br>
+Select the correct timezone<br>
+
 <h2>Device Setup</h2>
 Now everthing should be setup and all devices connected to the Home WiFi should be appearing in the 'Device Access' web interface. All devices will automaticly be enroled into the 'No Access' rating<br><br>
 1. Enable devices on home newtork<br>
