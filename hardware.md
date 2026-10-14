@@ -1,4 +1,9 @@
 # Supported Hardware
+<h2>Friendly Elec NanoPi R3S SNACBox</h2>
+<h3>Friendly Elec</h3> - https://www.friendlyelec.com/index.php?route=product/product&product_id=311<br>
+    Mini Dual Gigabit Ethernet Base Board and Metal case designed around the RK3566 Rock Chip Arm SoC.<br>
+<img src="screenshots/cm4-dual-eth-mini-box-1_1_1.jpg" alt="Waveshare CM4" width="300" height="200"/><br>
+
 <h2>Raspberry Pi CM4 SNACBox</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/cm4-dual-eth-mini.htm?sku=23853<br>
     Mini Dual Gigabit Ethernet Base Board/Mini-Computer Designed for Raspberry Pi Compute Module 4.<br>
