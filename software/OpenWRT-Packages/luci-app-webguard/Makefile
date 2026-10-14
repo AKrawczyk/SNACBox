@@ -55,6 +55,8 @@ define Package/luci-app-webguard/install
 	$(INSTALL_DIR) $(1)/usr/share/luci/menu.d $(1)/usr/share/rpcd/acl.d
 	$(INSTALL_DATA) ./root/web-rated/usr/share/luci/menu.d/luci-app-device-status.json $(1)/usr/share/luci/menu.d/luci-app-device-status.json
 	$(INSTALL_DATA) ./root/web-rated/usr/share/rpcd/acl.d/luci-app-device-status.json $(1)/usr/share/rpcd/acl.d/luci-app-device-status.json
+	$(INSTALL_DATA) ./root/web-rated/usr/share/luci/menu.d/luci-app-device-status.json $(1)/usr/share/luci/menu.d/luci-app-webguard.json
+	$(INSTALL_DATA) ./root/web-rated/usr/share/rpcd/acl.d/luci-app-device-status.json $(1)/usr/share/rpcd/acl.d/luci-app-webguard.json
 	$(INSTALL_DATA) ./root/web-rated/usr/share/rpcd/acl.d/luci-app-scheduleaccess.json $(1)/usr/share/rpcd/acl.d/luci-app-scheduleaccess.json
 
 	# Create the uci-defaults script to configure and activate WebGuard.
