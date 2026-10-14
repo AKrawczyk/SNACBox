@@ -71,8 +71,7 @@ If your using a mobile device IOS, MacOS or Android make sure to configure the W
 <img src="screenshots/Apple-MAC-Fixed.jpeg" alt="Apple MAC Fixed" width="200" height="200"/>
 
 Note: These devices will automaticly be enroled into the 'No Access' rating<br>
-      This is done by the New Device Access daemon installed earlier<br>
-      This will have no effect as the firewall rule 'lan' and recirect 'none-rated-any' are disabled<br>
+<br>
 1. Open Web browser and goto http://192.168.12.1<br>
 2. Login to SNACBox, User = root, Password = xxxxxx
 3. Now set the Rating to '18-Rated' for both admin devices<br>
