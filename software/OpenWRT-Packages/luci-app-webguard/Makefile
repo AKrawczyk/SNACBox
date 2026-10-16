@@ -22,6 +22,10 @@ define Package/luci-app-webguard/description
  Webguard daemon scripts, blacklist tools, and LuCI status views.
 endef
 
+define Build/Compile
+	# Static theme assets, nothing to compile
+endef
+
 define Package/luci-app-webguard/conffiles
 /etc/config/firewall
 endef
@@ -35,11 +39,13 @@ define Package/luci-app-webguard/install
 	# Ensure the executable scripts have correct permissions
 	$(INSTALL_BIN) ./root/usr/bin/docker-checker.sh $(1)/usr/bin/docker-checker.sh
 	$(INSTALL_BIN) ./root/usr/bin/update-docker-state.sh $(1)/usr/bin/update-docker-state.sh
-
+	$(INSTALL_BIN) ./root/etc/init.d/docker-checker $(1)/etc/init.d/docker-checker
+	
 	$(INSTALL_BIN) ./root/usr/bin/new-device-access.sh $(1)/usr/bin/new-device-access.sh
-
+	$(INSTALL_BIN) ./root/etc/init.d/new-device-access $(1)/etc/init.d/new-device-access
+	
 	$(INSTALL_BIN) ./root/etc/webguard/99-WAN-DHCP-Static.sh $(1)/etc/webguard/99-WAN-DHCP-Static.sh
-
+	
 	# Create the uci-defaults script to configure and activate WebGuard.
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./root/etc/uci-defaults/30-luci-app-webguard $(1)/etc/uci-defaults/30-luci-app-webguard
