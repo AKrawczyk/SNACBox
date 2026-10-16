@@ -23,7 +23,7 @@ define Package/luci-app-webguard/description
 endef
 
 define Build/Compile
-	# Static theme assets, nothing to compile
+	# Static scripts nothing to compile
 endef
 
 define Package/luci-app-webguard/conffiles
