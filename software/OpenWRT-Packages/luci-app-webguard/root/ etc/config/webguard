@@ -1,3 +1,0 @@
-config webguard 'config'
-	option web_username 'root'
-	option web_password 'Dy5l3x1c'
