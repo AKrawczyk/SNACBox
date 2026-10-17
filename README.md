@@ -27,7 +27,7 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 ![SNACBox Design](screenshots/SNACBox-Traffic.png)
 
 # Configurating SNACBox
-Goto the Dev Build https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/webguard/readme.md.<br>
+Goto the [Dev Build](https://github.com/AKrawczyk/SNACBox/blob/main/software/OpenWRT-Packages/webguard/readme.md).<br>
 
 # Setup SNACBox on Home Network Router
 Note: This is setup currently requires simple IT skills.<br>
