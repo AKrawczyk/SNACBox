@@ -17,6 +17,11 @@ mv /etc/config/firewall /etc/config/firewall.org
 cp /etc/webguard/firewall /etc/config/
 /etc/init.d/firewall restart
 
+#-------- AdGuardhome Configuration Activation --------
+mv /etc/config/adguardhome /etc/config/adguardhome.org
+mv /etc/config/adguardhome.txt /etc/config/adguardhome
+/etc/init.d/adguardhome restart
+
 #-------- Docker network firewall configuration --------
 
 NETWORK_NAME="doc1"
