@@ -167,8 +167,6 @@ wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/
 apk add --allow-untrusted luci-app-adguardhome-plugin-1.0.0-r1.apk luci-theme-openwrt-snacbox-1.0.0-r1.apk
 service adguardhome restart
 apk add --allow-untrusted luci-app-webguard-1.0.0-r1.apk
-mv /etc/config/adguardhome.org /etc/config/adguardhome.org
-mv /etc/config/adguardhome.txt /etc/config/adguardhome
 reboot
 ```
 
