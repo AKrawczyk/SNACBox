@@ -154,13 +154,19 @@ ssh root@192.168.1.1
 ```
 
 <h2>SNACBox Installation</h2>
-Note: This is the test build of the luci-app-webguard APK package for OpenWRT 25.12+</br>
-If you wish to install the WebGuard app mannualy the download the three shell script files.<br>
-
-Run the scripts:
+The SNACBox APK packages are built for OpenWRT 25.12+.<br>
+These packages are designed to create the SNACBox using a clean fresh install of OpenWRT.<br>
+It is not recomended to run these packages on and existing OpenWRT instalation as it will overwrite firewall, network and AdGuardhome configurations.<br>
+Test the network first:
 
 ```bash
-nslookup www.github.com
+nslookup downloads.openwrt.org
+apk update
+```
+
+Install the three packages:
+
+```bash
 wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-app-adguardhome-plugin-1.0.0-r1.apk
 wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-theme-openwrt-snacbox-1.0.0-r1.apk
 wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-app-webguard-1.0.0-r1.apk
@@ -168,7 +174,20 @@ apk add --allow-untrusted luci-app-adguardhome-plugin-1.0.0-r1.apk luci-theme-op
 service adguardhome restart
 apk add --allow-untrusted luci-app-webguard-1.0.0-r1.apk
 reboot
+clear
 ```
+
+After the box reboots you need to login to https://192.168.12.1 and ssh root@192.168.12.1 to verify and complete the configuration.<br>
+The SNACBox is almost ready to be install on a Home Network Router and provide safe internet.<br>
+Before using the SNACBox make sure you set the systems password.<br>
+<h2>Set and Configure System Password</h2>
+1. Goto 'System' -> 'Administration' -> 'Router Password'
+<br>2. Enter new password
+<br>3. Press 'Save'
+<br>4. Goto 'Webguard' -> 'Web Access' -> 'Configuration'
+<br>5. Enter the newly set password in the 'System Password' field.
+<br>6. Press 'Save & Apply'<br>
+<br>SNACBox is ready to be setup for use on a home network.
 
 # Setup SNACBox on Home Network Router
 Note: This is setup currently requires simple IT skills.<br>
@@ -176,9 +195,9 @@ Note: This is setup currently requires simple IT skills.<br>
 Connect SNACBox WAN port to Home Router<br>
 <img src="screenshots/SNACBox-Conectivity.png" alt="SNACBox Connectivity" width="250" height="375"/>
 1. Power on SNACBox
-<br>2. Conncet Home Router Network port to SNACBox WAN port
-<br>3. Connect SNACBox LAN port to USB Network Dongle
-<br>4. Connect USB Network Dongle to Laptop/Tablet/Smart Phone
+<br>2. Connect one of the Home Routers Network ports to the SNACBox WAN port
+<br>3. Connect the SNACBox LAN port to USB Network Dongles network port
+<br>4. Connect the USB Network Dongles usb port to Laptop/Tablet/Smart Phone usb port
 <br>5. Browse to https://192.168.12.1
 <br>6. Login to SNACBox, User = root, Password = xxxxxx
 <br>
