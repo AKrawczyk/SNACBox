@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Clear LuCI cache
+rm -f /tmp/luci-indexcache
+service uhttpd restart
+service rpcd restart
+
+# Remove this uci-defaults script so it only runs once upon installation
+rm -f /etc/uci-defaults/30-luci-app-adguardhome-plugin
+exit 0

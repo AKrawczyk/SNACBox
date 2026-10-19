@@ -1,0 +1,25 @@
+{
+	"luci-app-scheduleaccess": {
+		"description": "Grant filesystem and execution access directly to schedule access view",
+		"read": {
+			"file": {
+				"/usr/bin/web-rated-docker.json": [ "read" ],
+				"/usr/bin/web-rated-schedule.json": [ "read" ],
+				"/etc/crontabs/root": [ "read" ]
+			}
+		},
+		"write": {
+			"file": {
+				"/usr/bin/web-rated-schedule.json": [ "write" ],
+				"/etc/crontabs/root": [ "write" ],
+				"/usr/bin/at *": [ "exec" ],
+				"/usr/bin/atrm *": [ "exec" ]
+			}
+		},
+		"exec": {
+			"file": {
+				"/etc/init.d/cron": [ "restart" ]
+			}
+		}
+	}
+} 
