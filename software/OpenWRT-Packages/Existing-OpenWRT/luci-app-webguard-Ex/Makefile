@@ -15,7 +15,7 @@ define Package/luci-app-webguard
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Webguard network and DNS filtering components
-  DEPENDS:=+docker +dockerd +php8 +php8-cli +php8-mod-curl +luci-mod-rpc +luci-ssl +at +jq
+  DEPENDS:=+docker +dockerd +php8 +php8-cli +php8-mod-curl +luci-mod-rpc +luci-ssl +at +jq +adguardhome
 endef
 
 define Package/luci-app-webguard/description
@@ -43,6 +43,7 @@ define Package/luci-app-webguard/install
 	
 	$(INSTALL_BIN) ./root/usr/bin/new-device-access.sh $(1)/usr/bin/new-device-access.sh
 	$(INSTALL_BIN) ./root/etc/init.d/new-device-access $(1)/etc/init.d/new-device-access
+	$(INSTALL_BIN) ./root/etc/adguardhome/update-adguardhome-clients.sh $(1)/etc/adguardhome/update-adguardhome-clients.sh
 	
 	$(INSTALL_BIN) ./root/etc/webguard/99-WAN-DHCP-Static.sh $(1)/etc/webguard/99-WAN-DHCP-Static.sh
 	
