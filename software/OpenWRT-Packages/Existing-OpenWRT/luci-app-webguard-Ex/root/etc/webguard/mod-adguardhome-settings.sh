@@ -59,25 +59,27 @@ if [ "$SOURCE_HAS_CLIENT_SETTINGS" -eq 0 ]; then
 	UPDATE_MESSAGE="Copied source configuration before log in $CONFIG_FILE"
 else
 	if ! awk -v source="$SOURCE_FILE" '
-	function emit_source(line) {
-		while ((getline line < source) > 0)
-			print line
-		close(source)
-	}
+    function emit_source(line) {
+        while ((getline line < source) > 0)
+            print line
+        close(source)
+    }
 
-	/^persistent:[[:space:]]*\[\]$/ {
-		print "persistent:"
-		emit_source()
-		next
-	}
+    /^[[:space:]]*persistent:[[:space:]]*\[\]$/ {
+        # Strip the brackets while preserving the leading indentation (e.g., "  persistent:")
+        sub(/[[:space:]]*\[\]$/, "", $0)
+        print $0
+        emit_source()
+        next
+    }
 
-	/^persistent:[[:space:]]*(#.*)?$/ {
-		print $0
-		emit_source()
-		next
-	}
+    /^[[:space:]]*persistent:[[:space:]]*(#.*)?$/ {
+        print $0
+        emit_source()
+        next
+    }
 
-	{ print }
+    { print }
 ' "$CONFIG_FILE" > "$TEMP_FILE"; then
 		echo "Failed to update AdGuardHome clients configuration." >&2
 		exit 1
