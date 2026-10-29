@@ -65,34 +65,24 @@ else
 		close(source)
 	}
 
-	/^clients:[[:space:]]*(#.*)?$/ {
-		print $0
+	/^persistent:[[:space:]]*\[\]$/ {
+		print "persistent:"
+		emit_source()
 		next
 	}
 
-	# Detect the end of the persistent block to insert the new content
-	# We look for the next top-level key (not indented) after a persistent block
-	/^[a-zA-Z0-9_]+:[[:space:]]*$/ && !found_next {
-		if (NR > 1) print ""
+	/^persistent:[[:space:]]*(#.*)?$/ {
+		print $0
 		emit_source()
-		found_next = 1
 		next
 	}
 
 	{ print }
-
-	END {
-		if (!found_next) {
-			if (NR > 0)
-				print ""
-			emit_source()
-		}
-	}
 ' "$CONFIG_FILE" > "$TEMP_FILE"; then
 		echo "Failed to update AdGuardHome clients configuration." >&2
 		exit 1
 	fi
-	UPDATE_MESSAGE="Appended configuration to clients in $CONFIG_FILE"
+	UPDATE_MESSAGE="Updated persistent configuration in $CONFIG_FILE"
 fi
 
 mv "$TEMP_FILE" "$CONFIG_FILE"
