@@ -1,4 +1,4 @@
-##Existing Openwrt Setups##
+# Existing Openwrt Setups
 These instruction are designed for existing OpenWRT setups.<br>
 Use with caution and make backups of important files (/etc/config/adguardhome /etc/config/firewall /etc/adguardhome/adguardhome.yaml).
 
