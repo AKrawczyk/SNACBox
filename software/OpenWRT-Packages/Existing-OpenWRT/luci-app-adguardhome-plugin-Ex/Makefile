@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-app-adguardhome-plugin
+PKG_NAME:=luci-app-adguardhome-plugin-Ex
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
@@ -9,7 +9,7 @@ PKG_LICENSE:=Apache-2.0
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/luci-app-adguardhome-plugin
+define Package/luci-app-adguardhome-plugin-Ex
   SECTION:=luci
   CATEGORY:=LuCI
   SUBMENU:=3. Applications
@@ -18,15 +18,15 @@ define Package/luci-app-adguardhome-plugin
   PKGARCH:=all
 endef
 
-define Package/luci-app-adguardhome-plugin/description
-  This package provides a LuCI configuration interface for AdGuardHome.
+define Package/luci-app-adguardhome-plugin-Ex/description
+  This package provides a LuCI dashboard interface for AdGuardHome and is for existing AdGuardHome configurations.
 endef
 
 define Build/Compile
 	# Nothing to compile for static JS/JSON files
 endef
 
-define Package/luci-app-adguardhome-plugin/install
+define Package/luci-app-adguardhome-plugin-Ex/install
 	# Copy the entire root directory structure to the target
 	$(INSTALL_DIR) $(1)/
 	$(CP) ./root/* $(1)/
@@ -39,4 +39,4 @@ define Package/luci-app-adguardhome-plugin/install
 	$(INSTALL_BIN) ./root/etc/uci-defaults/30-luci-app-adguardhome-plugin $(1)/etc/uci-defaults/
 endef
 
-$(eval $(call BuildPackage,luci-app-adguardhome-plugin))
+$(eval $(call BuildPackage,luci-app-adguardhome-plugin-Ex))
