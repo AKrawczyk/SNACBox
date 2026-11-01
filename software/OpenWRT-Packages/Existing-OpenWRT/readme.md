@@ -5,6 +5,7 @@ Use with caution and make backups of important files (/etc/config/adguardhome /e
 <h2>Requirements:</h2>
     OpenWRT 25.12+<br>
     Min 2GB storage for Docker containers<br>
+    Docker<br>
     2 x Network Ports for WAN and LAN connectivity<br>
 
 <h2>Software:</h2>
@@ -25,6 +26,8 @@ Use with caution and make backups of important files (/etc/config/adguardhome /e
 <h2>Install Options:</h2>
 <strong>1. Esisting OpenWRT Router setup</strong>
     Install luci-app-adguardhome-plugin<br>
+    Install docker<br>
+    reboot<br>
     Install luci-app-webguard-Ex<br>
     Run /etc/webguard/new-adguardhome-settings.sh<br><br>
 
@@ -32,11 +35,15 @@ Use with caution and make backups of important files (/etc/config/adguardhome /e
     Install luci-app-adguardhome-plugin-Ex<br>
     Goto http://<ROUTER IP>:3000<br>
     Setup AdGuardhome as secondary DNS server by change the port numbers eg. WWW = 3080, DNS = 54<br>
+    Install docker<br>
+    reboot<br>
     Install luci-app-webguard-Ex<br>
     Run /etc/webguard/new-adguardhome-settings.sh<br><br>
 
 <strong>3. Existing OpenWRT Router setup with existing AdGuardhome setup</strong>
     Install luci-app-adguardhome-plugin-Ex<br>
+    Install docker<br>
+    reboot<br>
     Install luci-app-webguard-Ex<br>
     Run /etc/webguard/mod-adguardhome-settings.sh<br>
 
