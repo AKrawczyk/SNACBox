@@ -43,7 +43,6 @@ define Package/luci-app-webguard-Ex/install
 	
 	$(INSTALL_BIN) ./root/usr/bin/new-device-access.sh $(1)/usr/bin/new-device-access.sh
 	$(INSTALL_BIN) ./root/etc/init.d/new-device-access $(1)/etc/init.d/new-device-access
-	$(INSTALL_BIN) ./root/etc/adguardhome/update-adguardhome-clients.sh $(1)/etc/adguardhome/update-adguardhome-clients.sh
 	
 	$(INSTALL_BIN) ./root/etc/webguard/mod-adguardhome-settings.sh $(1)/etc/webguard/mod-adguardhome-settings.sh
 	$(INSTALL_BIN) ./root/etc/webguard/new-adguardhome-settings.sh $(1)/etc/webguard/new-adguardhome-settings.sh
