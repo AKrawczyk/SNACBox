@@ -1,11 +1,3 @@
-clients:
-  runtime_sources:
-    whois: true
-    arp: true
-    rdns: true
-    dhcp: true
-    hosts: true
-  persistent:
     - safe_search:
         enabled: false
         bing: false
