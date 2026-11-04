@@ -46,7 +46,7 @@ Click "Select Hardware"
 Choose Hardware
 <img src="screenshots/RPI-Imager-03.png" alt="Raspberry Pi Imager Step 3" width="400" height="200"/><br>
 Click "Select OS"
-<img src=".screenshots/RPI-Imager-04.png" alt="Raspberry Pi Imager Step 4" width="400" height="200"/><br>
+<img src="screenshots/RPI-Imager-04.png" alt="Raspberry Pi Imager Step 4" width="400" height="200"/><br>
 Choose "Custom Image"
 <img src="screenshots/RPI-Imager-05.png" alt="Raspberry Pi Imager Step 5" width="400" height="200"/><br>
 Click "Select Storage"
