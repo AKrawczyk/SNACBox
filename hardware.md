@@ -4,6 +4,90 @@
     Mini Dual Gigabit Ethernet Base Board and Metal case designed around the RK3566 Rock Chip Arm SoC.<br>
 <img src="screenshots/R3SLTS_03-900x630.jpg" alt="Friednly Elec NanoPi R3S" width="300" height="200"/><br>
 
+<h2>Openwrt 25.12+ Firmware</h2>
+Enter chosen hardware "Friendly"<br>
+Choose version "25.12.5"
+Select based on the Hardware choice made "Friendly Elec NanoPi R3S (64bit)"<br>
+Choose "Customize installed packages"<br>
+Goto "Installed Packages"<br>
+Add to the end of the list<br>
+
+Additional Packages
+
+```bash
+ parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020 curl kmod-veth kmod-loop kmod-fuse
+```
+
+iPhone Tethering
+
+```bash
+kmod-usb-net-ipheth usbmuxd libimobiledevice usbutils libusbmuxd libplist
+```
+
+Goto "Script to run on first boot (uci-defaults)"
+
+Add this resize script to resize the storage.
+
+```bash
+# Configure startup scripts
+cat << "EOF" > /etc/uci-defaults/70-rootpt-resize
+if [ ! -e /etc/rootpt-resize ] \
+&& type parted > /dev/null \
+&& lock -n /var/lock/root-resize
+then
+ROOT_BLK="$(readlink -f /sys/dev/block/"$(awk -e \
+'$9=="/dev/root"{print $3}' /proc/self/mountinfo)")"
+ROOT_DISK="/dev/$(basename "${ROOT_BLK%/*}")"
+ROOT_PART="${ROOT_BLK##*[^0-9]}"
+parted -f -s "${ROOT_DISK}" \
+resizepart "${ROOT_PART}" 100%
+mount_root done
+touch /etc/rootpt-resize
+
+if [ -e /boot/cmdline.txt ]
+then 
+NEW_UUID=`blkid ${ROOT_DISK}p${ROOT_PART} | sed -n 's/.*PARTUUID="\([^"]*\)".*/\1/p'`
+sed -i "s/PARTUUID=[^ ]*/PARTUUID=${NEW_UUID}/" /boot/cmdline.txt
+fi
+
+reboot
+fi
+exit 1
+EOF
+cat << "EOF" > /etc/uci-defaults/80-rootfs-resize
+if [ ! -e /etc/rootfs-resize ] \
+&& [ -e /etc/rootpt-resize ] \
+&& type losetup > /dev/null \
+&& type resize2fs > /dev/null \
+&& lock -n /var/lock/root-resize
+then
+ROOT_BLK="$(readlink -f /sys/dev/block/"$(awk -e I am running a few minutes late; my previous meeting is running over.
+'$9=="/dev/root"{print $3}' /proc/self/mountinfo)")"
+ROOT_DEV="/dev/${ROOT_BLK##*/}"
+LOOP_DEV="$(awk -e '$5=="/overlay"{print $9}' \
+/proc/self/mountinfo)"
+if [ -z "${LOOP_DEV}" ]
+then
+LOOP_DEV="$(losetup -f)"
+losetup "${LOOP_DEV}" "${ROOT_DEV}"
+fi
+resize2fs -f "${LOOP_DEV}"
+mount_root done
+touch /etc/rootfs-resize
+reboot
+fi
+exit 1
+EOF
+cat << "EOF" >> /etc/sysupgrade.conf
+/etc/uci-defaults/70-rootpt-resize
+/etc/uci-defaults/80-rootfs-resize
+EOF
+sh /etc/uci-defaults/70-rootpt-resize
+```
+
+Click "Request Build"<br>
+Click and download "Factory (Ext4)"<br>
+
 <h2>Raspberry Pi CM4 SNACBox</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/cm4-dual-eth-mini.htm?sku=23853<br>
     Mini Dual Gigabit Ethernet Base Board/Mini-Computer Designed for Raspberry Pi Compute Module 4.<br>
@@ -12,6 +96,71 @@
     The power of Raspberry Pi 4 in a compact form factor for deeply embedded applications. Raspberry Pi Compute Module 4 incorporates a quad-core ARM Cortex-A72 processor, dual video output, and a wide selection of other interfaces<br>
 
 ![Raspberry Pi CM4](screenshots/cm4.webp)<br>
+
+<h2>Openwrt 25.12+ Firmware</h2>
+Enter chosen hardware "Raspberry"<br>
+Choose version "25.12.6"
+Select based on the Hardware choice made "Raspberry Pi (4B/400/CM4) (64bit)"<br>
+Choose "Customize installed packages"<br>
+Goto "Installed Packages"<br>
+Add to the end of the list<br>
+
+Additional Packages
+
+```bash
+ parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020 curl kmod-veth kmod-loop kmod-fuse
+```
+Waveshare and CM4 Kernel Packages
+
+```bash
+ kmod-usb-core kmod-usb2 kmod-usb3 kmod-dwc2
+```
+
+iPhone Tethering
+
+```bash
+kmod-usb-net-ipheth usbmuxd libimobiledevice usbutils libusbmuxd libplist
+```
+
+Goto "Script to run on first boot (uci-defaults)"
+
+Add this resize script to resize the storage.
+
+```bash
+#!/bin/sh
+# expand-root.sh - grow the root ext4 partition and filesystem to fill the disk
+set -eu
+
+# --- Identify the root device ---
+FSTYPE="$(awk '$5=="/"{for(i=6;i<=NF;i++) if($i=="-"){print $(i+1); exit}}' /proc/self/mountinfo | tail -n1)"
+MAJMIN="$(awk '$5=="/"{print $3}' /proc/self/mountinfo | tail -n1)"
+
+BLK_SYS="$(readlink -f "/sys/dev/block/$MAJMIN")"
+ROOT_PART="$(cat "$BLK_SYS/partition")"
+ROOT_DEV="/dev/$(basename "$BLK_SYS")"
+ROOT_DISK="/dev/$(basename "$(dirname "$BLK_SYS")")"
+
+# --- Grow the partition (-f also fixes the GPT backup header if the image was written to a larger disk) ---
+parted -f -s "$ROOT_DISK" resizepart "$ROOT_PART" 100%
+
+# --- Grow the filesystem online via a loop device ---
+LOOP_DEV="$(losetup -f)"
+losetup "$LOOP_DEV" "$ROOT_DEV"
+trap 'losetup -d "$LOOP_DEV" 2>/dev/null || true' EXIT
+resize2fs -f "$LOOP_DEV"
+losetup -d "$LOOP_DEV"
+NEW_UUID=`blkid ${ROOT_DISK}p${ROOT_PART} | sed -n 's/.*PARTUUID="\([^"]*\)".*/\1/p'`
+sed -i "s/PARTUUID=[^ ]*/PARTUUID=${NEW_UUID}/" /boot/cmdline.txt
+trap - EXIT
+
+# --- Only neede in Pi CM4 devices ---
+echo 'dtoverlay=dwc2,dr_mode=host' >> /boot/config.txt
+
+reboot
+```
+
+Click "Request Build"<br>
+Click and download "Factory (Ext4)"<br>
 
 <h2>Raspberry Pi CM5 SNACBox</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/cm5-dual-eth-mini.htm?sku=31075<br>
@@ -27,6 +176,72 @@
     USB 3.2 Gen1 and Gigabit Ethernet HUB HAT for Raspberry Pi, 3x USB 3.2 Gen1, 1x Gigabit Ethernet, driver-free.<br>
 <img src="screenshots/usb-3.2-gen1-hub-gigabit-eth-hat-5.jpg" alt="Waveshare CM4" width="300" height="200"/><br>
 Or<br>
+
+<h2>Openwrt 25.12+ Firmware</h2>
+Enter chosen hardware "Raspberry"<br>
+Choose version "25.12.6"
+Select based on the Hardware choice made "Raspberry Pi (4B/400/CM4) (64bit)"<br>
+Choose "Customize installed packages"<br>
+Goto "Installed Packages"<br>
+Add to the end of the list<br>
+
+Additional Packages
+
+```bash
+ parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020 curl kmod-veth kmod-loop kmod-fuse
+```
+Waveshare and Pi 4B Kernel Packages
+
+```bash
+ kmod-usb-core kmod-usb3 kmod-usb-net-rtl8152 kmod-usb-ohci kmod-usb-uhci kmod-usb2
+```
+
+iPhone Tethering
+
+```bash
+kmod-usb-net-ipheth usbmuxd libimobiledevice usbutils libusbmuxd libplist
+```
+
+Goto "Script to run on first boot (uci-defaults)"
+
+Add this resize script to resize the storage.
+
+```bash
+#!/bin/sh
+# expand-root.sh - grow the root ext4 partition and filesystem to fill the disk
+set -eu
+
+# --- Identify the root device ---
+FSTYPE="$(awk '$5=="/"{for(i=6;i<=NF;i++) if($i=="-"){print $(i+1); exit}}' /proc/self/mountinfo | tail -n1)"
+MAJMIN="$(awk '$5=="/"{print $3}' /proc/self/mountinfo | tail -n1)"
+
+BLK_SYS="$(readlink -f "/sys/dev/block/$MAJMIN")"
+ROOT_PART="$(cat "$BLK_SYS/partition")"
+ROOT_DEV="/dev/$(basename "$BLK_SYS")"
+ROOT_DISK="/dev/$(basename "$(dirname "$BLK_SYS")")"
+
+# --- Grow the partition (-f also fixes the GPT backup header if the image was written to a larger disk) ---
+parted -f -s "$ROOT_DISK" resizepart "$ROOT_PART" 100%
+
+# --- Grow the filesystem online via a loop device ---
+LOOP_DEV="$(losetup -f)"
+losetup "$LOOP_DEV" "$ROOT_DEV"
+trap 'losetup -d "$LOOP_DEV" 2>/dev/null || true' EXIT
+resize2fs -f "$LOOP_DEV"
+losetup -d "$LOOP_DEV"
+NEW_UUID=`blkid ${ROOT_DISK}p${ROOT_PART} | sed -n 's/.*PARTUUID="\([^"]*\)".*/\1/p'`
+sed -i "s/PARTUUID=[^ ]*/PARTUUID=${NEW_UUID}/" /boot/cmdline.txt
+trap - EXIT
+
+# --- Only neede in Pi CM4 devices ---
+#echo 'dtoverlay=dwc2,dr_mode=host' >> /boot/config.txt
+
+reboot
+```
+
+Click "Request Build"<br>
+Click and download "Factory (Ext4)"<br>
+
 <h3>USB Ethernet Dongle</h3>
     Needs to be a USB-A Ethernet Gigabit dongle.
 <h3>Raspberry Pi</h3> - https://www.raspberrypi.com/products/raspberry-pi-4-model-b/<br>
@@ -39,6 +254,7 @@ Or<br>
     PCIe To Gigabit Ethernet And USB 3.2 Gen1 HAT For Raspberry Pi 5, 3x USB 3.2 Gen1, 1x Gigabit Ethernet, Driver-Free, Plug And Play, Raspberry Pi 5 PCIe HAT.<br>
 <img src="screenshots/PCIe-TO-Gigabit-ETH-USB3.2-HAT-Plus-details-3.jpg" alt="Waveshare CM4" width="300" height="200"/><br>
 Or<br>
+
 <h3>USB Ethernet Dongle</h3>
     Needs to be a USB-A Ethernet Gigabit dongle.
 <h3>Raspberry Pi</h3> - https://www.raspberrypi.com/products/raspberry-pi-5/<br>

@@ -26,99 +26,14 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 # Functionality
 ![SNACBox Design](screenshots/SNACBox-Traffic.png)
 
-# Configuring SNACBox Dev Build
-For the latest version goto the [Dev Build](https://github.com/AKrawczyk/SNACBox/blob/main/software/OpenWRT-Packages/webguard/readme.md).<br>
-
 # Configuring SNACBox Release Build
-
-Note: Use only on a new OpenWRT install. These packages come with a pre-configured config file and will override existing config files.
-## Existing OpenWRT Setup
-[Existing OpenWRT](https://github.com/AKrawczyk/SNACBox/blob/main/software/OpenWRT-Packages/Existing-OpenWRT/readme.md)
 
 ## New OpenWRT Setup
 <h2>Openwrt 25.12+ Firmware</h2>
-Goto https://firmware-selector.openwrt.org<br>
-Enter chosen hardware eg. "Raspberry Pi"<br>
-Select based on the Hardware choice made e.g "Raspberry Pi 4B/400/CM4 (64bit)"<br>
-Choose "Customize installed packages"<br>
-Goto "Installed Packages"<br>
-Add to the end of the list<br>
-
-All hardware
-
-```bash
- parted losetup resize2fs blkid php8 php8-cli php8-mod-curl luci-mod-rpc luci-ssl at jq adguardhome luci-base luci-theme-openwrt-2020 curl kmod-veth kmod-loop kmod-fuse
-```
-
-iPhone Tethering
-
-```bash
-kmod-usb-net-ipheth usbmuxd libimobiledevice usbutils libusbmuxd libplist
-```
-
-Goto "Script to run on first boot (uci-defaults)"
-
-Add this resize script to resize the storage.
-
-```bash
-# Configure startup scripts
-cat << "EOF" > /etc/uci-defaults/70-rootpt-resize
-if [ ! -e /etc/rootpt-resize ] \
-&& type parted > /dev/null \
-&& lock -n /var/lock/root-resize
-then
-ROOT_BLK="$(readlink -f /sys/dev/block/"$(awk -e \
-'$9=="/dev/root"{print $3}' /proc/self/mountinfo)")"
-ROOT_DISK="/dev/$(basename "${ROOT_BLK%/*}")"
-ROOT_PART="${ROOT_BLK##*[^0-9]}"
-parted -f -s "${ROOT_DISK}" \
-resizepart "${ROOT_PART}" 100%
-mount_root done
-touch /etc/rootpt-resize
-
-if [ -e /boot/cmdline.txt ]
-then 
-NEW_UUID=`blkid ${ROOT_DISK}p${ROOT_PART} | sed -n 's/.*PARTUUID="\([^"]*\)".*/\1/p'`
-sed -i "s/PARTUUID=[^ ]*/PARTUUID=${NEW_UUID}/" /boot/cmdline.txt
-fi
-
-reboot
-fi
-exit 1
-EOF
-cat << "EOF" > /etc/uci-defaults/80-rootfs-resize
-if [ ! -e /etc/rootfs-resize ] \
-&& [ -e /etc/rootpt-resize ] \
-&& type losetup > /dev/null \
-&& type resize2fs > /dev/null \
-&& lock -n /var/lock/root-resize
-then
-ROOT_BLK="$(readlink -f /sys/dev/block/"$(awk -e I am running a few minutes late; my previous meeting is running over.
-'$9=="/dev/root"{print $3}' /proc/self/mountinfo)")"
-ROOT_DEV="/dev/${ROOT_BLK##*/}"
-LOOP_DEV="$(awk -e '$5=="/overlay"{print $9}' \
-/proc/self/mountinfo)"
-if [ -z "${LOOP_DEV}" ]
-then
-LOOP_DEV="$(losetup -f)"
-losetup "${LOOP_DEV}" "${ROOT_DEV}"
-fi
-resize2fs -f "${LOOP_DEV}"
-mount_root done
-touch /etc/rootfs-resize
-reboot
-fi
-exit 1
-EOF
-cat << "EOF" >> /etc/sysupgrade.conf
-/etc/uci-defaults/70-rootpt-resize
-/etc/uci-defaults/80-rootfs-resize
-EOF
-sh /etc/uci-defaults/70-rootpt-resize
-```
-
-Click "Request Build"<br>
-Click and download "Factory (Ext4)"<br>
+[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.5-nanopi-r3s-resize-ext4-sysupgrade.img)
+[Waveshare Dual Gigabit CM4 Board](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-dual-gig-board-rpi-cm4-resize-ext4-factory.img)
+[Waveshare USB Gigabit Eth Hat for Pi 4B](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-usb-gig-hat-rpi-4-resize-ext4-factory.img)
+Click and download supported firmware<br>
 
 <h2>FLash SD Card</h2>
 Get SD Card min 16GB<br>
