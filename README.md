@@ -75,18 +75,24 @@ ssh root@192.168.1.1
 The SNACBox APK packages are built for OpenWRT 25.12+.<br>
 These packages are designed to create SNACBox using a clean, fresh OpenWRT install.<br>
 It is not recommended to run these packages on an existing OpenWRT installation, as it will overwrite firewall, network and AdGuardhome configurations.<br>
-Test the network first: SNACBox using a clean, fresh OpenWRT install
+Test the network first:
+
 ```bash
 nslookup downloads.openwrt.org
 apk update
 ```
 
-Install the three packages:
+Download the three packages:
 
 ```bash
 wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-app-adguardhome-plugin-1.0.0-r1.apk
 wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-theme-openwrt-snacbox-1.0.0-r1.apk
 wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/OpenWRT-Packages/luci-app-webguard-1.0.0-r1.apk
+```
+
+Install SNACBox packages and reboot
+
+```bash
 apk add --allow-untrusted luci-app-adguardhome-plugin-1.0.0-r1.apk luci-theme-openwrt-snacbox-1.0.0-r1.apk
 service adguardhome restart
 apk add --allow-untrusted luci-app-webguard-1.0.0-r1.apk
