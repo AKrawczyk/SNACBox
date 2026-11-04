@@ -19,23 +19,26 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 <h3>PHP</h3> - https://www.php.net/<br>
     A popular general-purpose scripting language, especially suited to web development. Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.<br>
 
-# Hardware
-
-[Compatible Hardware](hardware.md)
-
 # Functionality
 ![SNACBox Design](screenshots/SNACBox-Traffic.png)
 
-# Configuring SNACBox Release Build
+# How to Configure SNACBox
 
 ## New OpenWRT Setup
-<h2>Openwrt 25.12+ Firmware</h2>
-[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.5-nanopi-r3s-resize-ext4-sysupgrade.img)<br>
-[Waveshare Dual Gigabit CM4 Board](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-dual-gig-board-rpi-cm4-resize-ext4-factory.img)<br>
-[Waveshare USB Gigabit Eth Hat for Pi 4B](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-usb-gig-hat-rpi-4-resize-ext4-factory.img)<br>
-Click and download supported firmware<br>
 
-<h2>FLash SD Card</h2>
+[Compatible Hardware](hardware.md)
+
+<h2>Openwrt 25.12+ Supported Firmware</h2>
+
+[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.5-nanopi-r3s-resize-ext4-sysupgrade.img)
+
+[Waveshare Dual Gigabit CM4 Board](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-dual-gig-board-rpi-cm4-resize-ext4-factory.img)
+
+[Waveshare USB Gigabit Eth Hat for Pi 4B](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-usb-gig-hat-rpi-4-resize-ext4-factory.img)
+
+Click and download firmware<br>
+
+<h2>Flash SD Card</h2>
 Get SD Card min 16GB<br>
 Download and install Raspberry Pi imager https://www.raspberrypi.com/software/<br>
 Insert SD card into computer or adapter<br>
