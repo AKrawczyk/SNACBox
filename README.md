@@ -1,5 +1,5 @@
 # SNACBox
-Simple Network Access Control Box (SNACBox) is a home router designed to provide access to child-safe websites, protect devices, and restrict internet access based on the user's devices. SNACBox aims to help parents and guardians create a child-safe internet experience.
+Simple Network Access Control Box (SNACBox) is a home gateway that provides child-safe internet access, protects devices, and restricts access based on the user's devices. SNACBox aims to help parents and guardians create a child-safe internet experience.
 
 ![Device Access](screenshots/SNACBox-DeviceAccess-ScreenShot.png)
 
@@ -7,7 +7,7 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 
 # Open Source Components
 <h3>OpenWRT</h3> - https://openwrt.org/<br>
-    The OpenWrt Project is a Linux operating system for embedded devices that creates a router. <br>
+    The OpenWrt Project is a Linux operating system for embedded devices that is used to build a router. <br>
 <h3>AdguardHome</h3> - https://github.com/AdguardTeam/AdGuardHome<br>
     Free and open-source, powerful network-wide ads & trackers blocking DNS server.<br>
 <h3>Docker</h3> - https://www.docker.com/community/open-source/<br>
@@ -36,12 +36,12 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 
 [Waveshare USB Gigabit Eth Hat for Pi 4B](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-usb-gig-hat-rpi-4-resize-ext4-factory.img)
 
-Click and download firmware<br>
+Click and download the firmware<br>
 
 <h2>Flash SD Card</h2>
-Get SD Card min 16GB<br>
-Download and install Raspberry Pi imager https://www.raspberrypi.com/software/<br>
-Insert SD card into computer or adapter<br>
+Get an SD card (minimum 16 GB) < br>
+Download and install Raspberry Pi Imager https://www.raspberrypi.com/software/<br>
+Insert the SD card into a computer or adapter<br>
 Run Raspberry Pi Imager<br>
 <img src="screenshots/RPI-Imager-01.png" alt="Raspberry Pi Imager Step 1" width="400" height="200"/><br>
 Click "Select Hardware"
@@ -56,7 +56,7 @@ Click "Select Storage"
 <img src="screenshots/RPI-Imager-06.png" alt="Raspberry Pi Imager Step 6" width="400" height="200"/><br>
 Choose SD Card
 <img src="screenshots/RPI-Imager-07.png" alt="Raspberry Pi Imager Step 7" width="400" height="200"/><br>
-Click "No" to customise OS
+Click "No" to customise the OS
 <img src="screenshots/RPI-Imager-08.png" alt="Raspberry Pi Imager Step 8" width="400" height="200"/><br>
 Click "Complete"
 <img src="screenshots/RPI-Imager-09.png" alt="Raspberry Pi Imager Step 9" width="400" height="200"/><br>
@@ -76,8 +76,8 @@ ssh root@192.168.1.1
 
 <h2>SNACBox Installation</h2>
 The SNACBox APK packages are built for OpenWRT 25.12+.<br>
-These packages are designed to create SNACBox using a clean, fresh OpenWRT install.<br>
-It is not recommended to run these packages on an existing OpenWRT installation, as it will overwrite firewall, network and AdGuardhome configurations.<br>
+These packages create SNACBox using a clean, fresh OpenWRT install.<br>
+It is not recommended to run these packages on an existing OpenWRT installation, as it will overwrite firewall, network and AdGuardHome configurations.<br>
 Test the network first:
 
 ```bash
@@ -103,11 +103,11 @@ reboot
 clear
 ```
 
-After the box reboots you need to login to https://192.168.12.1 and ssh root@192.168.12.1 to verify and complete the configuration.<br>
+After the box reboots, log in to https://192.168.12.1 and ssh root@192.168.12.1 to verify and complete the configuration.<br>
 The SNACBox is almost ready to be installed on a Home Network Router and provide safe internet.<br>
 Before using the SNACBox, make sure you set the system password.<br>
 <h2>Set and Configure System Password</h2>
-1. Goto 'System' -> 'Administration' -> 'Router Password'
+1. Go to 'System' -> 'Administration' -> 'Router Password'
 <br>2. Enter a new password
 <br>3. Press 'Save'
 <br>4. Goto 'Webguard' -> 'Web Access' -> 'Configuration'
@@ -115,7 +115,7 @@ Before using the SNACBox, make sure you set the system password.<br>
 <br>6. Press 'Save & Apply'<br>
 <br>SNACBox is ready to be set up for use on a home network.
 
-# Setup SNACBox on Home Network Router
+# Set up SNACBox on Home Network Router
 Note: This setup currently requires simple IT skills.<br>
 <h2>Step 1</h2>
 Connect SNACBox WAN port to Home Router<br>
@@ -128,12 +128,12 @@ Connect SNACBox WAN port to Home Router<br>
 <br>6. Login to SNACBox, User = root, Password = xxxxxx
 <br>
 <h3>Configure Static WAN IP</h3>
-Goto Webguard -> Web Access
+Go to Webguard -> Web Access
 <br>Select 'Configure'
 <br>Click the button 'Reset WAN'
 <br>
 <h3>Setup Admin USB Network Dongle</h3>
-Goto Webguard -> Web Access
+Go to Webguard -> Web Access
 <br>Select 'Device Access'
 <br>Now set the Rating to '18-Rated' for the admin USB network dongle<br>
 
@@ -143,22 +143,22 @@ Goto Webguard -> Web Access
 1. Disconnect the USB Network Dongle from Laptop/Tablet/Smart Phone
 <br>2. Disconnect the SNACBox LAN port from the USB Network Dongle
 <br>
-<br><strong>3. Login to the home router and disable DHCP</strong>
+<br><strong>3. Log in to the home router and disable DHCP</strong>
 <br>Note: Consult the Home Router supplier's web page for information on how to do this.
-<br>Note: DNS configuration may be necessary if the Home Router is set to secure DNS
+<br>Note: DNS configuration may be necessary if the Home Router is set to secure DNS.
 <br>
-<br>4. Connect SNACBox LAN port to Home Router Network port
+<br>4. Connect the SNACBox LAN port to the Home Router Network port.
 <h2>Step 2</h2>
-Setup Admin devices<br>
+Set up admin devices<br>
 Connect at least two wireless devices (Computer, Tablet, Smart Phone) to Home WiFi<br>
-If you're using a mobile device IOS, MacOS or Android make sure to configure the WiFi connection's Private Wi-Fi Address to 'Fixed'<br>
+If you're using a mobile device (iOS, macOS, or Android) make sure to configure the WiFi connection's Private Wi-Fi Address to 'Fixed'<br>
 
 <img src="screenshots/Apple-MAC-Rand.jpeg" alt="Apple MAC Random" width="200" height="500"/><br>
 <img src="screenshots/Apple-MAC-Fixed.jpeg" alt="Apple MAC Fixed" width="200" height="200"/>
 
 Note: These devices will automatically be enrolled into the 'No Access' rating. < br>
 <br>
-1. Open a web browser and goto http://192.168.12.1<br>
+1. Open a web browser and go to http://192.168.12.1<br>
 2. Login to SNACBox, User = root, Password = xxxxxx
 3. Now set the Rating to '18-Rated' for both admin devices<br>
 
