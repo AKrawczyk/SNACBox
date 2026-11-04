@@ -30,9 +30,9 @@ Simple Network Access Control Box (SNACBox) is a home router designed to provide
 
 ## New OpenWRT Setup
 <h2>Openwrt 25.12+ Firmware</h2>
-[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.5-nanopi-r3s-resize-ext4-sysupgrade.img)
-[Waveshare Dual Gigabit CM4 Board](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-dual-gig-board-rpi-cm4-resize-ext4-factory.img)
-[Waveshare USB Gigabit Eth Hat for Pi 4B](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-usb-gig-hat-rpi-4-resize-ext4-factory.img)
+[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.5-nanopi-r3s-resize-ext4-sysupgrade.img)<br>
+[Waveshare Dual Gigabit CM4 Board](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-dual-gig-board-rpi-cm4-resize-ext4-factory.img)<br>
+[Waveshare USB Gigabit Eth Hat for Pi 4B](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-usb-gig-hat-rpi-4-resize-ext4-factory.img)<br>
 Click and download supported firmware<br>
 
 <h2>FLash SD Card</h2>
