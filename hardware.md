@@ -1,5 +1,5 @@
 # Supported Hardware
-<h2>Friendly Elec NanoPi R3S SNACBox</h2>
+<h2>Friendly Elec NanoPi R3S SNACBox (Supported)</h2>
 <h3>Friendly Elec</h3> - https://www.friendlyelec.com/index.php?route=product/product&product_id=311<br>
     Mini Dual Gigabit Ethernet Base Board and Metal case designed around the RK3566 Rock Chip Arm SoC.<br>
 <img src="screenshots/R3SLTS_03-900x630.jpg" alt="Friednly Elec NanoPi R3S" width="300" height="200"/><br>
@@ -88,7 +88,7 @@ sh /etc/uci-defaults/70-rootpt-resize
 Click "Request Build"<br>
 Click and download "Factory (Ext4)"<br>
 
-<h2>Raspberry Pi CM4 SNACBox</h2>
+<h2>Raspberry Pi CM4 SNACBox (Supported)</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/cm4-dual-eth-mini.htm?sku=23853<br>
     Mini Dual Gigabit Ethernet Base Board/Mini-Computer Designed for Raspberry Pi Compute Module 4.<br>
 <img src="screenshots/cm4-dual-eth-mini-box-1_1_1.jpg" alt="Waveshare CM4" width="300" height="200"/><br>    
@@ -162,16 +162,7 @@ reboot
 Click "Request Build"<br>
 Click and download "Factory (Ext4)"<br>
 
-<h2>Raspberry Pi CM5 SNACBox</h2>
-<h3>Waveshare</h3> - https://www.waveshare.com/cm5-dual-eth-mini.htm?sku=31075<br>
-    Mini Dual Gigabit Ethernet Base Board/Mini-Computer Designed for Raspberry Pi Compute Module 5.<br>
-<img src="screenshots/cm5-dual-eth-mini-box-1_1_1.jpg" alt="Waveshare CM5" width="300" height="300"/>    
-<h3>Raspberry Pi</h3> - https://www.raspberrypi.com/products/compute-module-5/?variant=cm5-104032<br>
-    Compute Module 5 is a powerful and scalable system on module with a 64-bit Arm processor @ 2.4GHz, an I/O controller, video and PCIe interfaces, and a range of wireless, SDRAM and eMMC options
-
-<img src="screenshots/compute-module-5-2.jpg" alt="Raspberry Pi CM5" width="300" height="300"/>
-
-<h2>Raspberry Pi 4B SNACBox (Devolpment)</h2>
+<h2>Raspberry Pi 4B SNACBox (Supported)</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/usb-3.2-gen1-hub-gigabit-eth-hat.htm<br>
     USB 3.2 Gen1 and Gigabit Ethernet HUB HAT for Raspberry Pi, 3x USB 3.2 Gen1, 1x Gigabit Ethernet, driver-free.<br>
 <img src="screenshots/usb-3.2-gen1-hub-gigabit-eth-hat-5.jpg" alt="Waveshare CM4" width="300" height="200"/><br>
@@ -249,7 +240,17 @@ Click and download "Factory (Ext4)"<br>
 
 ![Raspberry Pi 4B](screenshots/raspberry-pi-4-labelled-f5e5dcdf6a34223235f83261fa42d1e8.png)
 
-<h2>Raspberry Pi 5 SNACBox (Devolpment)</h2>
+
+<h2>Raspberry Pi CM5 SNACBox (Expermental)</h2>
+<h3>Waveshare</h3> - https://www.waveshare.com/cm5-dual-eth-mini.htm?sku=31075<br>
+    Mini Dual Gigabit Ethernet Base Board/Mini-Computer Designed for Raspberry Pi Compute Module 5.<br>
+<img src="screenshots/cm5-dual-eth-mini-box-1_1_1.jpg" alt="Waveshare CM5" width="300" height="300"/>    
+<h3>Raspberry Pi</h3> - https://www.raspberrypi.com/products/compute-module-5/?variant=cm5-104032<br>
+    Compute Module 5 is a powerful and scalable system on module with a 64-bit Arm processor @ 2.4GHz, an I/O controller, video and PCIe interfaces, and a range of wireless, SDRAM and eMMC options
+
+<img src="screenshots/compute-module-5-2.jpg" alt="Raspberry Pi CM5" width="300" height="300"/>
+
+<h2>Raspberry Pi 5 SNACBox (Expermental)</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/pcie-to-gigabit-eth-usb3.2-hat-plus.htm<br>
     PCIe To Gigabit Ethernet And USB 3.2 Gen1 HAT For Raspberry Pi 5, 3x USB 3.2 Gen1, 1x Gigabit Ethernet, Driver-Free, Plug And Play, Raspberry Pi 5 PCIe HAT.<br>
 <img src="screenshots/PCIe-TO-Gigabit-ETH-USB3.2-HAT-Plus-details-3.jpg" alt="Waveshare CM4" width="300" height="200"/><br>
