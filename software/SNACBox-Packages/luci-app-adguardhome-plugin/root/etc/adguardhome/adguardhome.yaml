@@ -282,14 +282,14 @@ clients:
     hosts: true
   persistent:
     - safe_search:
-        enabled: false
-        bing: false
-        duckduckgo: false
-        ecosia: false
-        google: false
-        pixabay: false
-        yandex: false
-        youtube: false
+        enabled: true
+        bing: true
+        duckduckgo: true
+        ecosia: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
       blocked_services:
         schedule:
           time_zone: UTC
@@ -338,30 +338,44 @@ clients:
           - slack
           - tidal
           - tumblr
+          - gemini
+          - 500px
+          - amino
+          - blaze
+          - bluesky
+          - clubhouse
+          - discord
+          - fdj_united
+          - manus
+          - odysee
+          - perplexity
+          - pinterest
+          - wizz
       name: 12-Rated
       ids:
         - 172.20.0.13
       tags: []
-      upstreams: []
+      upstreams:
+        - https://family.adguard-dns.com/dns-query
       uid: 01926bdf-951e-7cad-9526-d6b1a6c3bdef
       upstreams_cache_size: 0
       upstreams_cache_enabled: false
-      use_global_settings: true
-      filtering_enabled: false
-      parental_enabled: false
-      safebrowsing_enabled: false
+      use_global_settings: false
+      filtering_enabled: true
+      parental_enabled: true
+      safebrowsing_enabled: true
       use_global_blocked_services: false
       ignore_querylog: false
       ignore_statistics: false
     - safe_search:
-        enabled: false
-        bing: false
-        duckduckgo: false
-        ecosia: false
-        google: false
-        pixabay: false
-        yandex: false
-        youtube: false
+        enabled: true
+        bing: true
+        duckduckgo: true
+        ecosia: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
       blocked_services:
         schedule:
           time_zone: UTC
@@ -386,15 +400,32 @@ clients:
           - telegram
           - tumblr
           - wechat
+          - 500px
+          - 9gag
+          - amino
+          - clubhouse
+          - douban
+          - facebook
+          - fdj_united
+          - instagram
+          - kook
+          - line
+          - odysee
+          - pinterest
+          - twitter
+          - vk
+          - wizz
+          - zhihu
       name: 15-Rated
       ids:
         - 172.20.0.14
       tags: []
-      upstreams: []
+      upstreams:
+        - https://family.adguard-dns.com/dns-query
       uid: 01926bdf-951e-7edd-92c1-14fcba137375
       upstreams_cache_size: 0
       upstreams_cache_enabled: false
-      use_global_settings: true
+      use_global_settings: false
       filtering_enabled: true
       parental_enabled: true
       safebrowsing_enabled: true
@@ -402,14 +433,14 @@ clients:
       ignore_querylog: false
       ignore_statistics: false
     - safe_search:
-        enabled: false
-        bing: false
-        duckduckgo: false
-        ecosia: false
-        google: false
-        pixabay: false
-        yandex: false
-        youtube: false
+        enabled: true
+        bing: true
+        duckduckgo: true
+        ecosia: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
       blocked_services:
         schedule:
           time_zone: UTC
@@ -420,20 +451,22 @@ clients:
           - betano
           - betfair
           - betway
-          - bigo_live
           - grindr
           - kik
           - plenty_of_fish
           - signal
+          - fdj_united
+          - wechat
       name: 16-Rated
       ids:
         - 172.20.0.15
       tags: []
-      upstreams: []
+      upstreams:
+        - https://family.adguard-dns.com/dns-query
       uid: 01926bdf-951f-701a-b184-738df1e5a07d
       upstreams_cache_size: 0
       upstreams_cache_enabled: false
-      use_global_settings: true
+      use_global_settings: false
       filtering_enabled: true
       parental_enabled: true
       safebrowsing_enabled: true
@@ -452,8 +485,7 @@ clients:
       blocked_services:
         schedule:
           time_zone: UTC
-        ids:
-          - amazon
+        ids: []
       name: 18-Rated
       ids:
         - 172.20.0.16
@@ -473,42 +505,123 @@ clients:
       ignore_querylog: false
       ignore_statistics: false
     - safe_search:
-        enabled: false
-        bing: false
-        duckduckgo: false
-        ecosia: false
-        google: false
-        pixabay: false
-        yandex: false
-        youtube: false
+        enabled: true
+        bing: true
+        duckduckgo: true
+        ecosia: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
       blocked_services:
         schedule:
           time_zone: UTC
-        ids: []
+        ids:
+          - chatgpt
+          - claude
+          - copilot
+          - deepseek
+          - gemini
+          - grok
+          - manus
+          - meta_ai
+          - perplexity
+          - betano
+          - betfair
+          - betway
+          - blaze
+          - cloudflare
+          - fdj_united
+          - grindr
+          - plenty_of_fish
+          - tinder
+          - wizz
+          - box
+          - dropbox
+          - flickr
+          - imgur
+          - origin
+          - kakaotalk
+          - kik
+          - max
+          - microsoft_teams
+          - olvid
+          - onlyfans
+          - signal
+          - skype
+          - slack
+          - telegram
+          - tiktok
+          - viber
+          - wechat
+          - whatsapp
+          - aliexpress
+          - amazon
+          - coolapk
+          - ebay
+          - lazada
+          - mercado_libre
+          - shein
+          - shopee
+          - temu
+          - xiaohongshu
+          - 4chan
+          - 500px
+          - 9gag
+          - amino
+          - bluesky
+          - clubhouse
+          - discord
+          - douban
+          - facebook
+          - instagram
+          - kook
+          - line
+          - linkedin
+          - mail_ru
+          - mastodon
+          - odysee
+          - ok
+          - pinterest
+          - reddit
+          - snapchat
+          - tumblr
+          - twitter
+          - vk
+          - zhihu
+          - bigo_live
+          - canais_globo
+          - claro
+          - dailymotion
+          - qq
+          - twitch
+          - vimeo
+          - weibo
       name: G-Rated
       ids:
         - 172.20.0.11
       tags: []
-      upstreams: []
+      upstreams:
+        - https://family.adguard-dns.com/dns-query
       uid: 01926bdf-952f-7274-ad26-5bd8784bc960
       upstreams_cache_size: 0
       upstreams_cache_enabled: false
-      use_global_settings: true
-      filtering_enabled: false
-      parental_enabled: false
-      safebrowsing_enabled: false
-      use_global_blocked_services: true
+      use_global_settings: false
+      filtering_enabled: true
+      parental_enabled: true
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
       ignore_querylog: false
       ignore_statistics: false
     - safe_search:
-        enabled: false
-        bing: false
-        duckduckgo: false
-        ecosia: false
-        google: false
-        pixabay: false
-        yandex: false
-        youtube: false
+        enabled: true
+        bing: true
+        duckduckgo: true
+        ecosia: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
       blocked_services:
         schedule:
           time_zone: UTC
@@ -577,15 +690,24 @@ clients:
           - meta_ai
           - slack
           - tidal
+          - 500px
+          - blaze
+          - fdj_united
+          - gemini
+          - manus
+          - odysee
+          - perplexity
+          - wizz
       name: PG-Rated
       ids:
         - 172.20.0.12
       tags: []
-      upstreams: []
+      upstreams:
+        - https://family.adguard-dns.com/dns-query
       uid: 01926bdf-952f-739f-892d-aaa2fc6cc2b5
       upstreams_cache_size: 0
       upstreams_cache_enabled: false
-      use_global_settings: true
+      use_global_settings: false
       filtering_enabled: true
       parental_enabled: true
       safebrowsing_enabled: true
