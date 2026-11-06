@@ -7,7 +7,7 @@
 				"/www/html/web-rated-device.json": [ "read" ],
 				"/usr/bin/web-rated-docker.json": [ "read" ]
 			},
-			"uci": [ "firewall", "webguard" ],
+			"uci": [ "firewall", "network", "webguard" ],
 			"menu": [
 				"admin/snac/webguard",
 				"admin/snac/webguard/*"
@@ -17,7 +17,8 @@
 			"file": {
 				"/www/html/web-rated-device.json": [ "write" ],
 				"/usr/bin/webguard-wan-reset": [ "exec" ],
-				"/usr/bin/webguard-factory-reset": [ "exec" ]
+				"/usr/bin/webguard-factory-reset": [ "exec" ],
+				"/etc/webguard/99-WAN-DHCP-Static.sh": [ "exec" ]
 			},
 			"uci": [ "firewall", "webguard" ]
 		}

@@ -9,7 +9,8 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.load('webguard'),
-			uci.load('firewall')
+			uci.load('firewall'),
+			uci.load('network')
 		]);
 	},
 	render: function () {
@@ -66,29 +67,55 @@ return view.extend({
 			return uci.save();
 		};
 
-		s = m.section(form.TypedSection, 'webguard', _('WAN Reset'));                            
+		s = m.section(form.TypedSection, 'webguard', _('WAN Setup'));                            
 		s.anonymous = true;
 
-		o = s.option(form.Button, 'wan_reset_btn', _('WAN Reset Action'), 
-			_('Resets the WAN interface to DHCP and installs the static fallback script to /etc/uci-default/.')
-		);
-		o.inputtitle = _('Perform WAN Reset');
-		o.inputstyle = 'btn cbi-button-action important';
-		o.onclick = function(section_id) {
-			if (!confirm(_('Are you sure you want to reset WAN to DHCP and install the startup script?')))
-				return;
+		if (uci.get('network', 'wan', 'proto') !== 'dhcp')
+		{
+			o = s.option(form.Button, 'wan_reset_btn', _('WAN Reset Action'), 
+				_('Resets the WAN interface to DHCP and installs the static fallback script to /etc/uci-default/.')
+			);
+			o.inputtitle = _('Perform WAN Reset');
+			o.inputstyle = 'btn cbi-button-action important';
+			o.onclick = function(section_id) {
+				if (!confirm(_('Are you sure you want to reset WAN to DHCP and install the startup script?')))
+					return;
 
-			return fs.exec('/usr/bin/webguard-wan-reset').then(function(res) {
-				if (res.code === 0) {
-					alert(_('WAN Reset completed successfully. Page will reload.'));
-					location.reload();
-				} else {
-					alert(_('WAN Reset failed with code: ') + res.code);
-				}
-			}).catch(function(err) {
-				alert(_('Error executing WAN Reset: ') + err);
-			});
-		};
+				return fs.exec('/usr/bin/webguard-wan-reset').then(function(res) {
+					if (res.code === 0) {
+						alert(_('WAN Reset completed successfully. Page will reload.'));
+						location.reload();
+					} else {
+						alert(_('WAN Reset failed with code: ') + res.code);
+					}
+				}).catch(function(err) {
+					alert(_('Error executing WAN Reset: ') + err);
+				});
+			};
+		}
+		else
+		{
+			o = s.option(form.Button, 'wan_reset_btn', _('WAN Static Action'), 
+				_('Sets the WAN interface to Static IP using the DHCP IP address.')
+			);
+			o.inputtitle = _('Perform WAN Static IP Setup');
+			o.inputstyle = 'btn cbi-button-action important';
+			o.onclick = function(section_id) {
+				if (!confirm(_('Are you sure you want to set the WAN to Static IP?')))
+					return;
+
+				return fs.exec('/etc/webguard/99-WAN-DHCP-Static.sh').then(function(res) {
+					if (res.code === 0) {
+						alert(_('WAN Static IP setup completed successfully. Page will reload.'));
+						location.reload();
+					} else {
+						alert(_('WAN Static IP setup failed with code: ') + res.code);
+					}
+				}).catch(function(err) {
+					alert(_('Error executing WAN Static IP setup: ') + err);
+				});
+			};
+		}
 
 		s = m.section(form.TypedSection, 'webguard', _('Factory Reset'));                            
 		s.anonymous = true;
