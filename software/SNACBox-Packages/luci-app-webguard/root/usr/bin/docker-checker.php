@@ -98,8 +98,9 @@ class DockerManager {
                     $this->stopContainer($containerName);
                 }
                 $changed = true;
-            } elseif (($currentState === 'running' && $desiredState === 'start') ||
-                     ($currentState === 'stopped' && $desiredState === 'stop')) {
+              } elseif ((($currentState === 'running' && $desiredState === 'start') ||
+                      ($currentState === 'stopped' && $desiredState === 'stop')) &&
+                     $container['Status Counter'] !== '') {
                 // State matches desired state, reset counter
                 $container['Status Counter'] = "";
                 $changed = true;
