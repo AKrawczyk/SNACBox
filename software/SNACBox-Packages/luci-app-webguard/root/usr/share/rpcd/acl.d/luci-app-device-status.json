@@ -15,7 +15,9 @@
 		},
 		"write": {
 			"file": {
-				"/www/html/web-rated-device.json": [ "write" ]
+				"/www/html/web-rated-device.json": [ "write" ],
+				"/usr/bin/webguard-wan-reset": [ "exec" ],
+				"/usr/bin/webguard-factory-reset": [ "exec" ]
 			},
 			"uci": [ "firewall", "webguard" ]
 		}

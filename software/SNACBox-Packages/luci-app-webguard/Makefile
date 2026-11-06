@@ -43,6 +43,8 @@ define Package/luci-app-webguard/install
 	
 	$(INSTALL_BIN) ./root/usr/bin/new-device-access.sh $(1)/usr/bin/new-device-access.sh
 	$(INSTALL_BIN) ./root/etc/init.d/new-device-access $(1)/etc/init.d/new-device-access
+	$(INSTALL_BIN) ./root/usr/bin/webguard-wan-reset $(1)/usr/bin/webguard-wan-reset
+	$(INSTALL_BIN) ./root/usr/bin/webguard-factory-reset $(1)/usr/bin/webguard-factory-reset
 	
 	$(INSTALL_BIN) ./root/etc/webguard/99-WAN-DHCP-Static.sh $(1)/etc/webguard/99-WAN-DHCP-Static.sh
 	
