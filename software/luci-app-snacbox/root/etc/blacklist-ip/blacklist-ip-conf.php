@@ -1,0 +1,21 @@
+<?php
+$VERBOSE = 'yes'; // probably set to "no" for cron jobs, default to yes
+
+// Sample (!) list of URLs for IP blacklists. Currently, only IPv4 is supported in this script, everything else will be filtered.
+$BLACKLISTS = [
+    // "file:///etc/ipset-blacklist-firewalld/ip-blacklist-custom.list", // optional, for your personal nemeses (no typo, plural)
+    // "https://www.projecthoneypot.org/list_of_ips.php?t=d&rss=1", // Project Honey Pot Directory of Dictionary Attacker IPs
+    // "https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=1.1.1.1",  // TOR Exit Nodes
+    // "http://danger.rulez.sk/projects/bruteforceblocker/blist.php", // BruteForceBlocker IP List
+    // "https://www.spamhaus.org/drop/drop.lasso", // Spamhaus Don't Route Or Peer List (DROP)
+    // "https://cinsscore.com/list/ci-badguys.txt", // C.I. Army Malicious IP List
+    // "https://lists.blocklist.de/lists/all.txt", // blocklist.de attackers
+    // "https://blocklist.greensnow.co/greensnow.txt", // GreenSnow
+    "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level1.netset", // Firehol Level 1
+    // "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level2.netset",
+    // "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/firehol_level3.netset",
+    // "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/tor_exits.ipset",	
+    // "https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/stopforumspam_7d.ipset", // Stopforumspam via Firehol
+    // "https://raw.githubusercontent.com/ipverse/rir-ip/master/country/zz/ipv4-aggregated.txt", // Ban an entire country(-code), see https://github.com/ipverse/rir-ip
+    // "https://raw.githubusercontent.com/ipverse/asn-ip/master/as/1234/ipv4-aggregated.txt" // Ban a specific autonomous system (ISP), see https://github.com/ipverse/asn-ip 
+];
