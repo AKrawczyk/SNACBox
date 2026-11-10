@@ -10,8 +10,8 @@ return L.view.extend({
     cronPath: '/etc/crontabs/root',
     cronServicePath: '/etc/init.d/cron',
     dockerStateScript: 'update-docker-state.php',
-    dockerStateScriptPath: '/usr/bin/update-docker-state.php',
-    phpPath: '/usr/bin/php8-cli',
+    dockerStateScriptPath: '/usr/bin/update-docker-state.sh',
+    phpPath: '',
     atCommandPath: '/usr/bin/at',
     atrmCommandPath: '/usr/bin/atrm',
 

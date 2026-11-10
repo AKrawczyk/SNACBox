@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# update-docker-state.sh
-
-# Function to show usage
+# Function to show usage of update-docker-state.sh
 usage() {
     logger -t update-docker-state "Usage: $0 <docker_name> <state>"
     logger -t update-docker-state "  docker_name: The Docker container name (e.g., 'web-rated-g-e2gns')"
