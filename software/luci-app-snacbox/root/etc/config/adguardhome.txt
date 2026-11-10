@@ -9,5 +9,5 @@ config adguardhome 'config'
 	option maxprocs '0'
 	option memlimit '0'
 	option web_username 'root'
-	option web_password 'Dy5l3x1c'
+	option web_password ''
 

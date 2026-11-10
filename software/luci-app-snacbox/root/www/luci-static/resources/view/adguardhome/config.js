@@ -72,7 +72,7 @@ return view.extend({
 		o = s.option(form.Value, 'web_password', _('Password'));
 		o.password = true;
 		o.readonly = true;
-		o.placeholder = 'auto-generated';
+		o.placeholder = 'Click "Enable Plugin"';
 		o.cfgvalue = function() { return ''; };
 		o.write = function(section_id, value) {
 			return value;
