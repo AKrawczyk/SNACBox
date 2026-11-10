@@ -181,13 +181,16 @@ class DockerManager {
 }
 
 // Usage
-try {
-    $manager = new DockerManager('/usr/bin/web-rated-docker.json');
-    $manager->checkDependencies();
-    $manager->manageContainers();
-    echo "Docker containers managed successfully\n";
-} catch (Exception $e) {
-    error_log("Error: " . $e->getMessage());
-    echo "Error occurred while managing Docker containers. Check error log for details.\n";
-    exit(1);
+while (true) {
+    try {
+        $manager = new DockerManager('/usr/bin/web-rated-docker.json');
+        $manager->checkDependencies();
+        $manager->manageContainers();
+        echo "Docker containers managed successfully\n";
+    } catch (Exception $e) {
+        error_log("Error: " . $e->getMessage());
+        echo "Error occurred while managing Docker containers. Check error log for details.\n";
+        exit(1);
+    }
+    sleep(30); // Wait for 30 seconds before the next check
 }

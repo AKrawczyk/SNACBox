@@ -1,0 +1,79 @@
+#!/bin/sh
+
+LEASES_FILE=/tmp/dhcp.leases
+SCAN_INTERVAL=30
+
+set -f
+
+log_message() {
+    logger -t new-device-scanner "$1"
+}
+
+# Optimized to only return the names of sections that actually have a redirect
+get_redirect_sections() {
+    uci -q show firewall | grep "redirect:" | cut -d: -f1 | sed 's/firewall\.//'
+}
+
+mac_is_registered() {
+    local target_mac=$1
+    # Check if the MAC exists in any firewall section
+    # We use uci show to see if the specific MAC is already in the src_mac list
+    for section in $(get_redirect_sections); do
+        # Check if the specific MAC is in the list of src_mac
+        if uci show "firewall.$section" | grep -q "$target_mac"; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+while :; do
+    changed=0
+
+    if [ -r "$LEASES_FILE" ]; then
+        # Read the file and process each line
+        while read -r expiry mac ip hostname client_id; do
+            # Skip empty lines or lines without a MAC
+            [ -n "$mac" ] || continue
+            # Validate MAC format
+            printf '%s' "$mac" | grep -Eiq '^[[:xdigit:]]{2}(:[[:xdigit:]]{2}){5}$' || continue
+            
+            # Normalize to lowercase
+            mac=$(printf '%s' "$mac" | tr 'A-F' 'a-f')
+
+            # Skip if already registered
+            if mac_is_registered "$mac"; then
+                continue
+            fi
+
+            # Check only redirect sections
+            for section in $(get_redirect_sections); do
+                name=$(uci -q get "firewall.$section.name" 2>/dev/null)
+                [ -z "$name" ] && continue
+                [ "$name" = "none" ] && continue
+
+                # Check if this specific MAC is already in this specific section
+                # to avoid adding duplicates
+                if uci show "firewall.$section" | grep -q "$mac"; then
+                    continue
+                fi
+
+                if uci add_list "firewall.$section.src_mac=$mac"; then
+                    log_message "Added $mac to firewall redirect $name"
+                    changed=1
+                fi
+            done
+        done < "$LEASES_FILE"
+    fi
+
+    if [ "$changed" -eq 1 ]; then
+        if uci commit firewall; then
+            /etc/init.d/firewall reload
+            log_message "Firewall reloaded successfully"
+        else
+            log_message 'Failed to commit firewall changes'
+        fi
+    fi
+
+    sleep "$SCAN_INTERVAL"
+done
