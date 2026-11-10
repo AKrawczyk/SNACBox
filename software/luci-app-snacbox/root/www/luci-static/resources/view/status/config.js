@@ -8,28 +8,17 @@
 return view.extend({
 	load: function() {
 		return Promise.all([
-			uci.load('webguard'),
 			uci.load('firewall'),
 			uci.load('network')
 		]);
 	},
 	render: function () {
 		var s, o;
-		var m = new form.Map('webguard', _('New Device Access Configuration'),
-			_('The new-device-access service requires access to the OpenWRT firewall to block new devices.' +
-			' Enter the username and password used to login to this device.')
+		var m = new form.Map('status', _('Web Access Configuration'),
+			_('This page allows you to configure the WebGuard system settings, including new device access restriction, WAN setup, and factory reset options. Please proceed with caution when making changes.')
 		);
 
-		s = m.section(form.TypedSection, 'webguard', _('System Authentication'));
-		s.anonymous = true;
-
-		o = s.option(form.Value, 'web_username', _('System Username'), _('Username'));
-		o.placeholder = 'webguard';
-
-		o = s.option(form.Value, 'web_password', _('System Password'), _('Password'));
-		o.password = true;
-
-		s = m.section(form.TypedSection, 'webguard', _('Restricted Internet Access'));                
+		s = m.section(form.TypedSection, 'status', _('Restricted Internet Access'));                
 		s.anonymous = true;
 
 		// --- Single Master Firewall Toggle ---
@@ -54,8 +43,6 @@ return view.extend({
 
 		// Apply the toggle state to both firewall rules when saved
 		o.write = function(section_id, formvalue) {
-			uci.set('webguard', section_id, 'enable_all_firewall_rules', formvalue);
-			
 			var sections = uci.sections('firewall', 'rule').concat(uci.sections('firewall', 'redirect'));
 			['none-rated-any', 'blacklist-ip-rated', 'Drop-ping', 'lan', 'drop-webbound'].forEach(function(ruleName) {
 				for (var i = 0; i < sections.length; i++) {
@@ -67,7 +54,7 @@ return view.extend({
 			return uci.save();
 		};
 
-		s = m.section(form.TypedSection, 'webguard', _('WAN Setup'));                            
+		s = m.section(form.TypedSection, 'status', _('WAN Setup'));                            
 		s.anonymous = true;
 
 		if (uci.get('network', 'wan', 'proto') !== 'dhcp')
@@ -117,7 +104,7 @@ return view.extend({
 			};
 		}
 
-		s = m.section(form.TypedSection, 'webguard', _('Factory Reset'));                            
+		s = m.section(form.TypedSection, 'status', _('Factory Reset'));                            
 		s.anonymous = true;
 
 		o = s.option(form.Button, 'factory_reset_btn', _('Factory Reset Action'), 
