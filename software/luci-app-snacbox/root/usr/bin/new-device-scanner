@@ -6,65 +6,81 @@ SCAN_INTERVAL=30
 set -f
 
 log_message() {
-	logger -t new-device-scanner "$1"
+    logger -t new-device-scanner "$1"
 }
 
-firewall_sections() {
-	uci -q show firewall | sed -n \
-		-e 's/^firewall\.\(.*\)=rule$/rule:\1/p' \
-		-e 's/^firewall\.\(.*\)=redirect$/redirect:\1/p'
+# Return all firewall sections that are either redirects or rules.
+get_firewall_sections() {
+    uci -q show firewall | grep -E '^(firewall\.)?[^=]+=(redirect|rule)$' >/dev/null 2>&1 || return 0
+    uci -q show firewall | sed -n \
+        -e 's/^firewall\.\(.*\)=redirect$/\1/p' \
+        -e 's/^firewall\.\(.*\)=rule$/\1/p'
 }
 
 mac_is_registered() {
-	for section_info in $(firewall_sections); do
-		section=${section_info#*:}
-		entries=$(uci -q get "firewall.$section.src_mac" 2>/dev/null) || continue
-		for entry in $entries; do
-			entry=$(printf '%s' "$entry" | tr 'A-F' 'a-f')
-			[ "$entry" = "$1" ] && return 0
-		done
-	done
-	return 1
+    local target_mac=$1
+    # Check if the MAC exists in any firewall section
+    # We use uci show to see if the specific MAC is already in the src_mac list
+    for section in $(get_firewall_sections); do
+        # Check if the specific MAC is in the list of src_mac
+        if uci show "firewall.$section" | grep -q "$target_mac"; then
+            return 0
+        fi
+    done
+    return 1
 }
 
 while :; do
-	changed=0
+    changed=0
 
-	if [ -r "$LEASES_FILE" ]; then
-		while read -r expiry mac ip hostname client_id; do
-			[ -n "${mac:-}" ] || continue
-			printf '%s\n' "$mac" | grep -Eiq '^[[:xdigit:]]{2}(:[[:xdigit:]]{2}){5}$' || continue
-			mac=$(printf '%s' "$mac" | tr 'A-F' 'a-f')
+    if [ -r "$LEASES_FILE" ]; then
+        # Read the file and process each line
+        while read -r expiry mac ip hostname client_id; do
+            # Skip empty lines or lines without a MAC
+            [ -n "$mac" ] || continue
+            # Validate MAC format
+            printf '%s' "$mac" | grep -Eiq '^[[:xdigit:]]{2}(:[[:xdigit:]]{2}){5}$' || continue
+            
+            # Normalize to lowercase
+            mac=$(printf '%s' "$mac" | tr 'A-F' 'a-f')
 
-			mac_is_registered "$mac" && continue
+            # Skip if already registered
+            if mac_is_registered "$mac"; then
+                continue
+            fi
 
-			for section_info in $(firewall_sections); do
-				case "$section_info" in
-					redirect:*) section=${section_info#*:} ;;
-					*) continue ;;
-				esac
+            # Check only matching redirect/rule sections
+            for section in $(get_firewall_sections); do
+                name=$(uci -q get "firewall.$section.name" 2>/dev/null)
+                [ -z "$name" ] && continue
+                case "$name" in
+                    none-rated-*) ;;
+                    *) continue ;;
+                esac
 
-				name=$(uci -q get "firewall.$section.name" 2>/dev/null) || continue
-				case "$name" in
-					none*) ;;
-					*) continue ;;
-				esac
+                # Check if this specific MAC is already in this specific section
+                # to avoid adding duplicates
+                if uci show "firewall.$section" | grep -q "$mac"; then
+                    continue
+                fi
 
-				if uci add_list "firewall.$section.src_mac=$mac"; then
-					changed=1
-					log_message "Added $mac to firewall redirect $name"
-				fi
-			done
-		done < "$LEASES_FILE"
-	fi
+                # rule and redirect sections both use src_mac in this config flow
+                if uci add_list "firewall.$section.src_mac=$mac"; then
+                    log_message "Added $mac to firewall $name"
+                    changed=1
+                fi
+            done
+        done < "$LEASES_FILE"
+    fi
 
-	if [ "$changed" -eq 1 ]; then
-		if uci commit firewall; then
-			/etc/init.d/firewall reload
-		else
-			log_message 'Failed to commit firewall changes'
-		fi
-	fi
+    if [ "$changed" -eq 1 ]; then
+        if uci commit firewall; then
+            /etc/init.d/firewall reload
+            log_message "Firewall reloaded successfully"
+        else
+            log_message 'Failed to commit firewall changes'
+        fi
+    fi
 
-	sleep "$SCAN_INTERVAL"
+    sleep "$SCAN_INTERVAL"
 done
