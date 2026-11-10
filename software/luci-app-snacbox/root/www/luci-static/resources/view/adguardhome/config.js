@@ -8,7 +8,7 @@ return view.extend({
 	render: function () {
 		var s, o;
 		var m = new form.Map('adguardhome', _('ADGuardHome Plugin Configuration'),
-			_('Setup the AdGuardHome login credentials and access for the AdGuardHome plugin.')
+			_('Enables and configures the AdGuardHome plugin credentials.')
 		);
 
 		function generatePasswords() {
