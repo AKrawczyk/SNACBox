@@ -59,30 +59,28 @@ return view.extend({
 				});
 		}
 
-		s = m.section(form.NamedSection, 'config', 'adguardhome', _('AdGuardHome Authentication'));
+		s = m.section(form.TypedSection, 'adguardhome', _('AdGuardHome Authentication'));
+		s.anonymous = true;
 
 		o = s.option(form.Value, 'web_username', _('Username'));
 		o.placeholder = 'root';
 		o.readonly = true;
-		o.cfgvalue = function() { return 'root'; };
-		o.write = function(section_id, value) {
-			return 'root';
-		};
 
 		o = s.option(form.Value, 'web_password', _('Password'));
 		o.password = true;
 		o.readonly = true;
 		o.placeholder = 'Click "Enable Plugin"';
-		o.cfgvalue = function() { return ''; };
-		o.write = function(section_id, value) {
-			return value;
-		};
+
+		o = s.option(form.Value, 'config_file', _('Config File Path'));
+		o.datatype = 'string';
+		o.rmempty = false;
+		o.readonly = true;
 
 		var ChangePassword = form.Button.extend({
 			set_passwd: rpc.declare({
 				object: 'luci.adguardhome',
 				method: 'set_passwd',
-				params: [ 'username', 'hash' ],
+				params: [ 'username', 'hash', 'config_file' ],
 			}),
 			onclick: function() {
 				var usernameField = document.getElementById("widget.cbid.adguardhome.config.web_username");
@@ -91,23 +89,13 @@ return view.extend({
 				var self = this;
 
 				return generatePasswords().then(function(password) {
-					if (usernameField) {
-						usernameField.value = username;
-						usernameField.readOnly = true;
-					}
-					if (passwordField) {
-						passwordField.value = password;
-						passwordField.readOnly = true;
-					}
-
-					if (!username || !password) {
-						alert(_('Username and password fields cannot be empty.'));
-						return;
-					}
+					usernameField.value = username;
+					passwordField.value = password;
 
 					var hash = TwinBcrypt.hashSync(password);
 					return m.save().then(function() {
-						return self.set_passwd(username, hash);
+						var config_file = self.s.option('config_file').formvalue();
+						return self.set_passwd(username, hash, config_file);
 					}).then(function() {
 						return ui.changes.apply(true);
 					});
@@ -116,7 +104,6 @@ return view.extend({
 		});
 		
 		o = s.option(ChangePassword, 'change_password', _('Enable Plugin'));
-		o.inputstyle = 'apply';
 
 		var BCryptInclude = form.DummyValue.extend({
 			renderWidget: function(section_id, option_index, cfgvalue) {
