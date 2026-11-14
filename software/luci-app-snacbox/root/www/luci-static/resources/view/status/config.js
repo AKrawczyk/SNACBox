@@ -9,16 +9,17 @@ return view.extend({
 	load: function() {
 		return Promise.all([
 			uci.load('firewall'),
-			uci.load('network')
+			uci.load('network'),
+                        uci.load('webguard')
 		]);
 	},
 	render: function () {
 		var s, o;
-		var m = new form.Map('status', _('Web Access Configuration'),
+		var m = new form.Map('webguard', _('Web Access Configuration'),
 			_('This page allows you to configure the WebGuard system settings, including new device access restriction, WAN setup, and factory reset options. Please proceed with caution when making changes.')
 		);
 
-		s = m.section(form.TypedSection, 'status', _('Restricted Internet Access'));                
+		s = m.section(form.TypedSection, 'webguard', _('Restricted Internet Access'));                
 		s.anonymous = true;
 
 		// --- Single Master Firewall Toggle ---
@@ -54,7 +55,7 @@ return view.extend({
 			return uci.save();
 		};
 
-		s = m.section(form.TypedSection, 'status', _('WAN Setup'));                            
+		s = m.section(form.TypedSection, 'webguard', _('WAN Setup'));                            
 		s.anonymous = true;
 
 		if (uci.get('network', 'wan', 'proto') !== 'dhcp')
@@ -104,7 +105,7 @@ return view.extend({
 			};
 		}
 
-		s = m.section(form.TypedSection, 'status', _('Factory Reset'));                            
+		s = m.section(form.TypedSection, 'webguard', _('Factory Reset'));                            
 		s.anonymous = true;
 
 		o = s.option(form.Button, 'factory_reset_btn', _('Factory Reset Action'), 

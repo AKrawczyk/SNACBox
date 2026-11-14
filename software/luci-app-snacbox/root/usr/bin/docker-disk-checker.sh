@@ -2,12 +2,17 @@
 
 # Function to run the checker but needs to be added to rc.local echo "/usr/bin/docker-disk-checker.sh" >> /etc/rc.local
 run_docker_disk_checker() {
+    sleep 30
     # Check if 'overlay' is present in the output of df -h
     if df -h | grep -q 'overlay'; then
         # If overlay is found, check if the error flag file exists
         if [ -f /etc/docker-disk-checker ]; then
             rm /etc/docker-disk-checker
         fi
+        echo "overlay exists"
+    elif [ -f /etc/docker-disk-checker ]; then
+        echo "docker-dick-checker exists"
+        exit 0
     else
         # If 'overlay' is not found, run e2fsck and reboot
         echo "Overlay not found. Running e2fsck and rebooting..."
@@ -24,11 +29,11 @@ run_docker_disk_checker() {
             echo "Detected partition: $ROOT_DEV (Partition: $ROOT_PART)"
             # Run e2fsck on the detected partition
             e2fsck -f -y "$ROOT_DEV"
+            echo "Disk scan complete"
+            reboot
         else
             echo "Error: Could not detect the partition."
         fi
-        
-        reboot
     fi
 }
 

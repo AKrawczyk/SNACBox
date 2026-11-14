@@ -58,9 +58,9 @@ class DockerManager {
         $currentState = $this->getContainerStatus($containerName);
         $changed = false;
 
-        echo "Container: $containerName\n";
-        echo "Current State: " . ($currentState ?: "not exists") . "\n";
-        echo "Desired State: $desiredState\n";
+        //echo "Container: $containerName\n";
+        //echo "Current State: " . ($currentState ?: "not exists") . "\n";
+        //echo "Desired State: $desiredState\n";
 
         // Initialize Status Counter if it doesn't exist
         if (!isset($container['Status Counter'])) {
@@ -186,7 +186,7 @@ while (true) {
         $manager = new DockerManager('/usr/bin/web-rated-docker.json');
         $manager->checkDependencies();
         $manager->manageContainers();
-        echo "Docker containers managed successfully\n";
+        //echo "Docker containers managed successfully\n";
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
         echo "Error occurred while managing Docker containers. Check error log for details.\n";
