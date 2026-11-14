@@ -104,6 +104,15 @@ PROTO="http"
 ############################################################################################
 # Decision-making cade:
 ############################################################################################
+if [ -f /etc/AdGuardHome.yaml ]; then                                                    
+        AGH_CONFIG='/etc/AdGuardHome.yaml'                                                 
+elif [ -f /etc/adguardhome.yaml ]; then                                                  
+        AGH_CONFIG='/etc/adguardhome.yaml'                              
+elif [ -f /etc/adguardhome/AdGuardHome.yaml ]; then                   
+        AGH_CONFIG='/etc/adguardhome/AdGuardHome.yaml'                  
+elif [ -f /etc/adguardhome/adguardhome.yaml ]; then                   
+        AGH_CONFIG='/etc/adguardhome/adguardhome.yaml'                  
+fi 
 case "$1" in
 	list)
 		echo '{ "get_config": {}, "get_statistics": {}, "get_status": {}, "set_passwd": {"username":"string", "hash":"string"} }'
@@ -146,9 +155,17 @@ case "$1" in
 				json_get_var AGH_CONFIFG "config_file"
 				check_if_empty "config_file parameter missing." "${AGH_CONFIG}" || exit 1
 				# Change the username in the AGH configuration file:
+<<<<<<< HEAD
+				sed -i "s|\- name: .*|\- name: ${AGH_USER} |" ${AGH_CONFIG}
+=======
 				sed -i "s|\- name: .*|\- name: ${AGH_USER} |" "${AGH_CONFIG}"
+>>>>>>> 859f550cb3a58a4ae502b60c44b8736cd6e5074c
 				# Calculate and replace password hash in the AGH configuration file:
+<<<<<<< HEAD
+				sed -i "s|\password: .*|\password: ${AGH_HASH}|" ${AGH_CONFIG}
+=======
 				sed -i "s|\password: .*|\password: ${AGH_HASH}|" "${AGH_CONFIG}"
+>>>>>>> 859f550cb3a58a4ae502b60c44b8736cd6e5074c
 				# Restart AdGaurdHome:
 				service adguardhome restart
 				# Return success to caller:  

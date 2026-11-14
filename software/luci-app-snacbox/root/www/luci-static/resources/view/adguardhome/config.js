@@ -84,10 +84,24 @@ return view.extend({
 			}),
 			onclick: function() {
 				var usernameField = document.getElementById("widget.cbid.adguardhome.config.web_username");
-				var passwordField = document.getElementById("widget.cbid.adguardhome.config.web_password");
+                                var passwordField = document.getElementById("widget.cbid.adguardhome.config.web_password");
 				var username = 'root';
-				var self = this;
+                                var self = this;
+				
+                                return generatePasswords().then(function(password) {
 
+<<<<<<< HEAD
+                                    usernameField.value = username;
+                                    passwordField.value = password;
+                                
+	                                var hash = TwinBcrypt.hashSync(password);
+                                    return m.save().then(function() {
+                                        return self.set_passwd(username, hash );
+                                    }).then(function() {
+					return ui.changes.apply(true);
+                                    });
+				});	
+=======
 				return generatePasswords().then(function(password) {
 					usernameField.value = username;
 					passwordField.value = password;
@@ -100,6 +114,7 @@ return view.extend({
 						return ui.changes.apply(true);
 					});
 				});
+>>>>>>> 859f550cb3a58a4ae502b60c44b8736cd6e5074c
 			},
 		});
 		
