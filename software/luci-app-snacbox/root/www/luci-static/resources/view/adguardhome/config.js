@@ -71,33 +71,29 @@ return view.extend({
 		o.readonly = true;
 		o.placeholder = 'Click "Enable Plugin"';
 
-		o = s.option(form.Value, 'config_file', _('Config File Path'));
-		o.datatype = 'string';
-		o.rmempty = false;
-		o.readonly = true;
-
 		var ChangePassword = form.Button.extend({
 			set_passwd: rpc.declare({
 				object: 'luci.adguardhome',
 				method: 'set_passwd',
-				params: [ 'username', 'hash', 'config_file' ],
+				params: [ 'username', 'hash' ],
 			}),
 			onclick: function() {
 				var usernameField = document.getElementById("widget.cbid.adguardhome.config.web_username");
                 var passwordField = document.getElementById("widget.cbid.adguardhome.config.web_password");
 				var username = 'root';
-                var self = this;
-				
+				var self = this;
+
 				return generatePasswords().then(function(password) {
 
 					usernameField.value = username;
 					passwordField.value = password;
 				
+				console.log("Password to Hash:", password);
 					var hash = TwinBcrypt.hashSync(password);
 					return m.save().then(function() {
 						return self.set_passwd(username, hash );
 					}).then(function() {
-						return ui.changes.apply(true);
+					return ui.changes.apply(true);
                     });
 				});	
 			},
