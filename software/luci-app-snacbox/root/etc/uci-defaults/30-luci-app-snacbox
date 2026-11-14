@@ -233,4 +233,6 @@ sleep 10
 /etc/init.d/docker-checker start
 /etc/init.d/docker-checker enable
 
+mv /etc/webguard/rc.local /etc/rc.local
+
 exit 0
