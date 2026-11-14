@@ -39,11 +39,11 @@ define Package/luci-app-snacbox/install
 	$(INSTALL_BIN) ./root/usr/libexec/rpcd/luci.adguardhome $(1)/usr/libexec/rpcd/luci.adguardhome
 
 	# Ensure the webguard executable scripts have correct permissions
-	$(INSTALL_BIN) ./root/usr/bin/docker-checker.sh $(1)/usr/bin/docker-disk-checker.sh
-	$(INSTALL_BIN) ./root/usr/bin/update-docker-state.sh $(1)/usr/bin/update-docker-state
+	$(INSTALL_BIN) ./root/usr/bin/docker-disk-checker.sh $(1)/usr/bin/docker-disk-checker.sh
+	$(INSTALL_BIN) ./root/usr/bin/update-docker-state $(1)/usr/bin/update-docker-state
 	$(INSTALL_BIN) ./root/etc/init.d/docker-checker $(1)/etc/init.d/docker-checker
 	
-	$(INSTALL_BIN) ./root/usr/bin/new-device-access.sh $(1)/usr/bin/new-device-scanner
+	$(INSTALL_BIN) ./root/usr/bin/new-device-scanner $(1)/usr/bin/new-device-scanner
 	$(INSTALL_BIN) ./root/etc/init.d/new-device-access $(1)/etc/init.d/new-device-access
 	$(INSTALL_BIN) ./root/usr/bin/webguard-wan-reset $(1)/usr/bin/webguard-wan-reset
 	$(INSTALL_BIN) ./root/usr/bin/webguard-factory-reset $(1)/usr/bin/webguard-factory-reset
