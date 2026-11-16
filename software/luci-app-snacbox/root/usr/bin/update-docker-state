@@ -45,20 +45,14 @@ TMP_FILE=$(mktemp)
 
 # Update the JSON file old
 jq --arg docker_name "$DOCKER_NAME" --arg state "$STATE" '
-    # First find the Name value for the given Docker Name
-    def get_name:
-        map(select(.["Docker Name"] == $docker_name) | .Name) | first;
-    
-    # Get the Name value
-    ($docker_name | get_name) as $matching_name |
-    
-    # Update all entries with matching Name
-    map(
-        if .["Docker Name"] == $docker_name or .Name == $matching_name then
-            .["Docker State"] = $state
-        else
-            .
-        end
+  . as $arr
+  | ([$arr[] | select(.["Docker Name"] == $docker_name) | .Name] | first) as $matching_name
+  | map(
+      if .["Docker Name"] == $docker_name or .Name == $matching_name then
+        .["Docker State"] = $state
+      else
+        .
+      end
     )
 ' "$JSON_FILE" > "$TMP_FILE"
 
