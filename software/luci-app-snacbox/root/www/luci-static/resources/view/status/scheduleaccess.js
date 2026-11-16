@@ -9,7 +9,7 @@ return L.view.extend({
     scheduleJsonPath: '/usr/bin/web-rated-schedule.json',
     cronPath: '/etc/crontabs/root',
     cronServicePath: '/etc/init.d/cron',
-    dockerStateScript: 'update-docker-state.php',
+    dockerStateScript: 'update-docker-state',
     dockerStateScriptPath: '/usr/bin/update-docker-state',
     phpPath: '',
     atCommandPath: '/usr/bin/at',
