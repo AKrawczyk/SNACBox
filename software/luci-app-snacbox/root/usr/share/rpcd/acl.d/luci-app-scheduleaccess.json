@@ -12,13 +12,18 @@
 			"file": {
 				"/usr/bin/web-rated-schedule.json": [ "write" ],
 				"/etc/crontabs/root": [ "write" ],
+				"/etc/init.d/cron *": [ "exec" ],
 				"/usr/bin/at *": [ "exec" ],
-				"/usr/bin/atrm *": [ "exec" ]
+				"/usr/bin/atrm *": [ "exec" ],
+				"/bin/sh *": [ "exec" ]
 			}
 		},
 		"exec": {
 			"file": {
-				"/etc/init.d/cron": [ "restart" ]
+				"/etc/init.d/cron *": [ "exec" ],
+				"/usr/bin/at *": [ "exec" ],
+				"/usr/bin/atrm *": [ "exec" ],
+				"/bin/sh *": [ "exec" ]
 			}
 		}
 	}

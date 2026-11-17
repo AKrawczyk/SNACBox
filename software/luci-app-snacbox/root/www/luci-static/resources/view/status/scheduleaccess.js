@@ -81,7 +81,17 @@ return L.view.extend({
             var finalContent = filteredLines.concat(newCronLines).join('\n').trim() + '\n';
             
             return fs.write(self.cronPath, finalContent).then(function() {
-                return L.resolveDefault(fs.exec(self.cronServicePath, ['restart']), true);
+                return fs.exec(self.cronServicePath, ['restart']).then(function(res) { 
+                    if (res.code === 0) {
+                        return true;
+                    } else {
+                        alert(_('Service failed to reload: ') + res.code);
+                        return false;
+                    }
+                }).catch(function(err) { 
+                       alert(_('Error saving and reloading service: ') + err); 
+                       return false;
+                });
             });
         });
     },
@@ -312,20 +322,21 @@ return L.view.extend({
                 };
 
                 if (sys === 'at') {
-                    var targetCommandText = this.phpPath + ' ' + this.dockerStateScriptPath + ' ' + newItem.Docker_name + ' ' + newItem.ScheduleFunction + '\n';
+                    var targetCommandText = (this.phpPath + ' ' + this.dockerStateScriptPath + ' ' + newItem.Docker_name + ' ' + newItem.ScheduleFunction).trim();
+                    var fullCommand = "echo '" + targetCommandText + "' | " + this.atCommandPath + " -t " + String(atTimestamp);
 
-                    fs.exec(this.atCommandPath, ['-t', String(atTimestamp)], targetCommandText).then(function(res) {
+                    return fs.exec('/bin/sh', ['-lc', fullCommand]).then(function(res) {
                         var resStderr = String((res && res.stderr) || '');
                         var jobMatch = resStderr.match ? resStderr.match(/job\s+(\d+)/) : null;
                         if (jobMatch && jobMatch[1]) {
                             newItem.ScheduleATID = String(jobMatch[1]);
                         }
-                        executeSavePipeline();
+                        return executeSavePipeline();
                     }).catch(function(err) {
                         alert(_('Failed executing "at" command: ') + String(err.message || err));
                     });
                 } else {
-                    executeSavePipeline();
+                    return executeSavePipeline();
                 }
             }, self)
         }, _('Save'));
