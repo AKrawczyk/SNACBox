@@ -32,20 +32,20 @@ return view.extend({
 		o.cfgvalue = function(section_id) {
 			var enabledCount = 0;
 			var sections = uci.sections('firewall', 'rule').concat(uci.sections('firewall', 'redirect'));
-			['none-rated-any', 'blacklist-ip-rated', 'Drop-ping', 'lan', 'drop-webbound'].forEach(function(ruleName) {
+			['none-rated-any', 'Drop-ping', 'lan', 'drop-webbound'].forEach(function(ruleName) {
 				for (var i = 0; i < sections.length; i++) {
 					if ((sections[i].name === ruleName || sections[i]['.name'] === ruleName) && sections[i].enabled === '1') {
 						enabledCount++;
 					}
 				}
 			});
-			return (enabledCount === 5) ? '1' : '0';
+			return (enabledCount === 4) ? '1' : '0';
 		};
 
 		// Apply the toggle state to both firewall rules when saved
 		o.write = function(section_id, formvalue) {
 			var sections = uci.sections('firewall', 'rule').concat(uci.sections('firewall', 'redirect'));
-			['none-rated-any', 'blacklist-ip-rated', 'Drop-ping', 'lan', 'drop-webbound'].forEach(function(ruleName) {
+			['none-rated-any', 'Drop-ping', 'lan', 'drop-webbound'].forEach(function(ruleName) {
 				for (var i = 0; i < sections.length; i++) {
 					if (sections[i].name === ruleName || sections[i]['.name'] === ruleName) {
 						uci.set('firewall', sections[i]['.name'], 'enabled', formvalue);

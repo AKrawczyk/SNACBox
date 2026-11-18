@@ -250,7 +250,8 @@ config rule
 	option src '*'
 	option dest 'wan'
 	option target 'DROP'
-	option enabled '0'
+	option enabled '1'
+	list dest_ip '192.168.255.0/24'
 
 config rule
 	option name 'Drop-ping'
