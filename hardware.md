@@ -144,6 +144,13 @@ Click and download "Factory (Ext4)"<br>
 <img src="screenshots/usb-3.2-gen1-hub-gigabit-eth-hat-5.jpg" alt="Waveshare CM4" width="300" height="200"/><br>
 Or<br>
 
+<h3>USB Ethernet Dongle</h3>
+    Needs to be a USB-A Ethernet Gigabit dongle.
+<h3>Raspberry Pi</h3> - https://www.raspberrypi.com/products/raspberry-pi-4-model-b/<br>
+    Your tiny, dual-display, desktop computer …and robot brains, smart home hub, media centre, networked AI core, factory controller, and much more<br>
+
+![Raspberry Pi 4B](screenshots/raspberry-pi-4-labelled-f5e5dcdf6a34223235f83261fa42d1e8.png)
+
 <h2>Openwrt 25.12+ Firmware</h2>
 Enter chosen hardware "Raspberry"<br>
 Choose version "25.12.6"
@@ -208,14 +215,6 @@ reboot
 
 Click "Request Build"<br>
 Click and download "Factory (Ext4)"<br>
-
-<h3>USB Ethernet Dongle</h3>
-    Needs to be a USB-A Ethernet Gigabit dongle.
-<h3>Raspberry Pi</h3> - https://www.raspberrypi.com/products/raspberry-pi-4-model-b/<br>
-    Your tiny, dual-display, desktop computer …and robot brains, smart home hub, media centre, networked AI core, factory controller, and much more<br>
-
-![Raspberry Pi 4B](screenshots/raspberry-pi-4-labelled-f5e5dcdf6a34223235f83261fa42d1e8.png)
-
 
 <h2>Raspberry Pi CM5 SNACBox (Expermental)</h2>
 <h3>Waveshare</h3> - https://www.waveshare.com/cm5-dual-eth-mini.htm?sku=31075<br>
