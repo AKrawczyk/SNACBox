@@ -30,7 +30,7 @@ Simple Network Access Control Box (SNACBox) is a home gateway that provides chil
 
 <h2>Openwrt 25.12+ Supported Firmware</h2>
 
-[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.5-nanopi-r3s-resize-ext4-sysupgrade.img)
+[FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-nanopi-r3s-resize-ext4-sysupgrade.img) - (Reboot before using.)
 
 [Waveshare Dual Gigabit CM4 Board](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-waveshare-dual-gig-board-rpi-cm4-resize-ext4-factory.img)
 
@@ -88,13 +88,13 @@ apk update
 Download the package:
 
 ```bash
-wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/luci-app-snacbox-1.0.0-r1.apk
+wget --no-check-certificate https://github.com/AKrawczyk/SNACBox/raw/refs/heads/main/software/luci-app-snacbox-1.1.0-r1.apk
 ```
 
 Install SNACBox package and reboot
 
 ```bash
-apk add --allow-untrusted luci-app-snacbox-1.0.0-r1.apk
+apk add --allow-untrusted luci-app-snacbox-1.1.0-r1.apk
 reboot
 clear
 ```
@@ -106,9 +106,8 @@ Before using the SNACBox, make sure you set the system password.<br>
 1. Go to 'System' -> 'Administration' -> 'Router Password'
 <br>2. Enter a new password
 <br>3. Press 'Save'
-<br>4. Goto 'Webguard' -> 'Web Access' -> 'Configuration'
-<br>5. Enter the newly set password in the 'System Password' field.
-<br>6. Press 'Save & Apply'<br>
+<br>4. Goto 'Webguard' -> 'AdGuardHome' -> 'Configuration'
+<br>5. Press 'Enable Plugin'<br>
 <br>SNACBox is ready to be set up for use on a home network.
 
 # Set up SNACBox on Home Network Router
@@ -124,13 +123,11 @@ Connect SNACBox WAN port to Home Router<br>
 <br>6. Login to SNACBox, User = root, Password = xxxxxx
 <br>
 <h3>Configure Static WAN IP</h3>
-Go to Webguard -> Web Access
-<br>Select 'Configure'
-<br>Click the button 'Reset WAN'
+Go to Webguard -> Web Access -> 'Configuration'
+<br>Click the button 'Perform WAN Static IP Setup'
 <br>
 <h3>Setup Admin USB Network Dongle</h3>
-Go to Webguard -> Web Access
-<br>Select 'Device Access'
+Go to Webguard -> Web Access -> 'Device Access'
 <br>Now set the Rating to '18-Rated' for the admin USB network dongle<br>
 
 ![Screenshot](screenshots/SNACBox-DeviceAccess-ScreenShot.png)
@@ -163,9 +160,9 @@ Note: These devices will automatically be enrolled into the 'No Access' rating. 
 4. Once the admin devices have been enabled, proceed to step 3 to enable security and set the time.
 <h2>Step 3</h2>
 <h3>Enable SNACBox security</h3>
-Goto Webguard -> Web Access<br>
-Select 'Configure'<br>
+Goto Webguard -> Web Access -> 'Configuration'<br>
 Tick 'Enable Enhanced Security'<br>
+<strong>Note:</strong> Only needed if you wish to completley lock down all new device network access and addition access to the internet. If not ticked G-Rated web access will be available along with full internet access. G-Rated web access can be bypassed on the local device unless the device has been enrolled, while full internet aceess still remains.
 <h3>Set Time</h3>
 Click on 'System -> System'<br>
 Find the 'Timezone' dropdown list<br>
