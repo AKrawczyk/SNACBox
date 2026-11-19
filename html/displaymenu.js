@@ -3,7 +3,7 @@ function generateMenu()
 {
     let menuHTML = `
         <nav>
-            <img src="menu-icon.svg" height="32" width="32" alt="" class="burger-menu">
+            <img src="/html/menu-icon.svg" height="32" width="32" alt="" class="burger-menu">
 
             <!-- Menu Home Screen - Home -->
             <ul class="nav-links">
@@ -39,7 +39,7 @@ function generateMenu()
         </nav>
 
         <div class="logo">
-            <div class="logo1"><img src="web-rated.png" height="32" width="32"></div>
+            <div class="logo1"><img src="/html/web-rated.png" height="32" width="32"></div>
             <div class="logo2">
                 <h3 class="logo2_1">Web-Rated SNACBox</h3>
             </div>
