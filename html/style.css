@@ -1,0 +1,970 @@
+/* CSS style to control the display of contents */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* PHP Style for displaying table */
+.wrapper {
+   width: 800px;
+   margin: 0 auto;
+}
+table {
+  z-index: 1;
+   font-family: arial, sans-serif;
+   border-collapse: collapse;
+}
+
+td, th {
+  z-index: 1;
+   border: 1px solid #dddddd;
+   text-align: left;
+   vertical-align: top;
+   padding: 8px;
+   padding-right: 8px;
+}
+
+tr:nth-child(even) {
+   background-color: #dddddd;
+}
+.title-banner {
+   background-color: blue;
+   color: white;
+   text-align: center;
+   font-size: 30px;
+   padding: 20px;
+}
+
+.active {
+    color:#008000;
+}
+
+
+
+.inactive {
+    color:#800000;
+}
+
+/* Main content */
+.main {
+  /* Add a top margin to avoid content overlay */
+  margin-top: 65px; 
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+/* Main nav menu content */
+.main-nav { 
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background: #333;
+  padding: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 20px;
+    position: relative;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Main nav sub menu content*/
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    font-size: 14px;
+    z-index: 50;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: #333;
+    background: #333;
+    padding: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 1.0);
+}
+
+.dropdown-menu2 {
+    display: none;
+    position: absolute;
+    font-size: 14px;
+    z-index: 50;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: #333;
+    background: #333;
+    padding: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 1.0);
+}
+
+.dropdown-menu3 {
+    display: none;
+    position: absolute;
+    font-size: 14px;
+    z-index: 50;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: #333;
+    background: #333;
+    padding: 10px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 1.0);
+}
+
+.dropdown-menu li {
+    margin-bottom: 10px;
+}
+
+.dropdown-menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  color: #0d6efd;
+}
+
+.dropdown-menu2 li {
+    margin-bottom: 10px;
+}
+
+.dropdown-menu2 li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu2 a:hover {
+  color: #0d6efd;
+}
+
+.dropdown-menu3 li {
+    margin-bottom: 10px;
+}
+
+.dropdown-menu3 li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-menu3 a:hover {
+  color: #0d6efd;
+}
+
+/* Main sub menu content animation */
+.main-nav.show .nav-links {
+  transform: translateX(100%);
+}
+
+/* Prevents display of hamburger menu */
+.burger-menu{
+  display: none;
+}
+
+/* Main logo content */
+.logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo1 {
+  margin-right: 5px;
+}
+
+.logo2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo2_1 {
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+  color:#93c15a;
+}
+
+/* Adjust the main navigation to not overlap with the logo */
+/*.main-nav {
+  /*padding-right: 150px; /* Adjust this value based on your logo's width */
+/*}
+
+/* Ensure the main content doesn't go under the logo */
+/*.main {
+  /*padding-top: 50px; /* Adjust this value based on your logo's height */
+/*}
+
+/* Make sure the logo is visible on smaller screens */
+@media only screen and (max-width: 768px) {
+  .logo {
+      top: 5px;
+      right: 5px;
+  }
+
+  .logo1 img {
+      height: 24px;
+      width: 24px;
+  }
+
+  .logo2_1 {
+      font-size: 12px;
+  }
+  /* Main content */
+  .main {
+    /* Add a top margin to avoid content overlay */
+    margin-top: 0px; 
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+/* Screen resize display of content */
+@media only screen and (max-width: 800px) {
+  .nav-links {
+    width: 60%;
+  }
+
+  /* Main content */
+  .main {
+    /* Add a top margin to avoid content overlay */
+    margin-top: 0px; 
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  /* Main hamburger menu content modifies menu system for screen resize */
+  .burger-menu{
+    display: block;
+    padding: 0.5rem;
+    cursor: pointer;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
+  }
+  .nav-links {
+    position: fixed;
+    display: block;
+    top: 0;
+    right: 100%;
+    height: 100%;
+    padding-top: 0;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    width: 250px;
+    flex-direction: column;
+    align-items: right;
+    justify-content: space-around;
+    line-height: 60px;
+    background: #333;
+    transform: translateX(0%);
+    transition: transform 0.5s ease;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 1.0);
+  }
+  .main-nav {
+    height: 40px;
+  }
+
+  /* Main content */
+  .main {
+    /* Add a top margin to avoid content overlay */
+    margin-top: -30px; 
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+    
+  nav.active ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Main hamburger sub menu content */
+  .nav-links li.dropdown:hover .dropdown-menu .nav-links li.dropdown2:hover .dropdown-menu2 {
+    display: block;
+  }
+    
+  .nav-links li.dropdown.active .dropdown-menu .nav-links li.dropdown2.active .dropdown-menu2 {
+    display: block;
+  }
+
+  .nav-links li ul {
+    line-height: 20px;
+  }
+    
+  .dropdown-menu li {
+    margin-bottom: 10px;
+  }
+    
+  .dropdown-menu li a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .dropdown-menu a:hover {
+    color: #0d6efd;
+  }
+
+  .dropdown-menu2 li {
+    margin-bottom: 10px;
+  }
+    
+  .dropdown-menu2 li a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .dropdown-menu2 a:hover {
+    color: #0d6efd;
+  }
+
+  .dropdown-menu3 li {
+    margin-bottom: 10px;
+  }
+    
+  .dropdown-menu3 li a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .dropdown-menu3 a:hover {
+    color: #0d6efd;
+  }
+}
+
+:root {
+  --main-bright-color: #0074D9;
+  --main-dark-color: #002B49;
+  --secondary-bright-color: #FFF;
+  --secondary-dark-color: #212322;
+  --danger-color: #b20000;
+  --warning-color: #888;
+  --success-color: #497d35;
+  --base-font-size: 16px
+}
+
+:root[lang="bg"],
+:root[lang="ru"],
+:root[lang="uk"],
+:root[lang="el"],
+:root[lang="he"] {
+  --regular-font: Helvetica
+}
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  color: inherit;
+  font-family: var(--regular-font), sans-serif;
+  border: none;
+  font-size: 100%;
+  background: none;
+  outline: none;
+  -webkit-text-size-adjust: none;
+  margin: 0;
+  padding: 0
+}
+
+.container {
+  margin-left: 0;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  /* max-width: 1366px; */
+  background: #fff linear-gradient(90deg, rgba(0, 0, 0, .8), rgba(0, 0, 0, .5), rgba(0, 0, 0, .8));
+  margin: 0
+}
+
+body {
+  background: var(--secondary-bright-color);
+  color: var(--secondary-dark-color);
+  font-size: var(--base-font-size);
+  cursor: default;
+  display: inline-flex;
+  flex-direction: column;
+  min-height: 100%;
+  min-width: 100%
+}
+
+abbr[title],
+acronym[title] {
+  text-decoration: dotted underline
+}
+
+table {
+  width: 100%;
+  position: relative;
+  border-collapse: collapse;
+  margin: 0 0 1rem
+}
+
+tr[data-title]::before {
+  content: attr(data-title);
+  display: table-cell;
+  border-top: 1px solid var(--main-dark-color);
+  padding: .5em
+}
+
+th {
+  text-align: left;
+  font-weight: 700;
+  padding: .5em
+}
+
+td {
+  border-top: 1px solid var(--main-dark-color);
+  vertical-align: middle;
+  padding: .5em
+}
+
+td input:not([type]),
+td input[type="text"],
+td input[type="password"],
+td select,
+td .cbi-dropdown:not(.btn):not(.cbi-button),
+td .cbi-dynlist,
+td .control-group {
+  min-width: auto;
+  width: 100%
+}
+
+tr.drag-over-above {
+  box-shadow: 0 -6px 6px var(--main-bright-color)
+}
+
+tr.drag-over-below {
+  box-shadow: 0 6px 6px var(--main-bright-color)
+}
+
+tr.placeholder {
+  height: 4em;
+  position: relative
+}
+
+tr.placeholder>td {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  line-height: 3em;
+  font-size: 90%;
+  opacity: .8
+}
+
+.left {
+  text-align: left !important
+}
+
+.right {
+  text-align: right !important
+}
+
+.center {
+  text-align: center !important
+}
+
+.top {
+  vertical-align: top !important
+}
+
+.bottom {
+  vertical-align: bottom !important
+}
+
+.middle {
+  vertical-align: middle !important
+}
+
+.nowrap {
+  white-space: nowrap !important
+}
+
+.hidden {
+  display: none !important
+}
+
+[width="33%"] {
+  width: 33%;
+  max-width: 33%
+}
+
+[width="50%"] {
+  width: 50%;
+  max-width: 50%
+}
+
+[data-name="_freq"] select {
+  min-width: auto
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.cbi-section>legend:first-child {
+  font-weight: 700;
+  margin: 0 0 1rem
+}
+
+strong,
+b {
+  font-weight: 700
+}
+
+h1 {
+  font-size: 160%
+}
+
+h2 {
+  font-size: 150%
+}
+
+h4 {
+  font-size: 130%
+}
+
+p>textarea:last-child {
+  margin: 0
+}
+
+var {
+  color: var(--main-dark-color);
+  font-weight: 700
+}
+
+code {
+  font-family: monospace;
+  color: var(--main-dark-color)
+}
+
+pre {
+  font-family: monospace;
+  font-size: .9rem;
+  box-shadow: inset 0 0 2px var(--main-dark-color);
+  overflow: auto;
+  margin: 0 0 1em;
+  padding: .25rem
+}
+
+small {
+  font-size: 95%
+}
+
+ul {
+  padding: 0 0 0 1.5em
+}
+
+ul>li {
+  list-style: none
+}
+
+p>a {
+  text-decoration: underline
+}
+
+button,
+.btn {
+  background: var(--main-bright-color);
+  color: var(--secondary-bright-color);
+  line-height: 1.5em;
+  border-radius: .25em;
+  cursor: pointer;
+  box-shadow: 0 0 2px var(--main-dark-color);
+  display: inline-block;
+  padding: 0 .5em
+}
+
+button:hover,
+.btn:hover {
+  box-shadow: 0 0 6px var(--main-bright-color)
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  --bd-color: var(--main-dark-color);
+  --fg-color: var(--main-dark-color);
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1em;
+  height: 1em;
+  color: var(--fg-color);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background: none;
+  border: none
+}
+
+input[type="checkbox"]::before,
+input[type="checkbox"]::after,
+input[type="radio"]::before,
+input[type="radio"]::after {
+  position: absolute;
+  content: "";
+  margin: .15em 0
+}
+
+input[type="checkbox"]::before,
+input[type="radio"]::before {
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  box-shadow: 0 0 2px var(--bd-color) !important;
+  border-radius: .25em
+}
+
+input[type="radio"],
+input[type="radio"]::before {
+  border-radius: 50%
+}
+
+input[type="checkbox"]::after,
+input[type="radio"]::after {
+  top: .15em;
+  left: .15em;
+  width: .7em;
+  height: .7em
+}
+
+input[type="checkbox"]:checked::after,
+input[type="radio"]:checked::after {
+  --checkmark-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><path d='m2.5 7.4 7.5 7.5-2.5 2.4L0 10Zm15-5L20 4.9 7.5 17.3 5 15Z'/></svg>");
+  -webkit-mask: var(--checkmark-icon) center/cover no-repeat;
+  mask: var(--checkmark-icon) center/cover no-repeat;
+  background: var(--fg-color)
+}
+
+input[type="radio"]:checked:after {
+  --checkmark-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='7'/></svg>")
+}
+
+input[type="checkbox"].cbi-input-invalid,
+input[type="radio"].cbi-input-invalid {
+  --bd-color: var(--danger-color);
+  --fg-color: var(--danger-color)
+}
+
+input:not([type]),
+input[type="text"],
+input[type="password"],
+input[type="datetime-local"],
+input[type="number"],
+select,
+.cbi-dropdown:not(.btn):not(.cbi-button) {
+  border-bottom: 2px solid transparent;
+  box-shadow: inset 0 0 1px var(--main-dark-color);
+  line-height: 1.5rem;
+  min-height: calc(1.5rem + 2px);
+  min-width: 20rem;
+  border-radius: .25em;
+  padding: 0 .2rem
+}
+
+input:not([type]):focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime-local"]:focus,
+input[type="number"]:focus,
+select:focus,
+.cbi-dropdown:not(.btn):not(.cbi-button):focus,
+.cbi-dropdown[open]:not(.btn):not(.cbi-button) {
+  border-color: var(--main-dark-color)
+}
+
+input:not([type])+.btn,
+input:not([type])+button,
+input[type="text"]+.btn,
+input[type="text"]+button,
+input[type="password"]+.btn,
+input[type="password"]+button {
+  background: var(--main-dark-color);
+  border-radius: 0 .25em .25em 0;
+  margin: 0 0 2px -1px
+}
+
+select {
+  padding: .1rem 0
+}
+
+textarea {
+  width: 100%;
+  box-shadow: inset 0 0 2px var(--main-dark-color);
+  font-family: monospace;
+  font-size: .9rem;
+  padding: .2rem
+}
+
+h3,
+.cbi-section>legend:first-child {
+  font-size: 140%
+}
+
+h6,
+big {
+  font-size: 110%
+}
+
+p,
+ul,
+textarea,
+.cbi-map-descr,
+.cbi-tab-descr,
+.cbi-section-descr,
+.cbi-section-table,
+.cbi-section-create,
+#view> :last-child {
+  margin: 0 0 1em
+}
+
+@keyframes fade-in {
+  0% {
+      opacity: 0
+  }
+
+  100% {
+      opacity: 1
+  }
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1
+  }
+
+  100% {
+      opacity: 0
+  }
+}
+
+@keyframes spin {
+  100% {
+      transform: rotate(360deg)
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+      padding-top: 70px
+  }
+
+  table {
+      display: flex;
+      flex-direction: column
+  }
+
+  tr {
+      display: block;
+      border-bottom: 1px solid var(--main-dark-color);
+      margin-bottom: .5em;
+      padding-bottom: .5em
+  }
+
+  tr[data-title]::before {
+      display: block;
+      font-weight: 700;
+      border-top: none;
+      font-size: 110%;
+      padding: .4em 0
+  }
+
+  td {
+      display: block;
+      border-top: none;
+      text-align: left !important;
+      padding: .2em 0
+  }
+
+  td[data-title] {
+      position: relative;
+      padding: .2em 0 .2em 40%
+  }
+
+  td[data-title]::before {
+      content: attr(data-title) ": ";
+      white-space: nowrap;
+      font-weight: 700;
+      width: 40%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      text-align: left;
+      display: inline-flex;
+      align-items: center;
+      padding: .2em 0
+  }
+
+  td[data-title]::after {
+      content: "";
+      width: 2em;
+      position: absolute;
+      left: calc(40% - 2em);
+      top: 0;
+      bottom: 0;
+      display: block;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), var(--secondary-bright-color) 90%)
+  }
+  
+  input:not([type]),
+  input[type="password"],
+  select,
+  .cbi-dropdown:not(.btn):not(.cbi-button),
+  .cbi-dynlist {
+      min-height: calc(2.2rem + 2px);
+      line-height: 2.2rem;
+      font-size: 1.2rem;
+      min-width: 10rem
+  }
+
+  button,
+  .btn {
+      line-height: 1.8rem;
+      font-size: 1.2rem
+  }
+
+  select {
+      padding: .4em 0
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+  .assoclist tr> :nth-of-type(2) {
+      display: none
+  }
+}
+
+#formHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#optionsContainer {
+  display: flex;
+  flex-direction: column; /* Stack header and options vertically */
+  align-items: flex-end; /* Align items to the right */
+}
+
+#options {
+  display: flex;
+  gap: 15px;
+}
+
+.option-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.option-toggle i {
+  font-size: 1.2em;
+}
+
+#optional, #optionalRandom, #optionalRandomPin {
+  margin-top: 20px;
+}
+
+#settingsSection, #myWordsSection, #settingsSectionRandom, #settingsSectionRandomPin {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#settingsSection h4, #myWordsSection h4, #settingsSectionRandom h4, #settingsSectionRandomPin h4 {
+  margin-top: 0;
+}
+
+#passwordForm button {
+  padding: 10px 20px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#passwordForm button:hover {
+  background-color: #0b5ed7;
+}
+
+#settingsSection, #myWordsSection, #settingsSectionRandom, #settingsSectionRandomPin {
+  transition: all 0.3s ease-in-out;
+}
+
+.password-guidelines {
+  margin: 20px 0; /* Add margin for spacing */
+  background-color: #f8f9fa; /* Light background for visibility */
+  padding: 15px; /* Padding around the content */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #dee2e6; /* Optional: Add a border for better visibility */
+}
+
+.password-guidelines ul {
+  list-style: none; /* Use disc bullets */
+  padding-left: 20px; /* Indent the list */
+  margin: 0; /* Remove default margin */
+}
+
+.password-guidelines ul {
+  list-style: none; /* Remove default bullets */
+  padding: 0; /* Remove padding */
+}
+
+.password-guidelines ul li i {
+  /* content: ""; *//* Unicode for the Bootstrap icon (e.g., user icon) */
+  /*font-family: "Bootstrap Icons";*/ /* Specify the font family */
+  color: #007bff; /* Custom color */
+  font-size: 0.8em; /* Custom size */
+  margin-right: 20px; /* Space between bullet and text */
+}
+
+.password-guidelines li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.image-container {
+  text-align: center; /* Center the image */
+  margin: 20px 0; /* Add some margin around the image */
+}
+
+.responsive-image {
+  max-width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+#output, #combinations, #optional, #outputPwdTest, #outputRandom, #optionalRandom, #outputRandomPin, #optionalRandomPin { margin-top: 20px; padding: 10px; background-color: #f0f0f0; border-radius: 5px; }
