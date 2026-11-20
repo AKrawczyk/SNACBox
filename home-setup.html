@@ -50,7 +50,28 @@
     <div class="main">
         <div class="container">
             <h1>SNACBox - Home Setup</h1>
-            <div class="password-guidelines"></div>
+            <div class="password-guidelines">
+                <h2>Set up SNACBox on Home Network Router</h2>
+                Note: This setup currently requires simple IT skills.<br>
+                <h2>Step 1</h2>
+                Connect SNACBox WAN port to Home Router<br>
+                <img src="screenshots/SNACBox-Conectivity.png" alt="SNACBox Connectivity" width="250" height="375"><br>
+                <ol>
+                    <li>Power on the SNACBox</li>
+                    <li>Connect one of the Home Router's network ports to the SNACBox WAN port</li>
+                    <li>Connect the SNACBox LAN port to the USB Network Dongle's network port</li>
+                    <li>Connect the USB Network Dongle's USB port to Laptop/Tablet/Smart Phone usb port</li>
+                    <li>Browse to https://192.168.12.1</li>
+                    <li>Login to SNACBox, User = root, Password = xxxxxx</li>
+                </ol>
+                <h3>Configure Static WAN IP</h3>
+                Go to Webguard -&gt; Web Access -&gt; 'Configuration'<br>
+                Click the button 'Perform WAN Static IP Setup'<br>
+                <h3>Setup Admin USB Network Dongle</h3>
+                Go to Webguard -&gt; Web Access -&gt; 'Device Access'<br>
+                Now set the Rating to '18-Rated' for the admin USB network dongle<br>
+
+                <p><img src="screenshots/SNACBox-DeviceAccess-ScreenShot.png" alt="Screenshot" class="responsive-image"></p>
                 <h2>Enable SNACBox on Home Router</h2>
                 <ol>
                     <li>Disconnect the USB Network Dongle from Laptop/Tablet/Smart Phone</li>
