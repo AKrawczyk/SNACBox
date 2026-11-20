@@ -1,1 +1,53 @@
+<h3>Enable SNACBox on Home Router</h3>
+                <ol>
+                    <li>Disconnect the USB Network Dongle from Laptop/Tablet/Smart Phone</li>
+                    <li>Disconnect the SNACBox LAN port from the USB Network Dongle</li>
+                    <li><strong>Log in to the home router and disable DHCP</strong><br>
+                        Note: Consult the Home Router supplier's web page for information on how to do this.<br>
+                        Note: DNS configuration may be necessary if the Home Router is set to secure DNS.</li>
+                    <li>Connect the SNACBox LAN port to the Home Router Network port.</li>
+                </ol>
+                <h2>Step 2</h2>
+                Set up admin devices<br>
+                Connect at least two wireless devices (Computer, Tablet, Smart Phone) to Home WiFi<br>
+                If you're using a mobile device (iOS, macOS, or Android) make sure to configure the WiFi connection's Private Wi-Fi Address to 'Fixed'<br>
+
+                <img src="screenshots/Apple-MAC-Rand.jpeg" alt="Apple MAC Random" width="200" height="500"><br>
+                <img src="screenshots/Apple-MAC-Fixed.jpeg" alt="Apple MAC Fixed" width="200" height="200">
+
+                <p>Note: These devices will automatically be enrolled into the 'No Access' rating.</p>
+                <ol>
+                    <li>Open a web browser and go to http://192.168.12.1</li>
+                    <li>Login to SNACBox, User = root, Password = xxxxxx</li>
+                    <li>Now set the Rating to '18-Rated' for both admin devices</li>
+                </ol>
+
+                <p><img src="screenshots/SNACBox-DeviceAccess-ScreenShot.png" alt="Screenshot" class="responsive-image"></p>
+
+                4. Once the admin devices have been enabled, proceed to step 3 to enable security and set the time.
+                <h2>Step 3</h2>
+                <h3>Enable SNACBox security</h3>
+                Goto Webguard -&gt; Web Access -&gt; 'Configuration'<br>
+                Tick 'Enable Enhanced Security'<br>
+                <strong>Note:</strong> Only needed if you wish to completley lock down all new device network access and addition access to the internet. If not ticked G-Rated web access will be available along with full internet access. G-Rated web access can be bypassed on the local device unless the device has been enrolled, while full internet aceess still remains.
+                <h3>Set Time</h3>
+                Click on 'System -&gt; System'<br>
+                Find the 'Timezone' dropdown list<br>
+                Select the correct timezone<br>
+
+                <h2>Device Setup</h2>
+                Now everything should be set up, and all devices connected to the Home WiFi should be appearing in the 'Device Access' web interface. All devices will automatically be enrolled on the 'No Access' rating.<br><br>
+                <ol>
+                    <li>Enable devices on the home network</li>
+                    <li>https://192.168.12.1 -&gt; Web Guard -&gt; Web Access -&gt; Device Access</li>
+                    <li>All devices trying to access the Home WiFi will have a 'No Access' rating automatically applied to them, but will have a 'Captive Portal' webpage appear showing their IP address.</li>
+                </ol>
+
+                <p><img src="screenshots/No-Access-Captive-Portal.jpeg" alt="Captive Portal" width="200" height="500"></p>
+
+                4. Now find that device on the list of devices in 'Device Access' and assign it the necessary access rights (G, PG, 12, 15, 16 or 18).<br>
+                The PDF contains detailed information regarding age rated filter configuration <a href="SNACBox%20Age%20Rated%20Filters.pdf">SNACBox Age Rated Filters.pdf</a>
+
+                <p><img src="screenshots/SNACBox-DeviceAccess-ScreenShot.png" alt="Device Access" class="responsive-image"></p>
+            
 
