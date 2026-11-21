@@ -41,7 +41,7 @@ function generateMenu()
         <div class="logo">
             <div class="logo1"><img src="/html/web-rated.png" height="32" width="32"></div>
             <div class="logo2">
-                <h3 class="logo2_1">Web-Rated SNACBox</h3>
+                <h3 class="logo2_1">Web Rated - SNACBox</h3>
             </div>
         </div>`;
     return menuHTML;
