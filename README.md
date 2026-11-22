@@ -28,6 +28,19 @@ Simple Network Access Control Box (SNACBox) is a home gateway that provides chil
 
 [Compatible Hardware](hardware.md)
 
+<h2>Hardware Specifications</h2>
+<h3>Min</h3>
+CPU: 1GHz 64bit Dual Core Arm Cortex-A53<br>
+RAM: 1GB<br>
+SSD: 2GB SD Card<br>
+1 x Gigabit Ethernet Port<br>
+1 x USB A Gigabit Ethernet Dongle<br>
+<h3>Recomended</h3>
+CPU: 1.5GHz 64bit Quad Core Arm Cortex-A72<br>
+RAM: 2GB<br>
+SSD: 8GB eMMC<br>
+2 x Gigabit Ethernet Port<br>
+
 <h2>Openwrt 25.12+ Supported Firmware</h2>
 
 [FriendlyArm NanoPi R3S](https://github.com/AKrawczyk/SNACBox/releases/download/1.0.0.0/openwrt-25.12.6-nanopi-r3s-resize-ext4-sysupgrade.img) - (Reboot before using.)
@@ -39,7 +52,7 @@ Simple Network Access Control Box (SNACBox) is a home gateway that provides chil
 Click and download the firmware<br>
 
 <h2>Flash SD Card</h2>
-Get an SD card (minimum 16 GB) < br>
+Get an SD card (minimum 16 GB) <br>
 Download and install Raspberry Pi Imager https://www.raspberrypi.com/software/<br>
 Insert the SD card into a computer or adapter<br>
 Run Raspberry Pi Imager<br>
