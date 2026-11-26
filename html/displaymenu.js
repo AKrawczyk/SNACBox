@@ -32,7 +32,8 @@ function generateMenu()
                 <li class="dropdown3">
                     <a href="#">Help</a>
                     <ul class="dropdown-menu3">
-                        <li><a href="info.html">About</a></li>
+                        <li><a href="info.html">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
                     </ul>
                 </li>
             </ul>
