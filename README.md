@@ -87,6 +87,8 @@ SSH to root@192.168.1.1
 ssh root@192.168.1.1
 ```
 
+Connect the WAN port to the internet.<br>
+
 <h2>SNACBox Installation</h2>
 The SNACBox APK package is built for OpenWRT 25.12+.<br>
 This package create SNACBox using a clean, fresh OpenWRT install.<br>
